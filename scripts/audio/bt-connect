@@ -1,0 +1,78 @@
+#!/usr/bin/bash
+
+link="Connect:"
+bp="Between 3ANC"
+bo="Bose SoundLink Mini II"
+px="Pixel 5"
+bn="Bang & Olufsen"
+or="OpenRun Pro"
+sp="Internal Speakers"
+db="Disconnect Bluetooth"  # New entry for disconnecting Bluetooth
+
+sel=$(echo "${bp}
+${or}
+${bo}
+${sp}
+${px}
+${bn}
+${db}" | rofi -dmenu -p "${link}")
+
+set_sink_and_notify_listener() {
+    sink_name=$1
+    echo "$sink_name" > /tmp/current_sink
+    # Assuming listener.sh is running in background
+    /home/ari/Code/configs/Bashes/listener.sh "$sink_name" &
+}
+
+if [ "${sel}" = "$bo" ]; then
+    device_mac="08:DF:1F:BB:72:5B"
+    sink_name="bluez_output.08_DF_1F_BB_72_5B.1"
+    sleep 0.2
+    bluetoothctl -- connect $device_mac
+    set_sink_and_notify_listener $sink_name
+fi
+
+if [ "${sel}" = "$or" ]; then
+    device_mac="C0:86:B3:B4:80:9C"
+    # Adjust the sink_name if you know the correct sink name for this device
+    sleep 0.2
+    bluetoothctl -- connect $device_mac
+    # Uncomment and set the sink name if known
+    # set_sink_and_notify_listener $sink_name
+fi
+
+if [ "${sel}" = "$bp" ]; then
+    device_mac="00:00:AB:CD:E8:01"
+    sink_name="bluez_output.00_00_AB_CD_E8_01.1"
+    sleep 0.2
+    bluetoothctl -- connect $device_mac
+    set_sink_and_notify_listener $sink_name
+fi
+
+if [ "${sel}" = "$px" ]; then
+    device_mac="60:B7:6E:0A:88:A9"
+    # Adjust the sink_name if you know the correct sink name for this device
+    sleep 0.2
+    bluetoothctl -- connect $device_mac
+    # Uncomment and set the sink name if known
+    # set_sink_and_notify_listener $sink_name
+fi
+
+if [ "${sel}" = "$bn" ]; then
+    device_mac="50:3E:AA:5C:83:91"
+    # Adjust the sink_name if you know the correct sink name for this device
+    sleep 0.2
+    bluetoothctl -- connect $device_mac
+    # Uncomment and set the sink name if known
+    # set_sink_and_notify_listener $sink_name
+fi
+
+if [ "${sel}" = "$sp" ]; then
+    sink_name="alsa_output.pci-0000_68_00.6.HiFi__Speaker__sink"
+    set_sink_and_notify_listener $sink_name
+fi
+
+if [ "${sel}" = "$db" ]; then
+    /home/ari/System/scripts/audio/bt-disconnect
+fi
+

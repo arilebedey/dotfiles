@@ -1,0 +1,36 @@
+# !/run/current-system/sw/bin/bash
+#!/bin/bash
+
+link="Disonnect:"
+bp="Between 3ANC"
+or="OpenRun Pro"
+bo="Bose SoundLink Mini II"
+px="Pixel 5"
+bn="Bang & Olufsen"
+
+sel=$(echo "${bp}
+${or}
+${bo}
+${px}
+${bn}" | rofi -dmenu -p "${link}")
+
+
+if [ "${sel}" = "$bo" ]; then
+    bluetoothctl -- disconnect 08:DF:1F:BB:72:5B; notify-send --expire-time=2560 "Disconnected" "Bose SoundLink Mini II"
+fi
+
+if [ "${sel}" = "$or" ]; then
+    bluetoothctl -- disconnect C0:86:B3:B4:80:9C; notify-send --expire-time=2560 "Disconnected" "OpenRun Pro"
+fi
+
+if [ "${sel}" = "$bp" ]; then
+    bluetoothctl -- disconnect 00:00:AB:CD:E8:01; notify-send --expire-time=2560 "Disconnected" "Between Pro"
+fi
+
+if [ "${sel}" = "$px" ]; then
+    bluetoothctl -- disconnect 60:B7:6E:0A:88:A9; notify-send --expire-time=2560 "Disconnected" "Pixel 5"
+fi
+
+if [ "${sel}" = "$px" ]; then
+    bluetoothctl -- disconnect 50:3E:AA:5C:83:91; notify-send --expire-time=2560 "Disconnected" "Bang & Olufsen"
+fi

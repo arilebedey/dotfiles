@@ -1,0 +1,62 @@
+## GIT
+alias ga='git add'
+alias gp='git push'
+alias gl='git log'
+alias gs='git status'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gm='git commit -m'
+alias gma='git commit -am'
+alias gb='git branch'
+alias gc='git checkout'
+alias gra='git remote add'
+alias grr='git remote rm'
+alias gpu='git pull'
+alias gcl='git clone'
+
+## SCRIPTS
+alias sc='/home/ari/System/scripts/images/save-clip-2-png.sh'
+
+## PROGRAMS
+alias l='yazi'
+alias ,='yazi'
+alias n='nvim'
+alias chrome='/opt/google/chrome/chrome'
+alias z-='z -'
+alias zi='__zoxide_zi'
+alias th='trash'
+alias lsg='lsd --group-dirs first -A'
+alias td='tmux detach'
+alias wi='which'
+alias lg='lazygit'
+
+## HOME
+alias dot='/home/ari/System/dotfiles'
+alias sz='source /home/ari/.zshrc'
+alias nz='nvim /home/ari/.zshrc'
+alias na='nvim /home/ari/.zshaliases'
+
+## FROM NIXOS
+alias hi="systemctl hibernate"
+alias ss="systemctl poweroff"
+alias rb="systemctl reboot"
+alias bt="bluetoothctl"
+alias br="brightnessctl"
+alias hy="nvim ~/.config/hypr/hyprland.conf"
+alias se="sudoedit"
+alias lout="hyprctl dispatch exit"
+alias ubu="/home/ari/Code/zmk-linux-build-script/urob-zmk-config/scripts/zmk_build.sh"
+alias ud="upower -d"
+alias sof="sleep 1 && hyprctl dispatch dpms off"
+alias son="hyprctl dispatch dpms on"
+alias mk="mkdir"
+alias ll="lsd -l"
+alias la="lsd -la"
+alias t="touch"
+alias cs="tmux_choose_session"
+alias ppc="sudo pacman -S"
+
+## NPM
+alias nrd='npm run dev'
+
+

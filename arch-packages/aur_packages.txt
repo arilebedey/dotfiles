@@ -1,0 +1,12 @@
+bemoji
+google-chrome-wayland-vulkan
+greenclip
+haskell-semigroups
+haskell-wordexp
+hyprpicker
+sesh-bin
+ttf-devicons
+wayshot
+yay
+yay-debug
+zsh-you-should-use

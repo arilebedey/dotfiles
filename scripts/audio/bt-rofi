@@ -1,0 +1,28 @@
+#!/usr/bin/bash
+
+link="Audio menu:"
+co="Connect"
+di="Disconnect"
+re="Restart BT"
+rs="Restart Sound"
+
+sel=$(echo "${co}
+${di}
+${rs}" | rofi -dmenu -p "${link}")
+
+
+if [ "${sel}" = "$co" ]; then
+    sleep 0.1; cd ~; /home/ari/System/scripts/audio/bt-connect
+fi
+
+if [ "${sel}" = "$di" ]; then
+    sleep 0.1; cd ~; ./Code/configs/Bashes/btd
+fi
+
+if [ "${sel}" = "$re" ]; then
+    sleep 0.1; rbt
+fi
+
+if [ "${sel}" = "$rs" ]; then
+    sleep 0.1; restartsound
+fi
