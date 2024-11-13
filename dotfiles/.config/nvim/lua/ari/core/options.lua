@@ -57,3 +57,7 @@ vim.filetype.add({
     keymap = "cpp",
   },
 })
+
+-- FOR avante.nvim
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3

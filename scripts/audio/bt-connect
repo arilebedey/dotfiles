@@ -5,12 +5,10 @@ bp="Between 3ANC"
 bo="Bose SoundLink Mini II"
 px="Pixel 5"
 bn="Bang & Olufsen"
-or="OpenRun Pro"
 sp="Internal Speakers"
 db="Disconnect Bluetooth"  # New entry for disconnecting Bluetooth
 
 sel=$(echo "${bp}
-${or}
 ${bo}
 ${sp}
 ${px}
@@ -30,15 +28,6 @@ if [ "${sel}" = "$bo" ]; then
     sleep 0.2
     bluetoothctl -- connect $device_mac
     set_sink_and_notify_listener $sink_name
-fi
-
-if [ "${sel}" = "$or" ]; then
-    device_mac="C0:86:B3:B4:80:9C"
-    # Adjust the sink_name if you know the correct sink name for this device
-    sleep 0.2
-    bluetoothctl -- connect $device_mac
-    # Uncomment and set the sink name if known
-    # set_sink_and_notify_listener $sink_name
 fi
 
 if [ "${sel}" = "$bp" ]; then

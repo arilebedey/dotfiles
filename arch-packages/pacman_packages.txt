@@ -13,10 +13,12 @@ dunst
 efibootmgr
 fastfetch
 fd
+firefox
 flatpak
 fzf
 git
 git-delta
+github-cli
 go
 grim
 gst-plugin-pipewire
@@ -24,6 +26,8 @@ gum
 htop
 hypridle
 hyprland
+hyprpaper
+hyprpicker
 imagemagick
 intel-media-driver
 iwd
@@ -36,6 +40,7 @@ libva-intel-driver
 libva-mesa-driver
 linux
 linux-firmware
+linux-headers
 lsd
 mako
 man-db
@@ -46,6 +51,7 @@ ncdu
 neovim
 network-manager-applet
 networkmanager
+noise-suppression-for-voice
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
@@ -53,6 +59,7 @@ noto-fonts-extra
 nsxiv
 obs-studio
 obsidian
+openvpn
 pacman-contrib
 pavucontrol
 pipewire
@@ -76,14 +83,17 @@ starship
 stow
 swayidle
 telegram-desktop
+tldr
 tmux
 trash-cli
 tree
 udiskie
 ufw
+v4l2loopback-dkms
 vim
 vulkan-intel
 vulkan-radeon
+vulkan-tools
 wezterm
 wget
 wireless_tools

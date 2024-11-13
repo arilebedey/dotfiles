@@ -1,1 +1,1 @@
-/home/ari/Code/mock-work/portfolio/src/components/About
+/home/ari/Code/mock-work/todo-app-dnd/src/components/TaskList/assets
