@@ -1,14 +1,15 @@
-# !/run/current-system/sw/bin/bash
 #!/bin/bash
 
 link="Disonnect:"
+qc="Bose QC Ultra"
 bp="Between 3ANC"
 or="OpenRun Pro"
 bo="Bose SoundLink Mini II"
 px="Pixel 5"
 bn="Bang & Olufsen"
 
-sel=$(echo "${bp}
+sel=$(echo "${qc}
+${bp}
 ${or}
 ${bo}
 ${px}
@@ -17,6 +18,11 @@ ${bn}" | rofi -dmenu -p "${link}")
 
 if [ "${sel}" = "$bo" ]; then
     bluetoothctl -- disconnect 08:DF:1F:BB:72:5B; notify-send --expire-time=2560 "Disconnected" "Bose SoundLink Mini II"
+fi
+
+
+if [ "${sel}" = "$qc" ]; then
+    bluetoothctl -- disconnect BC:87:FA:26:A7:24; notify-send --expire-time=2560 "Disconnected" "QC Ultra"
 fi
 
 if [ "${sel}" = "$or" ]; then

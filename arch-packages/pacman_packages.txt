@@ -31,6 +31,8 @@ hyprpicker
 imagemagick
 intel-media-driver
 iwd
+jdk11-openjdk
+jdk17-openjdk
 kitty
 lazygit
 libnotify
@@ -89,6 +91,7 @@ trash-cli
 tree
 udiskie
 ufw
+unzip
 v4l2loopback-dkms
 vim
 vulkan-intel

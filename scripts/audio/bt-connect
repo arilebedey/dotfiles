@@ -2,18 +2,22 @@
 
 link="Connect:"
 bp="Between 3ANC"
+qc="Bose QC Ultra"
 bo="Bose SoundLink Mini II"
 px="Pixel 5"
 bn="Bang & Olufsen"
 sp="Internal Speakers"
 db="Disconnect Bluetooth"  # New entry for disconnecting Bluetooth
+rs="Restart Pipewire"
 
 sel=$(echo "${bp}
+${qc}
 ${bo}
 ${sp}
 ${px}
 ${bn}
-${db}" | rofi -dmenu -p "${link}")
+${db}
+${rs}" | rofi -dmenu -p "${link}")
 
 set_sink_and_notify_listener() {
     sink_name=$1
@@ -25,6 +29,14 @@ set_sink_and_notify_listener() {
 if [ "${sel}" = "$bo" ]; then
     device_mac="08:DF:1F:BB:72:5B"
     sink_name="bluez_output.08_DF_1F_BB_72_5B.1"
+    sleep 0.2
+    bluetoothctl -- connect $device_mac
+    set_sink_and_notify_listener $sink_name
+fi
+
+if [ "${sel}" = "$qc" ]; then
+    device_mac="BC:87:FA:26:A7:2"
+    sink_name="bluez_output.BC_87_FA_26_A7_24.1"
     sleep 0.2
     bluetoothctl -- connect $device_mac
     set_sink_and_notify_listener $sink_name
@@ -65,3 +77,6 @@ if [ "${sel}" = "$db" ]; then
     /home/ari/System/scripts/audio/bt-disconnect
 fi
 
+if [ "${sel}" = "$rs" ]; then
+  systemctl restart --user pipewire.service
+fi
