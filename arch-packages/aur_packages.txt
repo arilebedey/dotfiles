@@ -3,7 +3,6 @@ bemoji
 chatgpt-desktop-bin
 chatgpt-desktop-bin-debug
 chili-sddm-theme
-droidcam-obs-plugin-bin
 gdlauncher-bin
 gdlauncher-bin-debug
 google-chrome-wayland-vulkan
@@ -12,6 +11,7 @@ haskell-semigroups
 haskell-wordexp
 obs-backgroundremoval
 obs-backgroundremoval-debug
+postman-bin
 sesh-bin
 sesh-bin-debug
 sway-audio-idle-inhibit-git

@@ -14,3 +14,9 @@ export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/tools
+export PATH="$PATH:/home/ari/Android/Sdk/emulator"
+# NestJS
+export PATH=$PATH:$(npm config get prefix)/bin
+# Theme
+export GTK_THEME='Adwaita-dark'
+

@@ -60,4 +60,7 @@ alias ppc="sudo pacman -S"
 ## NPM
 alias nrd='npm run dev'
 
+## REACT NATIVE
+alias kan="pkill -f 'run:android'"
+alias nra="npx expo run:android"
 

@@ -8,9 +8,12 @@ brightnessctl
 btop
 chromium
 cliphist
+docker
+docker-compose
 dolphin
 dunst
 efibootmgr
+fail2ban
 fastfetch
 fd
 firefox
@@ -19,6 +22,8 @@ fzf
 git
 git-delta
 github-cli
+gnome-keyring
+gnome-themes-extra
 go
 grim
 gst-plugin-pipewire
@@ -39,7 +44,6 @@ libnotify
 libpulse
 libraw
 libva-intel-driver
-libva-mesa-driver
 linux
 linux-firmware
 linux-headers
@@ -48,6 +52,7 @@ mako
 man-db
 mesa-utils
 mpv
+mysql-workbench
 nano
 ncdu
 neovim
@@ -97,6 +102,7 @@ vim
 vulkan-intel
 vulkan-radeon
 vulkan-tools
+wev
 wezterm
 wget
 wireless_tools

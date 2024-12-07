@@ -14,6 +14,7 @@ bindkey '^[[Z' autosuggest-accept
 
 # interupt sig
 stty intr ^P
+# stty intr '^C'
 
 # Copy whole command
 cmd_to_clip () { wl-copy -n <<< $BUFFER }
