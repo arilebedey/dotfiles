@@ -76,8 +76,8 @@ keymap = [
 	{ on = [ "<C-d>" ],         run = "remove --permanently",       desc = "Permanently delete the files" },
 	{ on = [ "a" ],         run = "create",                     desc = "Create a file or directory (ends with / for directories)" },
 	{ on = [ "r" ],         run = "rename --cursor=before_ext", desc = "Rename a file or directory" },
-	{ on = [ ";" ],         run = "shell",                      desc = "Run a shell command" },
-	{ on = [ ":" ],         run = "shell --block",              desc = "Run a shell command (block the UI until the command finishes)" },
+	{ on = [ ";" ],         run = "shell --interactive",                      desc = "Run a shell command" },
+	{ on = [ ":" ],         run = "shell --block --interactive",              desc = "Run a shell command (block the UI until the command finishes)" },
 	{ on = [ "." ],         run = "hidden toggle",              desc = "Toggle the visibility of hidden files" },
 	{ on = [ "s" ],         run = "search fd",                  desc = "Search files by name using fd" },
 	{ on = [ "<C-s>" ],         run = "search rg",                  desc = "Search files by content using ripgrep" },
@@ -153,6 +153,7 @@ keymap = [
 	{ on = [ "g", "c" ],       run = "cd ~/Code",          desc = "Go to ~/Code" },
 	{ on = [ "g", "l" ],       run = "cd ~/Images/Clipboard/",          desc = "Go to ~/Images/Clipboard/" },
 	{ on = [ "g", "v" ],       run = "cd ~/Videos/",          desc = "Go to ~/Videos/" },
+	{ on = [ "g", "t" ],       run = "cd ~/System/temp",          desc = "Go to ~/System/temp" },
 
   # Temporary gotos
 	{ on = [ "x", "n" ], run = "cd ~/.config/nvim/lua/ari", desc = "Go to a directory interactively" },

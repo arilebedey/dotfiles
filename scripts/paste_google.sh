@@ -12,6 +12,6 @@ fi
 # Encode the search term for URL
 ENCODED_SEARCH_TERM=$(echo "$SEARCH_TERM" | sed 's/ /+/g')
 
-# Open Chromium and search YouTube
-zen-browser "https://www.youtube.com/results?search_query=$ENCODED_SEARCH_TERM"
+# Open Chromium and search Google
+zen-browser "https://www.google.com/search?q=$ENCODED_SEARCH_TERM"
 
