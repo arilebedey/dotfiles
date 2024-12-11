@@ -63,4 +63,5 @@ alias nrd='npm run dev'
 ## REACT NATIVE
 alias kan="pkill -f 'run:android'"
 alias nra="npx expo run:android"
+alias sas="sudo /home/ari/Android/Sdk/platform-tools/adb start-server"
 
