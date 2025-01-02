@@ -19,4 +19,3 @@ export PATH="$PATH:/home/ari/Android/Sdk/emulator"
 export PATH=$PATH:$(npm config get prefix)/bin
 # Theme
 export GTK_THEME='Adwaita-dark'
-

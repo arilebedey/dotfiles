@@ -1,4 +1,4 @@
-function yy() {
+function yazi_cwd() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
@@ -6,3 +6,5 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+alias ,='yazi_cwd'

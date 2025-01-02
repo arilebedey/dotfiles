@@ -19,6 +19,8 @@ fd
 firefox
 flatpak
 fzf
+ghostscript
+ghostty
 git
 git-delta
 github-cli
@@ -97,6 +99,7 @@ tree
 udiskie
 ufw
 unzip
+usbutils
 v4l2loopback-dkms
 vim
 vulkan-intel

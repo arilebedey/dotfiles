@@ -179,12 +179,12 @@ function lvimGoToLine {
     fi
 }
 
-alias vf='vimGoToFiles'
+# alias vf='vimGoToFiles'
 alias nf='nvimGoToFiles'
-alias ngl='nvimGoToLine'
-alias vgl='vimGoToLine'
-alias fzd='fdFzf'
+alias lf='nvimGoToLine'
+# alias vgl='vimGoToLine'
+# alias fzd='fdFzf'
 # alias ta='tmuxAttachFZF'
 # alias tk='tmuxKillFZF'
-alias lf='lvimGoToFiles'
+# alias lf='lvimGoToFiles'
 alias lgl='lvimGoToLine'

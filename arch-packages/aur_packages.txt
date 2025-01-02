@@ -9,6 +9,7 @@ google-chrome-wayland-vulkan
 greenclip
 haskell-semigroups
 haskell-wordexp
+norminette
 obs-backgroundremoval
 obs-backgroundremoval-debug
 postman-bin
