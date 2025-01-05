@@ -130,6 +130,7 @@ call plug#begin('~/.vim/plugged')
 
 " Add OneDark theme
 Plug 'joshdick/onedark.vim'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -142,4 +143,3 @@ xnoremap <silent> gc :<C-u>'<,'>s/^/\/\//<CR>
 
 " Map gu to uncomment selected lines in visual mode
 xnoremap <silent> gu :<C-u>'<,'>s/^\/\///<CR>
-

@@ -2,6 +2,7 @@ amd-ucode
 base
 base-devel
 bat
+bc
 bluez
 bluez-utils
 brightnessctl
@@ -16,7 +17,6 @@ efibootmgr
 fail2ban
 fastfetch
 fd
-firefox
 flatpak
 fzf
 ghostscript
@@ -52,6 +52,7 @@ linux-headers
 lsd
 mako
 man-db
+man-pages
 mesa-utils
 mpv
 mysql-workbench
@@ -125,7 +126,6 @@ yazi
 yq
 yt-dlp
 zathura
-zellij
 zoxide
 zram-generator
 zsh

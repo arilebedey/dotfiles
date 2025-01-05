@@ -25,20 +25,20 @@ opt.wrap = false
 
 -- Apply settings only for C files
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "c", -- Trigger for C files
-    callback = function()
-        -- TABS & INDENTATION
-        vim.bo.tabstop = 4        -- Number of spaces a tab character counts for
-        vim.bo.shiftwidth = 4     -- Number of spaces used for auto-indenting
-        vim.bo.softtabstop = 4    -- Number of spaces used when hitting Tab
-        vim.bo.expandtab = false  -- Use tabs, not spaces
-        vim.bo.autoindent = true  -- Enable auto-indentation
-        vim.bo.smartindent = true -- Enable smart indentation
+  pattern = "c", -- Trigger for C files
+  callback = function()
+    -- TABS & INDENTATION
+    vim.bo.tabstop = 4        -- Number of spaces a tab character counts for
+    vim.bo.shiftwidth = 4     -- Number of spaces used for auto-indenting
+    vim.bo.softtabstop = 4    -- Number of spaces used when hitting Tab
+    vim.bo.expandtab = false  -- Use tabs, not spaces
+    vim.bo.autoindent = true  -- Enable auto-indentation
+    vim.bo.smartindent = true -- Enable smart indentation
 
-        -- DISPLAY CHARACTERS (optional)
-        vim.wo.list = true                  -- Show whitespace characters
-        vim.wo.listchars = "tab:>-,trail:-" -- Customize how tabs/trailing spaces look
-    end,
+    -- DISPLAY CHARACTERS (optional)
+    vim.wo.list = true                  -- Show whitespace characters
+    vim.wo.listchars = "tab:>-,trail:-" -- Customize how tabs/trailing spaces look
+  end,
 })
 
 
@@ -72,11 +72,14 @@ vim.api.nvim_set_keymap('v', 'p', '"0p', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', 'P', '"0P', { noremap = true, silent = true })
 
 vim.filetype.add({
-    extension = {
-        keymap = "cpp",
-    },
+  extension = {
+    keymap = "cpp",
+  },
 })
 
 -- FOR avante.nvim
 -- views can only be fully collapsed with the global statusline
 vim.opt.laststatus = 3
+
+-- Accept luasnip edit place
+vim.api.nvim_set_keymap('s', '<C-l>', '<ESC>ciw', { noremap = true, silent = true })

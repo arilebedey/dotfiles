@@ -22,8 +22,6 @@ ${rs}" | rofi -dmenu -p "${link}")
 set_sink_and_notify_listener() {
     sink_name=$1
     echo "$sink_name" > /tmp/current_sink
-    # Assuming listener.sh is running in background
-    /home/ari/Code/configs/Bashes/listener.sh "$sink_name" &
 }
 
 if [ "${sel}" = "$bo" ]; then
@@ -35,7 +33,7 @@ if [ "${sel}" = "$bo" ]; then
 fi
 
 if [ "${sel}" = "$qc" ]; then
-    device_mac="BC:87:FA:26:A7:2"
+    device_mac="BC:87:FA:26:A7:24"
     sink_name="bluez_output.BC_87_FA_26_A7_24.1"
     sleep 0.2
     bluetoothctl -- connect $device_mac
@@ -78,5 +76,5 @@ if [ "${sel}" = "$db" ]; then
 fi
 
 if [ "${sel}" = "$rs" ]; then
-  systemctl restart --user pipewire.service
+    systemctl restart --user pipewire.service
 fi

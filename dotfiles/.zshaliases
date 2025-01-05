@@ -28,6 +28,7 @@ alias td='tmux detach'
 alias wi='which'
 alias lg='lazygit'
 alias unmount='/home/ari/Code/configs/Bashes/sdbunmount'
+alias batt='python /home/ari/System/scripts/battery/battery_check.py'
 
 ## HOME
 alias dot='/home/ari/System/dotfiles'
@@ -36,7 +37,7 @@ alias nz='nvim /home/ari/.zshrc'
 alias na='nvim /home/ari/.zshaliases'
 
 ## FROM NIXOS
-alias hi="systemctl hibernate"
+alias hib="/home/ari/System/scripts/system/lock-and-hibernate.sh"
 alias ss="systemctl poweroff"
 alias rb="systemctl reboot"
 alias bt="bluetoothctl"

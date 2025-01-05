@@ -8,8 +8,8 @@ bo="Bose SoundLink Mini II"
 px="Pixel 5"
 bn="Bang & Olufsen"
 
-sel=$(echo "${qc}
-${bp}
+sel=$(echo "${bp}
+${qc}
 ${or}
 ${bo}
 ${px}
