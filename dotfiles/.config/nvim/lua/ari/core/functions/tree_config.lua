@@ -44,12 +44,12 @@ end
 function M.save_tree_state(state)
   ensure_config_dir()
 
-  local file = io.open(tree_config_file, "w")
+  local file, err = io.open(tree_config_file, "w")
   if file then
     file:write(tostring(state))
     file:close()
   else
-    vim.notify("Failed to save tree state configuration", vim.log.levels.ERROR)
+    vim.notify("Failed to save tree state configuration: " .. (err or "unknown error"), vim.log.levels.ERROR)
   end
 end
 
@@ -57,6 +57,7 @@ end
 function M.toggle_tree_state()
   local current_state = M.get_tree_state()
   local new_state = not current_state
+
   M.save_tree_state(new_state)
   return new_state
 end
