@@ -11,7 +11,6 @@ chromium
 cliphist
 docker
 docker-compose
-dolphin
 dunst
 efibootmgr
 fail2ban
@@ -33,6 +32,7 @@ gum
 htop
 hypridle
 hyprland
+hyprlock
 hyprpaper
 hyprpicker
 imagemagick
@@ -79,6 +79,9 @@ pipewire-pulse
 playerctl
 podman
 polkit-kde-agent
+poppler
+python-pip
+qmk
 qt5-wayland
 qt6-wayland
 ranger
@@ -91,7 +94,6 @@ sof-firmware
 spotify-launcher
 starship
 stow
-swayidle
 telegram-desktop
 tldr
 tmux
@@ -100,6 +102,7 @@ tree
 udiskie
 ufw
 unzip
+upower
 usbutils
 v4l2loopback-dkms
 vim

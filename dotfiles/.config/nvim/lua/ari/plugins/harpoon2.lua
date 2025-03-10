@@ -30,47 +30,47 @@ return {
       end
 
       require("telescope.pickers")
-        .new({}, {
-          prompt_title = "Harpoon",
-          finder = finder(),
-          initial_mode = "normal",
-          previewer = conf.file_previewer({}),
-          sorter = conf.generic_sorter({}),
-          attach_mappings = function(prompt_bufnr, map)
-            map("n", "dd", function()
-              local state = require("telescope.actions.state")
-              local selected_entry = state.get_selected_entry()
-              local current_picker = state.get_current_picker(prompt_bufnr)
+          .new({}, {
+            prompt_title = "Harpoon",
+            finder = finder(),
+            initial_mode = "normal",
+            previewer = conf.file_previewer({}),
+            sorter = conf.generic_sorter({}),
+            attach_mappings = function(prompt_bufnr, map)
+              map("n", "dd", function()
+                local state = require("telescope.actions.state")
+                local selected_entry = state.get_selected_entry()
+                local current_picker = state.get_current_picker(prompt_bufnr)
 
-              table.remove(harpoon_files.items, selected_entry.index)
-              current_picker:refresh(finder())
-            end)
-            return true
-          end,
-        })
-        :find()
+                table.remove(harpoon_files.items, selected_entry.index)
+                current_picker:refresh(finder())
+              end)
+              return true
+            end,
+          })
+          :find()
     end
-	
+
 
     return {
       -- Harpoon marked files 1 through 4
-      {",n", function() harpoon:list():select(1) end, desc ="Harpoon buffer 1"},
-      {",i", function() harpoon:list():select(2) end, desc ="Harpoon buffer 2"},
-      {",w", function() harpoon:list():select(3) end, desc ="Harpoon buffer 3"},
-      {",-", function() harpoon:list():select(4) end, desc ="Harpoon buffer 4"},
-      {",a", function() harpoon:list():select(5) end, desc ="Harpoon buffer 5"},
-      {",.", function() harpoon:list():select(6) end, desc ="Harpoon buffer 6"},
+      { ",n",    function() harpoon:list():select(1) end,                     desc = "Harpoon buffer 1" },
+      { ",i",    function() harpoon:list():select(2) end,                     desc = "Harpoon buffer 2" },
+      { ",w",    function() harpoon:list():select(3) end,                     desc = "Harpoon buffer 3" },
+      { ",-",    function() harpoon:list():select(4) end,                     desc = "Harpoon buffer 4" },
+      { ",a",    function() harpoon:list():select(5) end,                     desc = "Harpoon buffer 5" },
+      { ",.",    function() harpoon:list():select(6) end,                     desc = "Harpoon buffer 6" },
 
       -- Harpoon next and previous.
-      {"<a-5>", function() harpoon:list():next() end, desc ="Harpoon next buffer"},
-      {"<a-6>", function() harpoon:list():prev() end, desc ="Harpoon prev buffer"},
+      { "<a-5>", function() harpoon:list():next() end,                        desc = "Harpoon next buffer" },
+      { "<a-6>", function() harpoon:list():prev() end,                        desc = "Harpoon prev buffer" },
 
       -- Harpoon user interface.
-      {"<a-7>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc ="Harpoon Toggle Menu"},
-      {",l", function() harpoon:list():add() end, desc ="Harpoon add file"},
+      { "<a-7>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Harpoon Toggle Menu" },
+      { ",l",    function() harpoon:list():add() end,                         desc = "Harpoon add file" },
 
       -- Use Telescope as Harpoon user interface.
-      {",u", function() toggle_telescope(harpoon:list() )end, desc ="Open Harpoon window"},
+      { ",u",    function() toggle_telescope(harpoon:list()) end,             desc = "Open Harpoon window" },
     }
   end,
 

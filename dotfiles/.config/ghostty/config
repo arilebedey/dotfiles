@@ -2,3 +2,7 @@ font-size = 28
 window-decoration = false
 fullscreen = true
 theme = Batman
+
+cursor-style-blink = false
+shell-integration-features = no-cursor
+cursor-style = bar

@@ -1,14 +1,16 @@
 android-studio
 bemoji
-chatgpt-desktop-bin
 chatgpt-desktop-bin-debug
 chili-sddm-theme
+electron30
 gdlauncher-bin
 gdlauncher-bin-debug
 google-chrome-wayland-vulkan
 greenclip
+greenclip-debug
 haskell-semigroups
 haskell-wordexp
+instaloader
 norminette
 obs-backgroundremoval
 obs-backgroundremoval-debug

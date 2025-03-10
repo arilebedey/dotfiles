@@ -6,9 +6,10 @@ return {
 
     -- delete s key mapping
     local function my_on_attach(bufnr)
-        local api = require('nvim-tree.api')
-        api.config.mappings.default_on_attach(bufnr)
-        vim.keymap.del('n', 's', { buffer = bufnr })
+      local api = require('nvim-tree.api')
+      api.config.mappings.default_on_attach(bufnr)
+      vim.keymap.del('n', 's', { buffer = bufnr })
+      vim.keymap.del('n', '-', { buffer = bufnr })
     end
 
     -- recommended settings from nvim-tree documentation
@@ -57,19 +58,19 @@ return {
     -- custom fn for opening at parent
     local api = require('nvim-tree.api')
     local function toggle_and_navigate_parent()
-        -- Toggle the file explorer
-        vim.cmd('NvimTreeFindFile')
-        -- Navigate to the parent node
-        api.node.navigate.parent()
+      -- Toggle the file explorer
+      vim.cmd('NvimTreeFindFile')
+      -- Navigate to the parent node
+      api.node.navigate.parent()
     end
 
     -- set keymaps
-    local keymap = vim.keymap -- for conciseness
+    local keymap = vim.keymap                                                                  -- for conciseness
 
-    keymap.set("n", "-.", "<cmd>NvimTreeOpen<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
+    keymap.set("n", "-.", "<cmd>NvimTreeOpen<CR>", { desc = "Toggle file explorer" })          -- toggle file explorer
     keymap.set('n', '-w', toggle_and_navigate_parent, { desc = 'Toggle file explorer and navigate to parent' })
-    keymap.set("n", "--w", "<cmd>NvimTreeFindFile<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
-    keymap.set("n", "<leader>.", "<cmd>NvimTreeClose<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
+    keymap.set("n", "--w", "<cmd>NvimTreeFindFile<CR>", { desc = "Toggle file explorer" })     -- toggle file explorer
+    keymap.set("n", "<leader>.", "<cmd>NvimTreeClose<CR>", { desc = "Toggle file explorer" })  -- toggle file explorer
     keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorernvim-
     -- keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
     -- keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer

@@ -17,6 +17,15 @@ alias gcl='git clone'
 ## SCRIPTS
 alias sc='/home/ari/System/scripts/images/save-clip-2-png.sh'
 
+## SYSTEM
+alias hib="/home/ari/System/scripts/system/lock-and-hibernate.sh"
+alias nap="/home/ari/System/scripts/system/lock-and-dim.sh"
+alias lock="/home/ari/System/scripts/system/lock.sh"
+alias ss="systemctl poweroff"
+alias rb="systemctl reboot"
+alias bt="bluetoothctl"
+alias br="brightnessctl"
+
 ## PROGRAMS
 alias n='nvim'
 alias z-='z -'
@@ -29,19 +38,16 @@ alias wi='which'
 alias lg='lazygit'
 alias unmount='/home/ari/Code/configs/Bashes/sdbunmount'
 alias batt='python /home/ari/System/scripts/battery/battery_check.py'
+alias nano='nvim'
 
 ## HOME
 alias dot='/home/ari/System/dotfiles'
 alias sz='source /home/ari/.zshrc'
 alias nz='nvim /home/ari/.zshrc'
 alias na='nvim /home/ari/.zshaliases'
+alias za='nvim /home/ari/.zshaliases'
 
 ## FROM NIXOS
-alias hib="/home/ari/System/scripts/system/lock-and-hibernate.sh"
-alias ss="systemctl poweroff"
-alias rb="systemctl reboot"
-alias bt="bluetoothctl"
-alias br="brightnessctl"
 alias hy="nvim ~/.config/hypr/hyprland.conf"
 alias se="sudoedit"
 alias lout="hyprctl dispatch exit"
@@ -61,7 +67,7 @@ alias ppc="sudo pacman -S"
 alias nrd='npm run dev'
 
 ## REACT NATIVE
-alias kan="pkill -f 'run:android'"
+alias kan="pkill -f 'expo start' && pkill -f 'expo run:android'"
 alias nra="npx expo run:android"
+alias es="npx expo start --localhost"
 alias sas="sudo /home/ari/Android/Sdk/platform-tools/adb start-server"
-

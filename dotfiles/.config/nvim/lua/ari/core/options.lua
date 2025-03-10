@@ -16,6 +16,10 @@ vim.o.signcolumn = "yes"
 vim.opt.undodir = vim.fn.expand("~/.local/nvim/undodir")
 vim.opt.undofile = true
 
+-- UNDO
+vim.keymap.set('n', 'r', '<C-r>', { noremap = true })
+vim.keymap.set('n', 'R', 'r', { noremap = true })
+
 -- TABS & INDENTATION
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
