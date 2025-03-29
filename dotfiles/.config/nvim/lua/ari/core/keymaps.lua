@@ -100,3 +100,17 @@ vim.api.nvim_set_keymap('n', '<leader>ts',
 vim.api.nvim_set_keymap('n', '<leader>t;',
   ':colorscheme monokai-pro-octagon<CR>',
   { noremap = true, silent = true, desc = "Switch to Monokai Octagon" })
+
+vim.cmd('source ' .. vim.fn.stdpath('config') .. '/lua/ari/plugins/42header.vim')
+vim.api.nvim_set_keymap('n', '<leader>nt', ':Stdheader<CR>', { noremap = true, silent = true })
+
+-----------------------------------
+-- CLIBBOARD STUFF | COPYING ETC --
+-----------------------------------
+
+-- Binding to clear file and paste clipboard content
+vim.api.nvim_set_keymap('n', '<leader>cp', ':%delete_<CR>"+P', { noremap = true, silent = true })
+
+-- For visual mode, directly use "+p to paste from system clipboard
+vim.api.nvim_set_keymap('v', 'p', '"+p', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'P', '"+P', { noremap = true, silent = true })

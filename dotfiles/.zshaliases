@@ -16,6 +16,9 @@ alias gcl='git clone'
 
 ## SCRIPTS
 alias sc='/home/ari/System/scripts/images/save-clip-2-png.sh'
+alias getpa='/home/ari/System/scripts/get_path.sh'
+alias ct='/home/ari/System/scripts/code-context.sh'
+alias copyip='/home/ari/System/scripts/copy-ip.sh'
 
 ## SYSTEM
 alias hib="/home/ari/System/scripts/system/lock-and-hibernate.sh"
@@ -71,3 +74,8 @@ alias kan="pkill -f 'expo start' && pkill -f 'expo run:android'"
 alias nra="npx expo run:android"
 alias es="npx expo start --localhost"
 alias sas="sudo /home/ari/Android/Sdk/platform-tools/adb start-server"
+
+## MISC
+alias yc="yazi ~/Code"
+alias sp="sudo pacman -S"
+alias ys="yay -S"

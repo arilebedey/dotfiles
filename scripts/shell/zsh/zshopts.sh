@@ -19,3 +19,6 @@ export PATH="$PATH:/home/ari/Android/Sdk/emulator"
 export PATH=$PATH:$(npm config get prefix)/bin
 # Theme
 export GTK_THEME='Adwaita-dark'
+# Disable bracketed paste
+unset zle_bracketed_paste
+export TERM=xterm-256color

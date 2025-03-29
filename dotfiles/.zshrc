@@ -29,5 +29,8 @@ source /home/ari/System/scripts/shell/zsh/keybinds.sh
 ## PLUGIN (keep at the end!)
 source /home/ari/System/scripts/shell/zsh/plugins-end.sh
 
+## SECRETS
+source /home/ari/System/scripts/shell/zsh/secrets.sh
+
 # Created by `pipx` on 2025-03-09 23:29:27
 export PATH="$PATH:/home/ari/.local/bin"

@@ -71,10 +71,6 @@ vim.o.termguicolors = true
 vim.o.mouse = "a"
 vim.opt.guicursor = { 'n:block', 'v:ver25', 'i:ver25' }
 
--- Disable clipboard override when pasting over a selection
-vim.api.nvim_set_keymap('v', 'p', '"0p', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', 'P', '"0P', { noremap = true, silent = true })
-
 vim.filetype.add({
   extension = {
     keymap = "cpp",

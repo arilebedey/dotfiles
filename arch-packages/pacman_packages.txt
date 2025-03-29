@@ -5,10 +5,12 @@ bat
 bc
 bluez
 bluez-utils
+breeze
 brightnessctl
 btop
 chromium
 cliphist
+corectrl
 docker
 docker-compose
 dunst
@@ -16,6 +18,7 @@ efibootmgr
 fail2ban
 fastfetch
 fd
+firefox
 flatpak
 fzf
 ghostscript
@@ -37,6 +40,7 @@ hyprpaper
 hyprpicker
 imagemagick
 intel-media-driver
+iw
 iwd
 jdk11-openjdk
 jdk17-openjdk
@@ -49,8 +53,9 @@ libva-intel-driver
 linux
 linux-firmware
 linux-headers
+linux-lts
+linux-lts-headers
 lsd
-mako
 man-db
 man-pages
 mesa-utils
@@ -81,9 +86,11 @@ podman
 polkit-kde-agent
 poppler
 python-pip
+python-pipx
 qmk
 qt5-wayland
 qt6-wayland
+radeontop
 ranger
 ripgrep
 rofi-wayland
@@ -93,8 +100,10 @@ smartmontools
 sof-firmware
 spotify-launcher
 starship
+steam
 stow
 telegram-desktop
+tig
 tldr
 tmux
 trash-cli
@@ -112,6 +121,7 @@ vulkan-tools
 wev
 wezterm
 wget
+wireless-regdb
 wireless_tools
 wireplumber
 wl-clip-persist

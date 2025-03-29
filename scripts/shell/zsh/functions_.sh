@@ -21,6 +21,11 @@ tx() {
     echo "Created and made executable: $1"
 }
 
+# Function to run llm without activating the whole environment
+llm() {
+  $HOME/llm-env/bin/llm "$@"
+}
+
 function sesh-sessions() {
   {
     exec </dev/tty
