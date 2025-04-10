@@ -24,7 +24,7 @@ return {
         edit = "<leader>ce",
         refresh = "<leader>cr",
         toggle = {
-          default = "<leader>cc",
+          default = "<leader>cl",
           debug = "<leader>cd",
           hint = "<leader>ch",
         },

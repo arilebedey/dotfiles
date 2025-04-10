@@ -7,4 +7,4 @@ hyprctl dispatch exec "hyprlock"
 sleep 1
 
 # Hibernate the system
-systemctl hibernate
+systemctl suspend

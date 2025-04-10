@@ -58,12 +58,12 @@ alias ubu="/home/ari/Code/zmk-linux-build-script/urob-zmk-config/scripts/zmk_bui
 alias ud="upower -d"
 alias sof="sleep 1 && hyprctl dispatch dpms off"
 alias son="hyprctl dispatch dpms on"
-alias mk="mkdir"
+alias mk="mkdir -p"
 alias ll="lsd -l"
 alias l="lsd -l"
 alias la="lsd -la"
 alias t="touch"
-alias cs="tmux_choose_session"
+# alias cs="tmux_choose_session"
 alias ppc="sudo pacman -S"
 
 ## NPM

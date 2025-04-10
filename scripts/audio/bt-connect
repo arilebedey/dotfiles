@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
 link="Connect:"
-bp="Between 3ANC"
 qc="Bose QC Ultra"
+bp="Between 3ANC"
 bo="Bose SoundLink Mini II"
 px="Pixel 5"
 bn="Bang & Olufsen"
@@ -10,9 +10,9 @@ sp="Internal Speakers"
 db="Disconnect Bluetooth"  # New entry for disconnecting Bluetooth
 rs="Restart Pipewire"
 
-sel=$(echo "${bp}
-${qc}
+sel=$(echo "${qc}
 ${bo}
+${bp}
 ${sp}
 ${px}
 ${bn}

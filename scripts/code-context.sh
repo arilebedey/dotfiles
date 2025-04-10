@@ -14,11 +14,15 @@ done
 # Create a temporary file
 TEMP_FILE=$(mktemp)
 
+# Define directories to exclude
+EXCLUDE_DIRS=".git|.svn|.hg|node_modules|__pycache__|.venv|.env|.idea|.vscode"
+
 # Brief description and instruction
 echo "Code Context Builder for LLM Prompts"
 echo "Select files [TAB: multi-select, ENTER: confirm]:"
-# Store selected files in an array for proper handling
-mapfile -t SELECTED_FILES < <(find . -type f -not -path "*/\.*" | fzf --multi)
+
+# Find all files, including those in hidden directories, but exclude specific directories
+mapfile -t SELECTED_FILES < <(find . -type f -not -path "*/\($EXCLUDE_DIRS\)/*" | fzf --multi)
 
 # Exit if no files were selected
 if [ ${#SELECTED_FILES[@]} -eq 0 ]; then

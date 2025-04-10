@@ -1,7 +1,8 @@
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 export EDITOR=nvim
 export VISUAL=nvim
-export TERM=xterm-kitty
+# export TERM=xterm-kitty
+export TERM=ghostty
 HISTFILE=~/.local/.zshhistory
 HISTSIZE=30000
 SAVEHIST=30000
@@ -20,5 +21,10 @@ export PATH=$PATH:$(npm config get prefix)/bin
 # Theme
 export GTK_THEME='Adwaita-dark'
 # Disable bracketed paste
-unset zle_bracketed_paste
-export TERM=xterm-256color
+# unset zle_bracketed_paste
+unsetopt BEEP
+# Disable flow control (Ctrl+S, Ctrl+Q)
+stty -ixon
+# Bind Ctrl+S to run the nf command
+bindkey -s '^S' 'nf\n'
+bindkey -s '^E' 'nvim\n'

@@ -53,7 +53,7 @@ kms("n", "<leader>tc", ":tabclose<CR>", { desc = "[T]ab [C]lose", silent = true 
 kms("n", "<leader>la", "<cmd>Lazy<CR>", { desc = "Open Lazy.nvim" })
 
 -- COPYING INFO
-vim.api.nvim_set_keymap('n', '<leader>cf',
+vim.api.nvim_set_keymap('n', '<leader>cc',
   [[:lua require('ari.core.functions.copy_file_path').copy_current_file_path()<CR>]],
   { desc = "Copy Full File Path", noremap = true, silent = true })
 -- Map Ctrl-A to select all text

@@ -98,3 +98,10 @@ message {
     background-color: red;
     border: 0px solid;
 }
+
+configuration {
+    scroll-method: 1;            /* 0: Per page, 1: Continuous */
+    scroll-step: 5;              /* Number of lines to scroll at once */
+    cycle: false;                /* Disable cycling through list */
+    fixed-num-lines: true;       /* Keep number of rows fixed */
+}

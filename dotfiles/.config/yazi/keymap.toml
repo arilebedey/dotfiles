@@ -78,6 +78,11 @@ keymap = [
 	{ on = [ ";" ],         run = "shell --interactive",                      desc = "Run a shell command" },
 	{ on = [ ":" ],         run = "shell --block --interactive",              desc = "Run a shell command (block the UI until the command finishes)" },
 	{ on = [ "." ],         run = "hidden toggle",              desc = "Toggle the visibility of hidden files" },
+
+# Add these new keybindings
+{ on = [ "<A-.>" ], run = "hidden only", desc = "Show only hidden files" },
+{ on = [ "<C-.>" ], run = "hidden none", desc = "Show only non-hidden files" },
+
 	{ on = [ "s" ],         run = "search fd",                  desc = "Search files by name using fd" },
 	{ on = [ "<C-s>" ],         run = "search rg",                  desc = "Search files by content using ripgrep" },
 	{ on = [ "<A-s>" ],     run = "search none",                desc = "Cancel the ongoing search" },
