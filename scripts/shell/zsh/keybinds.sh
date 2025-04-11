@@ -6,8 +6,9 @@ bindkey "^[[1;5D" backward-word
 bindkey '^H' backward-kill-word
 bindkey '^B' backward-kill-word
 
-bindkey '^[[A' up-line-or-search                                                
-bindkey '^[[B' down-line-or-search
+# WARN: Cleanup
+# bindkey '^[[A' up-line-or-search                                                
+# bindkey '^[[B' down-line-or-search
 
 # Shift-Tab
 bindkey '^[[Z' autosuggest-accept

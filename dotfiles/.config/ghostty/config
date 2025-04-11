@@ -6,4 +6,3 @@ theme = Batman
 cursor-style-blink = false
 shell-integration-features = no-cursor
 cursor-style = bar
-

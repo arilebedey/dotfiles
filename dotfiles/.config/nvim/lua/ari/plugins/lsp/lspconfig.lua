@@ -27,6 +27,34 @@ return {
 
     local keymap = vim.keymap -- for conciseness
 
+    -- Add diagnostic configuration here
+    vim.diagnostic.config({
+      virtual_text = true,
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+      float = {
+        focusable = true,
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+      },
+    })
+
+    vim.diagnostic.config({
+      virtual_text = {
+      prefix = '●', -- Could be '■', '▎', 'x', '●', etc
+      spacing = 4,
+      source = "if_many",
+      severity = {
+        min = vim.diagnostic.severity.HINT,
+        },
+      },
+    })
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
@@ -145,3 +173,4 @@ return {
     })
   end,
 }
+

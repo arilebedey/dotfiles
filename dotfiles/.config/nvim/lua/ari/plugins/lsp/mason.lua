@@ -37,7 +37,9 @@ return {
         "emmet_ls",
         "prismals",
         "pyright",
+        "clangd", -- Add clangd for C/C++ support
       },
+      automatic_installation = true,
     })
 
     mason_tool_installer.setup({
@@ -48,6 +50,7 @@ return {
         "black",    -- python formatter
         "pylint",
         "eslint_d",
+        -- "clang-format", -- C/C++ formatter
       },
     })
   end,

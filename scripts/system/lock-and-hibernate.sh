@@ -1,10 +1,6 @@
 #!/bin/bash
 
+/home/ari/Code/configs/Bashes/sdbunmount &&
+
 # Lock the screen with Hyprlock
-hyprctl dispatch exec "hyprlock"
-
-# Wait for the lock screen to activate
-sleep 1
-
-# Hibernate the system
-systemctl suspend
+sudo hyprctl dispatch exec "hyprlock" && sleep 0.5 && systemctl suspend
