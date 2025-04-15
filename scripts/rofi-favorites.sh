@@ -1,27 +1,27 @@
 #!/bin/bash
-
 # Directory to store website icons
 ICON_DIR="$HOME/.config/rofi/website-icons"
-
 # Create icon directory if it doesn't exist
 mkdir -p "$ICON_DIR"
-
 # Define favorite websites with their names, URLs, and icon paths
 # Format: "Name|URL|IconPath"
 WEBSITES=(
+    "Telegram|https://web.telegram.org|telegram.png"
+    "Claude|https://claude.ai|claude.png"
+    "X|https://twitter.com|twitter.png"
     "GitHub|https://github.com|github.png"
+    "Discord|https://discord.com|discord.png"
     "YouTube|https://youtube.com|youtube.png"
     "Reddit|https://reddit.com|reddit.png"
-    "X|https://twitter.com|twitter.png"
     "Google Drive|https://drive.google.com|gdrive.png"
     "Gmail|https://mail.google.com|gmail.png"
     "Wikipedia|https://wikipedia.org|wikipedia.png"
 )
-
 # Function to download icon if it doesn't exist
 download_missing_icons() {
     # Common icon URLs for popular websites
     declare -A ICON_URLS=(
+        ["telegram.png"]="https://telegram.org/img/favicon.ico"
         ["github.png"]="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
         ["youtube.png"]="https://www.youtube.com/s/desktop/8f593214/img/favicon_144x144.png"
         ["reddit.png"]="https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png"
@@ -32,6 +32,8 @@ download_missing_icons() {
         ["spotify.png"]="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico"
         ["amazon.png"]="https://www.amazon.com/favicon.ico"
         ["wikipedia.png"]="https://en.wikipedia.org/static/favicon/wikipedia.ico"
+        ["claude.png"]="https://claude.ai/favicon.ico"
+        ["discord.png"]="https://discord.com/assets/847541504914fd33810e70a0ea73177e.ico"
     )
     
     for website in "${WEBSITES[@]}"; do
@@ -42,7 +44,6 @@ download_missing_icons() {
         fi
     done
 }
-
 # Function to ensure icons are properly formatted for Rofi
 process_icons() {
     for website in "${WEBSITES[@]}"; do
@@ -58,7 +59,6 @@ process_icons() {
         fi
     done
 }
-
 # Function to create custom desktop files for rofi
 create_desktop_files() {
     DESKTOP_DIR="$HOME/.local/share/applications/rofi-favorites"
@@ -87,10 +87,8 @@ Terminal=false
 EOF
     done
 }
-
 # We don't need these functions anymore since we're using drun mode
 # which automatically launches the applications based on desktop files
-
 # Check for --update flag to force icon download
 if [[ "$1" == "--update" ]]; then
     download_missing_icons
@@ -99,15 +97,11 @@ if [[ "$1" == "--update" ]]; then
     echo "Icons and desktop files updated successfully."
     exit 0
 fi
-
 # Download icons if needed
 download_missing_icons
-
 # Process icons to ensure they work with Rofi
 process_icons
-
 # Create desktop files for Rofi
 create_desktop_files
-
 # Launch Rofi with only our custom desktop files
 rofi -show drun -drun-categories Favorites -i -p "Favorites"

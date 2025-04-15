@@ -51,12 +51,21 @@ if [ -n "$selected_dir" ]; then
   if cd "$selected_dir"; then
     # Refetch the full path using pwd
     selected_dir=$(pwd)
+    
+    # Get the directory name for default session name
+    default_session_name=$(basename "$selected_dir" | tr '.' '_')
 
     # Prompt the user for a tmux session name using gum
-    session_name=$(gum input --width=160 --placeholder "Tmux session creation at $selected_dir. Specify name (ESC to abort)")
+    session_name=$(gum input --width=160 --placeholder "Tmux session creation at $selected_dir. Specify name (ENTER for '$default_session_name', ESC to abort)")
 
-    # Check if ESC was pressed (gum returns an empty string in that case)
-    if [ -n "$session_name" ]; then
+    # If user pressed ESC, session_name will be empty and we abort
+    # If user pressed ENTER without input, use the default_session_name
+    if [ -n "$session_name" ] || [ "$session_name" = "" ]; then
+      # Use default name if empty input
+      if [ -z "$session_name" ]; then
+        session_name="$default_session_name"
+      fi
+      
       # Check if the script is running inside a tmux session
       if [ -n "$TMUX" ]; then
         # Create the tmux session but do not attach to it
@@ -78,4 +87,3 @@ if [ -n "$selected_dir" ]; then
 else
   echo "No directory selected."
 fi
-

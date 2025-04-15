@@ -12,6 +12,7 @@ brightnessctl
 btop
 btrfs-progs
 cliphist
+code
 corectrl
 docker
 docker-compose

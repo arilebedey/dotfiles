@@ -38,7 +38,7 @@ return {
         focusable = true,
         style = "minimal",
         border = "rounded",
-        source = "always",
+        source = "if_many", -- Changed from "always" to "if_many"
         header = "",
         prefix = "",
       },
@@ -90,13 +90,23 @@ return {
         keymap.set("n", "<leader>db", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
         opts.desc = "Show line [D]iagnostics"
-        keymap.set("n", "<leader>dl", vim.diagnostic.open_float, opts) -- show diagnostics for line
+        keymap.set("n", "<leader>dl", function()
+          vim.diagnostic.open_float({ focus = true })
+        end, opts) -- show diagnostics for line with focus
+
+        -- Add a keymap to focus the diagnostic float window
+        opts.desc = "Focus diagnostic float window"
+        keymap.set("n", "<leader>df", "<cmd>wincmd w<CR>", opts)
 
         opts.desc = "[D]iagnostic [P]revious"
-        keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+        keymap.set("n", "<leader>dp", function()
+          vim.diagnostic.goto_prev({ float = true })
+        end, opts) -- jump to previous diagnostic in buffer with float window
 
         opts.desc = "[D]iagnostic [N]ext"
-        keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+        keymap.set("n", "<leader>dn", function()
+          vim.diagnostic.goto_next({ float = true })
+        end, opts) -- jump to next diagnostic in buffer with float window
 
         opts.desc = "[Diagnostic] Show documentation for what is under cursor"
         keymap.set("n", "<leader>dd", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
@@ -111,11 +121,37 @@ return {
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
+    -- Replace the sign_define block with this:
+    vim.diagnostic.config({
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.HINT] = "󰠠 ",
+          [vim.diagnostic.severity.INFO] = " ",
+        },
+      },
+      -- Keep your other diagnostic settings
+      virtual_text = {
+        prefix = '●',
+        spacing = 4,
+        source = "if_many",
+        severity = {
+          min = vim.diagnostic.severity.HINT,
+        },
+      },
+      float = {
+        focusable = true,
+        style = "minimal",
+        border = "rounded",
+        source = "if_many", -- Changed from "always" to "if_many"
+        header = "",
+        prefix = "",
+      },
+      -- Your other settings...
+      update_in_insert = false,
+      severity_sort = true,
+    })
 
     mason_lspconfig.setup_handlers({
       -- default handler for installed servers
@@ -170,7 +206,22 @@ return {
           },
         })
       end,
+      ["gopls"] = function()
+        lspconfig["gopls"].setup({
+          capabilities = capabilities,
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+              },
+              staticcheck = true,
+              gofumpt = true,
+              usePlaceholders = true,
+              completeUnimported = true,
+            },
+          },
+        })
+      end,
     })
   end,
 }
-

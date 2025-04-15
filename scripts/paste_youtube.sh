@@ -14,4 +14,3 @@ ENCODED_SEARCH_TERM=$(echo "$SEARCH_TERM" | sed 's/ /+/g')
 
 # Open Chromium and search YouTube
 zen-browser "https://www.youtube.com/results?search_query=$ENCODED_SEARCH_TERM"
-

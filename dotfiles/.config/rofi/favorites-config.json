@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Telegram",
+    "url": "https://web.telegram.org",
+    "icon": "telegram.png",
+    "order": 10
+  },
+  {
+    "name": "Claude",
+    "url": "https://claude.ai",
+    "icon": "claude.png",
+    "order": 20
+  },
+  {
+    "name": "X",
+    "url": "https://twitter.com",
+    "icon": "twitter.png",
+    "order": 30
+  },
+  {
+    "name": "GitHub",
+    "url": "https://github.com",
+    "icon": "github.png",
+    "order": 40
+  },
+  {
+    "name": "Discord",
+    "url": "https://discord.com",
+    "icon": "discord.png",
+    "order": 50
+  },
+  {
+    "name": "YouTube",
+    "url": "https://youtube.com",
+    "icon": "youtube.png",
+    "order": 60
+  },
+  {
+    "name": "Reddit",
+    "url": "https://reddit.com",
+    "icon": "reddit.png",
+    "order": 70
+  },
+  {
+    "name": "Google Drive",
+    "url": "https://drive.google.com",
+    "icon": "gdrive.png",
+    "order": 80
+  },
+  {
+    "name": "Gmail",
+    "url": "https://mail.google.com",
+    "icon": "gmail.png",
+    "order": 90
+  },
+  {
+    "name": "Wikipedia",
+    "url": "https://wikipedia.org",
+    "icon": "wikipedia.png",
+    "order": 100
+  }
+]

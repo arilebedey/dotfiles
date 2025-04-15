@@ -20,3 +20,5 @@ ENCODED_SEARCH_TERM=$(echo "$SEARCH_TERM" | sed 's/ /+/g')
 # /opt/google/chrome/chrome "https://www.youtube.com/results?search_query=$ENCODED_SEARCH_TERM"
 # Open Zen
 zen-browser "https://www.youtube.com/results?search_query=$ENCODED_SEARCH_TERM"
+
+notify-send "Test Notification" "This is a test to check if your dunst configuration is working properly."

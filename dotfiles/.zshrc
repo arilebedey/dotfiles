@@ -17,6 +17,7 @@ source /home/ari/System/scripts/shell/zsh/zshopts.sh
 # Aliases
 source /home/ari/.zshaliases
 source /home/ari/.keys.sh
+source /home/ari/System/scripts/shell/zsh/function_aliases.sh
 # Functions
 source /home/ari/System/scripts/shell/zsh/functions_.sh
 # Scripts

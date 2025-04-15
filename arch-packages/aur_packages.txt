@@ -1,3 +1,5 @@
+amneziawg-linux
+amneziawg-linux-debug
 android-studio
 bemoji
 chili-sddm-theme
