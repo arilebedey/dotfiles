@@ -114,3 +114,10 @@ vim.api.nvim_set_keymap('n', '<leader>cp', ':%delete_<CR>"+P', { noremap = true,
 -- For visual mode, directly use "+p to paste from system clipboard
 vim.api.nvim_set_keymap('v', 'p', '"+p', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', 'P', '"+P', { noremap = true, silent = true })
+
+
+-----------------------------------
+-- Deleting --
+-----------------------------------
+
+vim.keymap.set('n', 'dL', 'v$hd', { noremap = true })

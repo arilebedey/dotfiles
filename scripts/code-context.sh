@@ -13,31 +13,24 @@ done
 
 # Create a temporary file
 TEMP_FILE=$(mktemp)
+echo "Temporary file created at: $TEMP_FILE"
 
-# Define directories to exclude
-EXCLUDE_DIRS=".git|.svn|.hg|node_modules|__pycache__|.venv|.env|.idea|.vscode"
-
-# Brief description and instruction
-echo "Code Context Builder for LLM Prompts"
-echo "Select files [TAB: multi-select, ENTER: confirm]:"
-
-# Find all files, including those in hidden directories, but exclude specific directories
-mapfile -t SELECTED_FILES < <(find . -type f -not -path "*/\($EXCLUDE_DIRS\)/*" | fzf --multi)
+# Use fzf to select files (multiple files can be selected with TAB)
+echo "Select files using fzf (TAB to select multiple, ENTER to confirm):"
+SELECTED_FILES=$(find . -type f -not -path "*/\.*" | fzf --multi)
 
 # Exit if no files were selected
-if [ ${#SELECTED_FILES[@]} -eq 0 ]; then
+if [ -z "$SELECTED_FILES" ]; then
   echo "No files selected. Exiting."
   rm "$TEMP_FILE"
   exit 0
 fi
 
-echo "Selected ${#SELECTED_FILES[@]} file(s)"
-
 # Current working directory for relative paths
 CWD=$(pwd)
 
 # Process each selected file
-for FILE in "${SELECTED_FILES[@]}"; do
+echo "$SELECTED_FILES" | while read -r FILE; do
   # Get relative path for the file
   RELATIVE_PATH="${FILE#./}"
   

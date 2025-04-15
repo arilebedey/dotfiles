@@ -37,7 +37,8 @@ return {
         "emmet_ls",
         "prismals",
         "pyright",
-        "clangd", -- Add clangd for C/C++ support
+        "clangd",
+        "gopls",
       },
       automatic_installation = true,
     })
@@ -51,6 +52,9 @@ return {
         "pylint",
         "eslint_d",
         -- "clang-format", -- C/C++ formatter
+        "gofumpt",
+        "goimports",
+        "golangci-lint",
       },
     })
   end,
