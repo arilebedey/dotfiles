@@ -41,8 +41,8 @@ if [ "${sel}" = "$qc" ]; then
 fi
 
 if [ "${sel}" = "$bp" ]; then
-    device_mac="00:00:AB:CD:E8:01"
-    sink_name="bluez_output.00_00_AB_CD_E8_01.1"
+    device_mac="C1:22:33:45:2B:33"
+    sink_name="bluez_output.C1_22_33_45_2B_33.1"
     sleep 0.2
     bluetoothctl -- connect $device_mac
     set_sink_and_notify_listener $sink_name

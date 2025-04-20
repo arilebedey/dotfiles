@@ -136,6 +136,7 @@ yazi
 yq
 yt-dlp
 zathura
+zip
 zoxide
 zram-generator
 zsh

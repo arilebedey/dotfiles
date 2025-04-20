@@ -30,7 +30,7 @@ if [ "${sel}" = "$or" ]; then
 fi
 
 if [ "${sel}" = "$bp" ]; then
-    bluetoothctl -- disconnect 00:00:AB:CD:E8:01; notify-send --expire-time=2560 "Disconnected" "Between Pro"
+    bluetoothctl -- disconnect C1:22:33:45:2B:33; notify-send --expire-time=2560 "Disconnected" "Between Pro"
 fi
 
 if [ "${sel}" = "$px" ]; then

@@ -14,5 +14,3 @@ zinit light joshskidmore/zsh-fzf-history-search
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit load 'zsh-users/zsh-history-substring-search'
 zinit ice wait atload '_history_substring_search_config'
-source /home/ari/System/scripts/shell/zsh/shell-command-switcher.sh
-source /home/ari/System/scripts/edit_desktop_entry.sh
