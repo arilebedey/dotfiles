@@ -1,4 +1,9 @@
-## GIT
+#!/bin/bash
+# Combined aliases - keeping all original aliases and adding suggestions
+
+####################
+### Git Commands ###
+####################
 alias ga='git add'
 alias gp='git push'
 alias gl='git log'
@@ -13,70 +18,173 @@ alias gra='git remote add'
 alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
+alias lg='lazygit'
 
-## SCRIPTS
-alias sc='/home/ari/System/scripts/images/save-clip-2-png.sh'
-alias getpa='/home/ari/System/scripts/get_path.sh'
-alias ct='/home/ari/System/scripts/code-context.sh'
-alias copyip='/home/ari/System/scripts/copy-ip.sh'
+# ***
+alias gaa='git add --all'                      # Add all files, including untracked
+alias gcb='git checkout -b'                    # Create and checkout new branch
+alias glog='git log --oneline --graph --decorate' # Prettier git log
+alias grh='git reset --hard'                   # Hard reset working directory
+alias gst='git stash'                          # Stash changes
+alias gstp='git stash pop'                     # Pop stashed changes
+alias gclean='git clean -fd'                   # Remove untracked files and directories
 
-## SYSTEM
+##########################
+### System Management ####
+##########################
+# Power Management
 alias hib="/home/ari/System/scripts/system/lock-and-hibernate.sh"
 alias nap="/home/ari/System/scripts/system/lock-and-dim.sh"
 alias lock="/home/ari/System/scripts/system/lock.sh"
 alias ss="systemctl poweroff"
 alias rb="systemctl reboot"
+alias lout="hyprctl dispatch exit"
+
+# Hardware Control
 alias bt="bluetoothctl"
 alias br="brightnessctl"
-
-## PROGRAMS
-alias n='nvim'
-alias z-='z -'
-alias z.='z ..'
-alias zi='__zoxide_zi'
-alias th='trash'
-alias lsg='lsd --group-dirs first -A'
-alias td='tmux detach'
-alias wi='which'
-alias lg='lazygit'
-alias unmount='/home/ari/Code/configs/Bashes/sdbunmount'
-alias batt='python /home/ari/System/scripts/battery/battery_check.py'
-alias nano='nvim'
-
-## HOME
-alias dot='/home/ari/System/dotfiles'
-alias sz='source /home/ari/.zshrc'
-alias nz='nvim /home/ari/.zshrc'
-alias na='nvim /home/ari/.zshaliases'
-alias za='nvim /home/ari/.zshaliases'
-
-## FROM NIXOS
-alias hy="nvim ~/.config/hypr/hyprland.conf"
-alias se="sudoedit"
-alias lout="hyprctl dispatch exit"
-alias ubu="/home/ari/Code/zmk-linux-build-script/urob-zmk-config/scripts/zmk_build.sh"
 alias ud="upower -d"
 alias sof="sleep 1 && hyprctl dispatch dpms off"
 alias son="hyprctl dispatch dpms on"
+alias batt='python /home/ari/System/scripts/battery/battery_check.py'
+alias sas="sudo /home/ari/Android/Sdk/platform-tools/adb start-server"
+
+# ***
+alias sus="systemctl suspend"                  # Suspend system
+alias svs="systemctl status"                   # Check service status
+alias mem="free -h"                            # Check memory usage in human-readable format
+alias cpu="htop -s PERCENT_CPU"                # Monitor CPU usage with htop
+alias temp="watch -n 2 sensors"                # Monitor system temperatures
+alias nettop="sudo nethogs"                    # Monitor network usage by process
+
+######################
+### Custom Scripts ###
+######################
+alias sc='/home/ari/System/scripts/images/save-clip-2-png.sh'
+alias getpa='/home/ari/System/scripts/get_path.sh'
+alias ct='/home/ari/System/scripts/code-context.sh'
+alias copyip='/home/ari/System/scripts/copy-ip.sh'
+alias ubu="/home/ari/Code/zmk-linux-build-script/urob-zmk-config/scripts/zmk_build.sh"
+
+# ***
+alias weather='curl wttr.in/?0'                # Quick weather check
+alias myip='curl ifconfig.me'                  # Get public IP address
+alias serve='python -m http.server 8000'       # Quick HTTP server
+alias ports='netstat -tulanp'                  # Show active ports
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -' # Internet speed test
+
+#################################
+### File Navigation & Management ###
+#################################
+# Navigation
+alias z-='z -'
+alias z.='z ..'
+alias zi='__zoxide_zi'
+alias zs="z ~/System"
+alias yc="yazi ~/Code"
+alias dot='/home/ari/System/dotfiles'
+
+# File Operations
 alias mk="mkdir -p"
+alias t="touch"
+alias th='trash'
+alias unmount='/home/ari/Code/configs/Bashes/sdbunmount'
+
+# ***
+alias ..='cd ..'                               # Quick directory up
+alias ...='cd ../..'                           # Up two directories
+alias ....='cd ../../..'                       # Up three directories
+alias cp='cp -iv'                              # Interactive and verbose copy
+alias mv='mv -iv'                              # Interactive and verbose move
+alias sf='find . -type f -name'                # Search files by name
+alias rmr='rm -rf'                             # Remove recursively (use with caution)
+
+####################
+### File Listing ###
+####################
+alias lsg='lsd --group-dirs first -A'
 alias ll="lsd -l"
 alias l="lsd -l"
 alias la="lsd -la"
-alias t="touch"
-# alias cs="tmux_choose_session"
-alias ppc="sudo pacman -S"
 
-## NPM
+# ***
+alias lt='lsd --tree'                          # List files in tree format
+alias lta='lsd --tree -a'                      # List all files in tree format
+alias ltr='lsd -ltr'                           # List files by time, reversed
+alias lsize='lsd -lS'                          # List files by size
+alias ldot='lsd -ld .*'                        # List only dot files
+
+############################
+### Editors & Configuration ###
+############################
+alias n='nvim'
+alias nano='nvim'
+alias nz='nvim /home/ari/.zshrc'
+alias na='nvim /home/ari/.zshaliases'
+alias za='nvim /home/ari/.zshaliases'
+alias hy="nvim ~/.config/hypr/hyprland.conf"
+alias sz='source /home/ari/.zshrc'
+alias se="sudoedit"
+
+# ***
+alias v='vim'                                  # Quick vim access
+alias sv='sudo vim'                            # Sudo vim
+alias snv='sudo nvim'                          # Sudo neovim
+alias conf='cd ~/.config'                      # Quick access to config directory
+alias soz='source ~/.zshrc && echo "ZSH config reloaded"' # Source with feedback
+
+##########################
+### Package Management ###
+##########################
+alias sp="sudo pacman -S"
+alias ppc="sudo pacman -S"
+alias ys="yay -S"
+
+# ***
+alias syu="sudo pacman -Syu"                   # Update system
+alias sps="sudo pacman -Ss"                    # Search packages
+alias spr="sudo pacman -Rs"                    # Remove package with dependencies
+alias pac="pacman -Q | wc -l"                  # Count installed packages
+alias pacclean="sudo pacman -Sc"               # Clean package cache
+alias pacsyu="sudo pacman -Syyu"               # Force sync and update
+alias ysyu="yay -Syu"                          # Update AUR packages
+alias yss="yay -Ss"                            # Search AUR packages
+alias orphans="pacman -Qtdq"                   # List orphaned packages
+
+####################
+### Development ####
+####################
+# NPM & JavaScript
 alias nrd='npm run dev'
 
-## REACT NATIVE
+# React Native
 alias kan="pkill -f 'expo start' && pkill -f 'expo run:android'"
 alias nra="npx expo run:android"
 alias es="npx expo start --localhost"
-alias sas="sudo /home/ari/Android/Sdk/platform-tools/adb start-server"
 
-## MISC
-alias yc="yazi ~/Code"
-alias sp="sudo pacman -S"
-alias ys="yay -S"
+# ***
+alias nrs='npm run start'                      # NPM start script
+alias nrb='npm run build'                      # NPM build script
+alias nrt='npm run test'                       # NPM test script
+alias dc='docker-compose'                      # Docker compose shorthand
+alias dcup='docker-compose up -d'              # Docker compose up detached
+alias dcdn='docker-compose down'               # Docker compose down
+
+#####################
+### Misc Utilities ###
+#####################
+alias wi='which'
+alias td='tmux detach'
 alias C=" | wl-copy"
+# alias cs="tmux_choose_session"
+
+# ***
+alias tp='tmux new-session -s'                 # Create new tmux session
+alias ta='tmux attach -t'                      # Attach to tmux session
+alias tl='tmux list-sessions'                  # List tmux sessions
+alias tk='tmux kill-session -t'                # Kill tmux session
+alias cal='cal -3'                             # Show 3-month calendar
+alias cl='clear'                               # Clear terminal
+alias h='history'                              # Show history
+alias hg='history | grep'                      # Search command history
+alias path='echo -e ${PATH//:/\\n}'            # Print each PATH entry on new line

@@ -16,8 +16,9 @@ TEMP_FILE=$(mktemp)
 echo "Temporary file created at: $TEMP_FILE"
 
 # Use fzf to select files (multiple files can be selected with TAB)
+# Removed the "-not -path "*/\.*"" part to show hidden files
 echo "Select files using fzf (TAB to select multiple, ENTER to confirm):"
-SELECTED_FILES=$(find . -type f -not -path "*/\.*" | fzf --multi)
+SELECTED_FILES=$(find . -type f | fzf --multi)
 
 # Exit if no files were selected
 if [ -z "$SELECTED_FILES" ]; then

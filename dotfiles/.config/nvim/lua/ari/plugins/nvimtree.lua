@@ -55,12 +55,24 @@ return {
           },
           quit_on_open = vim.g.nvim_tree_quit_on_open, -- Use our global variable
         },
+        change_dir = {
+          enable = true,
+          global = false,
+          restrict_above_cwd = true,
+        },
       },
       filters = {
         custom = { ".DS_Store" },
       },
       git = {
         ignore = false,
+      },
+      update_focused_file = {
+        enable = true,
+        update_root = false,
+      },
+      diagnostics = {
+        enable = true,
       },
     }
 
@@ -69,10 +81,17 @@ return {
     -- custom fn for opening at parent
     local api = require('nvim-tree.api')
     local function toggle_and_navigate_parent()
+      -- Check if tree is already open
+      if vim.fn.exists("g:nvim_tree_win_id") == 1 then
+        -- Close tree if already open
+        pcall(vim.cmd, "NvimTreeClose")
+      end
       -- Toggle the file explorer
       vim.cmd('NvimTreeFindFile')
-      -- Navigate to the parent node
-      api.node.navigate.parent()
+      -- Navigate to the parent node after a short delay
+      vim.defer_fn(function()
+        api.node.navigate.parent()
+      end, 50)
     end
 
     -- Toggle tree_shown state
@@ -123,4 +142,3 @@ return {
     keymap.set("n", "<leader>tz", toggle_tree_state, { desc = "Toggle NvimTree stay open behavior" })
   end
 }
-

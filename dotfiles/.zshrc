@@ -32,7 +32,7 @@ source /home/ari/System/scripts/zsh/keybinds.sh
 source /home/ari/System/scripts/zsh/plugins-end.sh
 
 ## SECRETS
-source /home/ari/System/scripts/zsh/secrets.sh
+source /home/ari/config/keys/secrets.sh
 
 # Created by `pipx` on 2025-03-09 23:29:27
 export PATH="$PATH:/home/ari/.local/bin"
