@@ -33,9 +33,9 @@ alias gclean='git clean -fd'                   # Remove untracked files and dire
 ### System Management ####
 ##########################
 # Power Management
-alias hib="/home/ari/System/scripts/system/lock-and-hibernate.sh"
-alias nap="/home/ari/System/scripts/system/lock-and-dim.sh"
-alias lock="/home/ari/System/scripts/system/lock.sh"
+alias hib="$HOME/System/scripts/system/lock-and-hibernate.sh"
+alias nap="$HOME/System/scripts/system/lock-and-dim.sh"
+alias lock="$HOME/System/scripts/system/lock.sh"
 alias ss="systemctl poweroff"
 alias rb="systemctl reboot"
 alias lout="hyprctl dispatch exit"
@@ -46,8 +46,8 @@ alias br="brightnessctl"
 alias ud="upower -d"
 alias sof="sleep 1 && hyprctl dispatch dpms off"
 alias son="hyprctl dispatch dpms on"
-alias batt='python /home/ari/System/scripts/battery/battery_check.py'
-alias sas="sudo /home/ari/Android/Sdk/platform-tools/adb start-server"
+alias batt='python $HOME/System/scripts/battery/battery_check.py'
+alias sas="sudo $HOME/Android/Sdk/platform-tools/adb start-server"
 
 # ***
 alias sus="systemctl suspend"                  # Suspend system
@@ -60,11 +60,11 @@ alias nettop="sudo nethogs"                    # Monitor network usage by proces
 ######################
 ### Custom Scripts ###
 ######################
-alias sc='/home/ari/System/scripts/images/save-clip-2-png.sh'
-alias getpa='/home/ari/System/scripts/get_path.sh'
-alias ct='/home/ari/System/scripts/code-context.sh'
-alias copyip='/home/ari/System/scripts/copy-ip.sh'
-alias ubu="/home/ari/Code/zmk-linux-build-script/urob-zmk-config/scripts/zmk_build.sh"
+alias sc='$HOME/System/scripts/images/save-clip-2-png.sh'
+alias getpa='$HOME/System/scripts/get_path.sh'
+alias ct='$HOME/System/scripts/code-context.sh'
+alias copyip='$HOME/System/scripts/copy-ip.sh'
+alias ubu="$HOME/Code/zmk-linux-build-script/urob-zmk-config/scripts/zmk_build.sh"
 
 # ***
 alias weather='curl wttr.in/?0'                # Quick weather check
@@ -80,15 +80,15 @@ alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/m
 alias z-='z -'
 alias z.='z ..'
 alias zi='__zoxide_zi'
-alias zs="z ~/System"
-alias yc="yazi ~/Code"
-alias dot='/home/ari/System/dotfiles'
+alias zs="z $HOME/System"
+alias yc="yazi $HOME/Code"
+alias dot='$HOME/System/dotfiles'
 
 # File Operations
 alias mk="mkdir -p"
 alias t="touch"
 alias th='trash'
-alias unmount='/home/ari/Code/configs/Bashes/sdbunmount'
+alias unmount='$HOME/Code/configs/Bashes/sdbunmount'
 
 # ***
 alias ..='cd ..'                               # Quick directory up
@@ -119,19 +119,19 @@ alias ldot='lsd -ld .*'                        # List only dot files
 ############################
 alias n='nvim'
 alias nano='nvim'
-alias nz='nvim /home/ari/.zshrc'
-alias na='nvim /home/ari/.zshaliases'
-alias za='nvim /home/ari/.zshaliases'
-alias hy="nvim ~/.config/hypr/hyprland.conf"
-alias sz='source /home/ari/.zshrc'
+alias nz='nvim $HOME/.zshrc'
+alias na='nvim $HOME/.zshaliases'
+alias za='nvim $HOME/.zshaliases'
+alias hy="nvim $HOME/.config/hypr/hyprland.conf"
+alias sz='source $HOME/.zshrc'
 alias se="sudoedit"
 
 # ***
 alias v='vim'                                  # Quick vim access
 alias sv='sudo vim'                            # Sudo vim
 alias snv='sudo nvim'                          # Sudo neovim
-alias conf='cd ~/.config'                      # Quick access to config directory
-alias soz='source ~/.zshrc && echo "ZSH config reloaded"' # Source with feedback
+alias conf='cd $HOME/.config'                  # Quick access to config directory
+alias soz='source $HOME/.zshrc && echo "ZSH config reloaded"' # Source with feedback
 
 ##########################
 ### Package Management ###

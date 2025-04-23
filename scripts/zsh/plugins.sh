@@ -3,7 +3,13 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 # zinit snippet OMZP::sudo
 # zsh-you-should-use
-source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
+if [ "$(whoami)" = "alebedev" ]; then
+  # Source from home directory for alebedev user
+  source $HOME/.zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
+else
+  # Source from system location for other users
+  source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
+fi
 # fast-syntax-highlighting
 zinit light zdharma-continuum/fast-syntax-highlighting
 # zinit light zsh-users/zsh-completions

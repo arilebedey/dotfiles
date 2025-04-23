@@ -29,7 +29,7 @@ done
 
 # Combine the patterns and remove the trailing -o
 exclude_pattern="${top_level_pattern} ${nested_pattern}"
-exclude_pattern=${exclude_pattern::-3}
+exclude_pattern="${exclude_pattern% -o}"
 
 # Use find to list directories, exclude the specified ones, and use fzf for selection
 selected_dir=$(eval "find . -type d \( $exclude_pattern \) -prune -o -type d -print" | fzf)
