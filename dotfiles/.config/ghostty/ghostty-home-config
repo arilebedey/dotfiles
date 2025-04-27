@@ -1,0 +1,11 @@
+### HOME COnFIG
+
+font-size = 28
+window-decoration = false
+fullscreen = true
+command = "$HOME/System/scripts/ui/launch_tmux.sh"
+theme = CutiePro
+
+cursor-style-blink = false
+shell-integration-features = no-cursor
+cursor-style = bar

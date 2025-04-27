@@ -66,41 +66,7 @@ vim.api.nvim_set_keymap('n', '<leader>w',
   [[:lua require('ari.core.functions.toggle_statusline').toggle_statusline()<CR>]],
   { desc = "Toggle Status Line", noremap = true, silent = true })
 
--- THEME SWITCHING
-vim.api.nvim_set_keymap('n', '<leader>te',
-  ':lua require("ari.core.functions.theme_switcher").load_theme("everforest")<CR>',
-  { noremap = true, silent = true, desc = "Switch to Everforest theme" })
-
-vim.api.nvim_set_keymap('n', '<leader>to', ':lua require("ari.core.functions.theme_switcher").load_theme("onedark")<CR>',
-  { noremap = true, silent = true, desc = "Switch to Onedark theme" })
-
-vim.api.nvim_set_keymap('n', '<leader>tk',
-  ':lua require("ari.core.functions.theme_switcher").load_theme("tokyonight")<CR>',
-  { noremap = true, silent = true, desc = "Switch to Tokyonight theme" })
-
-vim.api.nvim_set_keymap('n', '<leader>tf',
-  ':lua require("ari.core.functions.theme_switcher").load_theme("carbonfox")<CR>',
-  { noremap = true, silent = true, desc = "Switch to Carbonfox theme" })
-
-vim.api.nvim_set_keymap('n', '<leader>tt', ':lua require("ari.core.functions.theme_switcher").load_theme("tender")<CR>',
-  { noremap = true, silent = true, desc = "Switch to Tender theme" })
-
-vim.api.nvim_set_keymap('n', '<leader>tm',
-  ':lua require("ari.core.functions.theme_switcher").load_theme("monokai-pro-machine")<CR>',
-  { noremap = true, silent = true, desc = "Switch to Preferred Monokai" })
-
-vim.api.nvim_set_keymap('n', '<leader>t/',
-  ':colorscheme monokai-pro-machine<CR>',
-  { noremap = true, silent = true, desc = "Switch to Monokai Machine" })
-
-vim.api.nvim_set_keymap('n', '<leader>ts',
-  ':colorscheme monokai-pro-spectrum<CR>',
-  { noremap = true, silent = true, desc = "Switch to Monokai Spectrum" })
-
-vim.api.nvim_set_keymap('n', '<leader>t;',
-  ':colorscheme monokai-pro-octagon<CR>',
-  { noremap = true, silent = true, desc = "Switch to Monokai Octagon" })
-
+-- 42 header
 vim.cmd('source ' .. vim.fn.stdpath('config') .. '/lua/ari/plugins/42header.vim')
 vim.api.nvim_set_keymap('n', '<leader>nt', ':Stdheader<CR>', { noremap = true, silent = true })
 
@@ -121,3 +87,9 @@ vim.api.nvim_set_keymap('v', 'P', '"+P', { noremap = true, silent = true })
 -----------------------------------
 
 vim.keymap.set('n', 'dL', 'v$hd', { noremap = true })
+
+-----------------------------------
+-- Load theme-specific keybindings
+-----------------------------------
+
+require("ari.core.theme-binds")

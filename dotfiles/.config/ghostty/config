@@ -1,12 +1,1 @@
-### 42 DELL COFIG
-
-font-size = 18
-window-decoration = false
-# fullscreen = true
-# theme = Batman
-# command = "tmux new-session -A -s home"
-command = "$HOME/System/scripts/ui/launch_tmux.sh"
-
-cursor-style-blink = false
-shell-integration-features = no-cursor
-cursor-style = bar
+/home/ari/.config/ghostty/ghostty-home-config

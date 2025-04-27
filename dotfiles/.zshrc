@@ -1,3 +1,7 @@
+if [ -f "$HOME/.system-envs" ]; then
+  source "$HOME/.system-envs"
+fi
+
 ### 42 Configs
 source $HOME/System/scripts/zsh/42.sh
 

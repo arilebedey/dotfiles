@@ -58,10 +58,14 @@ rules = [
 	{ name = "*.txt", use = [ "edit" ] },
 	{ name = "*/", use = [ "edit", "open", "reveal" ] },
 
+  { mime = "inode/x-empty", use = [ "edit" ] },
+  { regex = "^[^.]+$", use = [ "edit" ] },             # Files without extensions
+  { regex = "/\\.[^./]+$", use = [ "edit" ] },         # Hidden files without extensions
+  { name = ".*", use = [ "edit" ] },
+
 	{ mime = "text/*",          use = [ "edit", "reveal" ] },
 	{ mime = "image/*",         use = [ "open", "reveal" ] },
 	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
-	{ mime = "inode/x-empty",   use = [ "edit", "reveal" ] },
 
 	{ mime = "application/*zip", use = [ "extract", "reveal" ] },
 	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", use = [ "extract", "reveal" ] },
