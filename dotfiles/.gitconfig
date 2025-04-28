@@ -1,0 +1,16 @@
+[user]
+	name = arilebedey
+	email = 34816154+arilebedey@users.noreply.github.com
+[init]
+	defaultBranch = main
+[delta]
+    true-color = always
+    syntax-theme = "Visual Studio Dark+"  # Choose a theme you like
+    
+    # Change the colors for added/deleted lines
+    plus-style = syntax "#283b4d"  # Blue-ish background for added lines
+    minus-style = syntax "#3d3828"  # Amber/gold background for deleted lines
+    
+    # Added/deleted emphasis (for changed parts within lines)
+    plus-emph-style = syntax "#316172"
+    minus-emph-style = syntax "#725631"

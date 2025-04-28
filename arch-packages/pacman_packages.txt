@@ -29,12 +29,12 @@ ghostty
 git
 git-delta
 github-cli
+glow
 gnome-keyring
 gnome-themes-extra
 grim
 gst-plugin-pipewire
 gum
-gvfs-mtp
 htop
 hypridle
 hyprland
@@ -46,7 +46,6 @@ iw
 iwd
 jdk11-openjdk
 jdk17-openjdk
-kdeconnect
 keepassxc
 kitty
 lazygit
