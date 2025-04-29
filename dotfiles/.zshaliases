@@ -188,3 +188,20 @@ alias cl='clear'                               # Clear terminal
 alias h='history'                              # Show history
 alias hg='history | grep'                      # Search command history
 alias path='echo -e ${PATH//:/\\n}'            # Print each PATH entry on new line
+
+#####################
+###      42       ###
+#####################
+alias bat='bat --theme=Coldark-Dark'
+alias cc='cc -Wall -Wextra -Werror'
+alias lu='./a.out'
+alias ba='bat */*'
+alias laa='la */*'
+alias no='norminette'
+alias wno='watch norminette'
+alias noh='norminette -R CheckDefine; norminette -R CheckDefine */*'
+alias igad='fzf --multi --preview "bat --color=always {}" --preview-window=up:75% | tee -a .gitignore'
+alias igsh='bat .gitignore'
+alias vf='vim $(fzf --multi --preview "bat --color=always {}" --preview-window=up:75%)'
+alias rf='rm $(fzf --multi --preview "bat --color=always {}" --preview-window=up:75%)'
+alias cw='watch cc -Wall -Wextra -Werror'
