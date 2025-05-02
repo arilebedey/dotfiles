@@ -81,6 +81,8 @@ alias z-='z -'
 alias z.='z ..'
 alias zi='__zoxide_zi'
 alias zs="z $HOME/System"
+alias zc="z $HOME/.config"
+alias z4="z $HOME/Code/42/42github"
 alias yc="yazi $HOME/Code"
 alias dot='$HOME/System/dotfiles'
 
