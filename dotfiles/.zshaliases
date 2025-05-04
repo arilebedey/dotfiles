@@ -39,6 +39,7 @@ alias lock="$HOME/System/scripts/system/lock.sh"
 alias ss="systemctl poweroff"
 alias rb="systemctl reboot"
 alias lout="hyprctl dispatch exit"
+alias hyp='cd ~/.config/hypr/hyprland/; nvim'
 
 # Hardware Control
 alias bt="bluetoothctl"

@@ -2,6 +2,9 @@ if [ -f "$HOME/.system-envs" ]; then
   source "$HOME/.system-envs"
 fi
 
+### PATHS
+source $HOME/System/scripts/zsh/paths.sh
+
 ### 42 Configs
 source $HOME/System/scripts/zsh/42.sh
 
@@ -44,3 +47,49 @@ source $HOME/.config/keys/secrets.sh
 # Created by `pipx` on 2025-03-09 23:29:27
 export PATH="$PATH:/home/ari/.local/bin"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"

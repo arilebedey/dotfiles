@@ -16,3 +16,9 @@ else
   alias wl-copy='xclip -selection clipboard'
   alias wl-paste='xclip -selection clipboard -o'
 fi
+
+if [ "$HOST" = "ls" ]; then
+  echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
+else
+  echo "Direnv only runs on hostname 'ls'. Current hostname is $(hostname)"
+fi

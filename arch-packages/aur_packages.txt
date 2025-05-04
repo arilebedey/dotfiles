@@ -4,6 +4,7 @@ android-studio
 bemoji
 chili-sddm-theme
 davinci-resolve-studio
+gitkraken
 instaloader
 norminette
 obs-backgroundremoval

@@ -49,6 +49,7 @@ jdk17-openjdk
 keepassxc
 kitty
 lazygit
+libbsd
 libpulse
 libraw
 linux
