@@ -5,6 +5,7 @@ if [ "$(whoami)" = "alebedev" ]; then
   eval "$(zoxide init zsh)"
   eval "$(~/homebrew/bin/brew shellenv)"
   export PATH=$HOME/bin:$PATH
+  xset r rate 250 80
 fi
 
 # Check if running on Wayland or X11 and use appropriate clipboard tool
@@ -19,6 +20,4 @@ fi
 
 if [ "$HOST" = "ls" ]; then
   echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
-else
-  echo "Direnv only runs on hostname 'ls'. Current hostname is $(hostname)"
 fi
