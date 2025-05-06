@@ -3,45 +3,29 @@
 local kms = vim.api.nvim_set_keymap
 
 -- Theme switching keybinds
-kms('n', '<leader>ton', 
+kms('n', '<leader>thd', 
   ':lua require("ari.core.functions.theme_switcher").load_theme("onedark")<CR>',
   { noremap = true, silent = true, desc = "Switch to Onedark theme" })
 
-kms('n', '<leader>tko', 
-  ':lua require("ari.core.functions.theme_switcher").load_theme("tokyonight")<CR>',
-  { noremap = true, silent = true, desc = "Switch to Tokyonight theme" })
-
-kms('n', '<leader>tca', 
-  ':lua require("ari.core.functions.theme_switcher").load_theme("carbonfox")<CR>',
-  { noremap = true, silent = true, desc = "Switch to Carbonfox theme" })
-
-kms('n', '<leader>tte', 
-  ':lua require("ari.core.functions.theme_switcher").load_theme("tender")<CR>',
-  { noremap = true, silent = true, desc = "Switch to Tender theme" })
-
-kms('n', '<leader>tka', 
+kms('n', '<leader>thk', 
   ':lua require("ari.core.functions.theme_switcher").load_theme("kanagawa")<CR>',
   { noremap = true, silent = true, desc = "Switch to Kanagawa theme" })
 
-kms('n', '<leader>tnf', 
+kms('n', '<leader>thf', 
   ':lua require("ari.core.functions.theme_switcher").load_theme("nightfly")<CR>',
   { noremap = true, silent = true, desc = "Switch to Nightfly theme" })
 
-kms('n', '<leader>tmf', 
+kms('n', '<leader>tho', 
   ':lua require("ari.core.functions.theme_switcher").load_theme("moonfly")<CR>',
   { noremap = true, silent = true, desc = "Switch to Moonfly theme" })
 
-kms('n', '<leader>tne', 
+kms('n', '<leader>thn', 
   ':lua require("ari.core.functions.theme_switcher").load_theme("nightfox")<CR>',
   { noremap = true, silent = true, desc = "Switch to Nightfox theme" })
 
-kms('n', '<leader>tma', 
+kms('n', '<leader>tha', 
   ':lua require("ari.core.functions.theme_switcher").load_theme("material")<CR>',
   { noremap = true, silent = true, desc = "Switch to Material theme" })
-
-kms('n', '<leader>tmo',
-  ':lua require("ari.core.functions.theme_switcher").load_theme("monokai-pro-machine")<CR>',
-  { noremap = true, silent = true, desc = "Switch to Preferred Monokai" })
 
 -- Theme utility commands
 kms('n', '<leader>tl', 
