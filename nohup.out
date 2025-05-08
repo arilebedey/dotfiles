@@ -1,0 +1,4 @@
+[1716135] Sandbox: attempt to open unexpected file /sys/fs/cgroup/cpuset/chrome
+[1716135] Sandbox: attempt to open unexpected file /sys/fs/cgroup/schedtune/chrome
+Crash Annotation GraphicsCriticalError: |[C0][GFX1-]: Managed to allocate after flush. (t=84.89) [GFX1-]: Managed to allocate after flush.
+Crash Annotation GraphicsCriticalError: |[C0][GFX1-]: Managed to allocate after flush. (t=84.89) |[C1][GFX1-]: Managed to allocate after flush. (t=84.891) [GFX1-]: Managed to allocate after flush.

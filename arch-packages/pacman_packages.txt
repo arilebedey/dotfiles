@@ -18,6 +18,7 @@ docker
 docker-compose
 dunst
 efibootmgr
+exfatprogs
 fail2ban
 fastfetch
 fd
@@ -95,6 +96,7 @@ radeontop
 ranger
 ripgrep
 rofi-wayland
+rsync
 sddm
 slurp
 smartmontools
