@@ -181,6 +181,7 @@ function lvimGoToLine {
 
 # alias vf='vimGoToFiles'
 alias nf='nvimGoToFiles'
+alias f='nvimGoToFiles'
 alias lf='nvimGoToLine'
 # alias vgl='vimGoToLine'
 # alias fzd='fdFzf'

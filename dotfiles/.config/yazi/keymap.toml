@@ -155,6 +155,7 @@ keymap = [
 	{ on = [ "g", "f" ],       run = "cd ~/System/dotfiles",     desc = "Go to the config directory" },
 	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go to the downloads directory" },
 	{ on = [ "g", "m" ],       run = "cd /run/media",          desc = "Go to the external media" },
+	{ on = [ "g", "y" ],       run = "cd ~/Images",          desc = "Go to images folder" },
 	{ on = [ "g", "i" ],       run = "cd ~/Information",          desc = "Go to info folder" },
 	{ on = [ "g", "s" ],       run = "cd ~/Images/Screenshots",          desc = "Go to screenshots" },
 	{ on = [ "g", "S" ],       run = "cd ~/System",          desc = "Go to ~/System" },

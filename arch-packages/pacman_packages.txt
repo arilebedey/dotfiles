@@ -12,6 +12,7 @@ brightnessctl
 btop
 btrfs-progs
 cliphist
+cloc
 code
 corectrl
 docker
@@ -58,6 +59,8 @@ linux-firmware
 linux-headers
 linux-lts
 linux-lts-headers
+linux-zen
+linux-zen-headers
 lsd
 man-db
 man-pages
@@ -83,6 +86,7 @@ pavucontrol
 pipewire
 pipewire-alsa
 pipewire-jack
+pipewire-media-session
 pipewire-pulse
 playerctl
 podman
@@ -94,6 +98,7 @@ qmk
 qt5-wayland
 radeontop
 ranger
+reflector
 ripgrep
 rofi-wayland
 rsync
@@ -126,7 +131,6 @@ wezterm
 wget
 wireless-regdb
 wireless_tools
-wireplumber
 wl-clip-persist
 wl-clipboard
 wofi

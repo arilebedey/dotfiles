@@ -2,6 +2,7 @@ amneziawg-linux
 amneziawg-linux-debug
 android-studio
 bemoji
+c_formatter_42
 chili-sddm-theme
 davinci-resolve-studio
 gitkraken
