@@ -109,6 +109,8 @@ alias lsg='lsd --group-dirs first -A'
 alias ll="lsd -l"
 alias l="lsd -l"
 alias la="lsd -la"
+alias ltr="lsd -ltr"
+alias latr="lsd -altr"
 
 # ***
 alias lt='lsd --tree'                          # List files in tree format

@@ -5,6 +5,7 @@ bemoji
 c_formatter_42
 chili-sddm-theme
 davinci-resolve-studio
+downgrade
 gitkraken
 instaloader
 norminette
