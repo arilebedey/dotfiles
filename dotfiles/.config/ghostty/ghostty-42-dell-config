@@ -2,7 +2,7 @@
 
 font-size = 18
 window-decoration = false
-fullscreen = true
+# fullscreen = true
 command = "$HOME/System/scripts/ui/launch_tmux.sh"
 theme = Everblush
 
