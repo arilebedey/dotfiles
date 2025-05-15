@@ -59,4 +59,3 @@ if [ -n "$selected_dir" ]; then
 else
   echo "No directory selected."
 fi
-

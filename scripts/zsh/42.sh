@@ -19,5 +19,5 @@ else
 fi
 
 if [ "$HOST" = "ls" ]; then
-  echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
+  eval "$(direnv hook zsh)"
 fi

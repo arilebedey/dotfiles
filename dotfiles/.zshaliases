@@ -86,6 +86,7 @@ alias zc="z $HOME/.config"
 alias z4="z $HOME/Code/42/42github"
 alias yc="yazi $HOME/Code"
 alias dot='$HOME/System/dotfiles'
+alias trm='touch README.md && nvim README.md'
 
 # File Operations
 alias mk="mkdir -p"

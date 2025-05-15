@@ -1,1 +1,1 @@
-source /home/ari/System/scripts/replace_command.sh
+source $HOME/System/scripts/replace_command.sh
