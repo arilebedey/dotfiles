@@ -11,6 +11,8 @@ instaloader
 norminette
 obs-backgroundremoval
 obs-backgroundremoval-debug
+obs-cli
+obs-cli-debug
 paru
 paru-debug
 postman-bin
