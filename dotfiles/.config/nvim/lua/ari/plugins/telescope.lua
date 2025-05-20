@@ -91,5 +91,7 @@ return {
       { desc = "[S]earch [B]uffer" })
     kms('n', '<leader>/', ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>',
       { desc = "[S]earch [B]uffer" })
+    kms("n", "<leader>sf", "<cmd>Telescope frecency workspace=CWD theme=ivy<CR>",
+      { desc = "[S]earch [F]requent files" })
   end,
 }
