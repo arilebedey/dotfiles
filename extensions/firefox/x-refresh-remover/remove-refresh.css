@@ -1,0 +1,7 @@
+[data-testid="refresh"],
+[aria-label="Refresh"],
+[role="button"][data-testid="refreshButton"],
+div[role="button"] > div > div > div > svg[viewBox="0 0 24 24"]:has(path[d="M16.3 2.06A9.5 9.5 0 0 0 2.2 10.8l2-.4A7.5 7.5 0 0 1 15.56 4l-2.77 2.76 1.42 1.42L19.13 3.25 16.3 2.06Z"]),
+div[role="button"] > div > div > div > svg[viewBox="0 0 24 24"]:has(path[d="M4.97 12.13A7.5 7.5 0 0 1 19.87 9l-2 .41 1.5 7.33-2.38-.48L18.11 11a5.5 5.5 0 0 0-8.72-4.93 5.24 5.24 0 0 0-1.88 2.62l-1.92-.39a7.23 7.23 0 0 1 2.88-4l-1.08-1.08 1.42-1.42 3-3 1.17 1.17-3 3 1.42 1.42 1.55 1.55Z"]) {
+  display: none !important;
+}

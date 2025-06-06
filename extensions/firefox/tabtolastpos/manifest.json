@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Tab Mover",
+  "version": "1.0",
+  "description": "Moves the current tab to the last position with Alt+U",
+  "permissions": ["tabs"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "commands": {
+    "move-tab-to-first": {
+      "suggested_key": {
+        "default": "Alt+U"
+      },
+      "description": "Move current tab to last position"
+    }
+  }
+}

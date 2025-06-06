@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Counter",
+  "version": "1.0",
+  "description": "Counts and displays the total number of tabs across all windows",
+  "permissions": ["tabs"],
+  "browser_action": {
+    "default_title": "Tab Counter",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{b586f533-334f-46b2-81f3-ae7e996ca6c6}"
+    }
+  }
+}

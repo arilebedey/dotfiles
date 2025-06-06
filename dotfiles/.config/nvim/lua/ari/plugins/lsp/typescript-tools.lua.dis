@@ -1,0 +1,32 @@
+return {
+  "pmizio/typescript-tools.nvim",
+  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  config = function()
+    require("typescript-tools").setup {
+      on_attach = function(client, bufnr)
+        local opts = { buffer = bufnr, silent = true }
+        vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<CR>", opts)
+        vim.keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, opts)
+        vim.keymap.set("n", "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", opts)
+        vim.keymap.set("n", "<leader>li", "<cmd>Telescope lsp_implementations<CR>", opts)
+        vim.keymap.set("n", "<leader>lt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+        vim.keymap.set({ "n", "v" }, "<leader>lc", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, opts)
+        vim.keymap.set("n", "<leader>db", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+        vim.keymap.set("n", "<leader>dl", function() vim.diagnostic.open_float({ focus = true }) end, opts)
+        vim.keymap.set("n", "<leader>df", "<cmd>wincmd w<CR>", opts)
+        vim.keymap.set("n", "<leader>dp", function() vim.diagnostic.goto_prev({ float = true }) end, opts)
+        vim.keymap.set("n", "<leader>dn", function() vim.diagnostic.goto_next({ float = true }) end, opts)
+        vim.keymap.set("n", "<leader>dd", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "<leader>dr", ":LspRestart<CR>", opts)
+      end,
+      settings = {
+        expose_as_code_action = { "add_missing_imports", "remove_unused" },
+        tsserver_file_preferences = {
+          includeInlayParameterNameHints = "all",
+          includeCompletionsForModuleExports = true,
+        },
+      },
+    }
+  end,
+}

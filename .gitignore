@@ -1,3 +1,5 @@
 /programs/
 /temp/
 /venv/
+/arch-packages/
+/dotfiles/.config/nvim/variables/

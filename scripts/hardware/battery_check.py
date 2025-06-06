@@ -1,7 +1,7 @@
-import subprocess
 import re
+import subprocess
 
-e = subprocess.check_output(['upower -d'], shell=True)
+e = subprocess.check_output(["upower -d"], shell=True)
 
 e = e.decode().split("\n")
 
@@ -19,7 +19,7 @@ for line in e:
 
 for line in e:
     if "percentage" in line:
-            e = line
+        e = line
 
 e = e.split(" ")
 
@@ -35,8 +35,7 @@ if "." in d:
     d = d[:-1]
 
 
-d = re.sub('[^0-9]', '', d)
+d = re.sub("[^0-9]", "", d)
 
 
 print(d)
-

@@ -36,7 +36,7 @@ alias gclean='git clean -fd'                   # Remove untracked files and dire
 alias hib="$HOME/System/scripts/system/lock-and-hibernate.sh"
 alias nap="$HOME/System/scripts/system/lock-and-dim.sh"
 alias lock="$HOME/System/scripts/system/lock.sh"
-alias ss="systemctl poweroff"
+alias ss="$HOME/System/scripts/system/shutdown.sh"
 alias rb="systemctl reboot"
 alias lout="hyprctl dispatch exit"
 alias hyp='cd ~/.config/hypr/hyprland/; nvim'
@@ -47,7 +47,7 @@ alias br="brightnessctl"
 alias ud="upower -d"
 alias sof="sleep 1 && hyprctl dispatch dpms off"
 alias son="hyprctl dispatch dpms on"
-alias batt='python $HOME/System/scripts/battery/battery_check.py'
+alias batt='python $HOME/System/scripts/hardware/battery_check.py'
 alias sas="sudo $HOME/Android/Sdk/platform-tools/adb start-server"
 
 # ***
@@ -167,7 +167,10 @@ alias nrd='npm run dev'
 # React Native
 alias kan="pkill -f 'expo start' && pkill -f 'expo run:android'"
 alias nra="npx expo run:android"
+alias nrad="npx expo run:android --device"
 alias es="npx expo start --localhost"
+alias p9="nohup env DRI_PRIME=1 /home/ari/Android/Sdk/emulator/emulator @Pixel_9_Pro_XL -no-audio > ~/Information/system/logs/emulator.log 2>&1 &"
+alias p9l="nohup /home/ari/Android/Sdk/emulator/emulator @Pixel_9_Pro_XL -no-audio > ~/Information/system/logs/emulator.log 2>&1 &"
 
 # ***
 alias nrs='npm run start'                      # NPM start script
@@ -212,3 +215,8 @@ alias igsh='bat .gitignore'
 alias vf='vim $(fzf --multi --preview "bat --color=always {}" --preview-window=up:75%)'
 alias rf='rm $(fzf --multi --preview "bat --color=always {}" --preview-window=up:75%)'
 alias cw='watch cc -Wall -Wextra -Werror'
+
+#####
+#NEW#
+#####
+alias nv='cd $HOME/.config/nvim/lua/ari'

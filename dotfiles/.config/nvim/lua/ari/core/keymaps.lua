@@ -87,6 +87,8 @@ vim.api.nvim_set_keymap('v', 'P', '"+P', { noremap = true, silent = true })
 -----------------------------------
 
 vim.keymap.set('n', 'dL', 'v$hd', { noremap = true })
+vim.keymap.set('n', 'yL', 'v$hy', { noremap = true })
+vim.keymap.set('n', 'cL', 'v$hc', { noremap = true })
 
 -----------------------------------
 -- Load theme-specific keybindings

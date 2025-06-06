@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "X Refresh Button Remover",
+  "version": "1.0",
+  "description": "Removes the pill-shaped refresh button from X (Twitter)",
+  "content_scripts": [
+    {
+      "matches": ["*://*.twitter.com/*", "*://*.x.com/*"],
+      "css": ["remove-refresh.css"]
+    }
+  ]
+}
+
