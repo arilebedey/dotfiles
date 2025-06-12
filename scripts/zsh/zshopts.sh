@@ -25,6 +25,3 @@ export GTK_THEME='Adwaita-dark'
 unsetopt BEEP
 # Disable flow control (Ctrl+S, Ctrl+Q)
 stty -ixon
-# Bind Ctrl+S to run the nf command
-bindkey -s '^S' 'nf\n'
-bindkey -s '^E' 'nvim\n'

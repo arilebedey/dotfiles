@@ -40,6 +40,7 @@ alias ss="$HOME/System/scripts/system/shutdown.sh"
 alias rb="systemctl reboot"
 alias lout="hyprctl dispatch exit"
 alias hyp='cd ~/.config/hypr/hyprland/; nvim'
+alias ss60='sudo shutdown -h +60 --no-wall'
 
 # Hardware Control
 alias bt="bluetoothctl"
@@ -49,6 +50,9 @@ alias sof="sleep 1 && hyprctl dispatch dpms off"
 alias son="hyprctl dispatch dpms on"
 alias batt='python $HOME/System/scripts/hardware/battery_check.py'
 alias sas="sudo $HOME/Android/Sdk/platform-tools/adb start-server"
+
+# Video
+alias mkv2mp4="/home/ari/System/scripts/video/convert_mkv_to_mp4.sh"
 
 # ***
 alias sus="systemctl suspend"                  # Suspend system

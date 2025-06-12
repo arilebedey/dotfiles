@@ -3,6 +3,20 @@
 # Exit on any error
 set -e
 
+# Array of directories and files to ignore
+IGNORED_PATHS=(
+    '*/.git/*'
+    '*/node_modules/*'
+    '*/.DS_Store'
+    '*/__pycache__/*'
+)
+
+# Build find command with ignored paths
+FIND_CMD="find . -type f"
+for path in "${IGNORED_PATHS[@]}"; do
+    FIND_CMD+=" -not -path '$path'"
+done
+
 # Detect operating system
 OS="$(uname -s)"
 case "${OS}" in
@@ -54,7 +68,7 @@ echo "Temporary file created at: $TEMP_FILE"
 
 # Use fzf to select files (multiple files can be selected with TAB)
 echo "Select files using fzf (TAB to select multiple, ENTER to confirm):"
-SELECTED_FILES=$(find . -type f | fzf --multi)
+SELECTED_FILES=$(eval "$FIND_CMD" | fzf --multi)
 
 # Exit if no files were selected
 if [ -z "$SELECTED_FILES" ]; then
