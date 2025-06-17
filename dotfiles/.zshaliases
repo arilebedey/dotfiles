@@ -224,3 +224,4 @@ alias cw='watch cc -Wall -Wextra -Werror'
 #NEW#
 #####
 alias nv='cd $HOME/.config/nvim/lua/ari'
+alias rtree='rg --files | tree --fromfile'

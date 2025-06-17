@@ -1,65 +1,66 @@
 #!/usr/bin/bash
 
-# Get devices from bluetoothctl and store device names and MACs
-declare -A device_macs
-declare -A device_names
-
-# Capture bluetoothctl devices output and parse it
-while read -r line; do
-    if [[ $line =~ Device\ ([0-9A-F:]+)\ (.*) ]]; then
-        mac="${BASH_REMATCH[1]}"
-        name="${BASH_REMATCH[2]}"
-        device_macs["$name"]="$mac"
-        device_names["$mac"]="$name"
-    fi
-done < <(bluetoothctl devices | sort)
-
-# Create the menu options
 link="Connect:"
+bp="Between 3ANC"
+bo="Bose SoundLink Mini II"
+bn="Bang & Olufsen"
 sp="Internal Speakers"
-db="Disconnect Bluetooth"
+db="Disconnect Bluetooth"  # New entry for disconnecting Bluetooth
 rs="Restart Pipewire"
 
-# Build options list starting with devices from bluetoothctl
-options=""
-for name in "${!device_macs[@]}"; do
-    options+="$name\n"
-done
-options+="${sp}\n${db}\n${rs}"
-
-# Show menu with rofi
-sel=$(echo -e "$options" | rofi -dmenu -p "${link}")
+sel=$(echo "${qc}
+${bo}
+${bp}
+${sp}
+${px}
+${bn}
+${db}
+${rs}" | rofi -dmenu -p "${link}")
 
 set_sink_and_notify_listener() {
     sink_name=$1
     echo "$sink_name" > /tmp/current_sink
 }
 
-# Function to convert MAC address to sink name format (replacing : with _)
-get_sink_name() {
-    local mac=$1
-    local formatted_mac=${mac//:/_}
-    echo "bluez_output.${formatted_mac}.1"
-}
-
-# Handle selected option
-if [[ -n "${device_macs[$sel]}" ]]; then
-    # A bluetooth device was selected
-    device_mac="${device_macs[$sel]}"
-    sink_name=$(get_sink_name "$device_mac")
-    
-    echo "Connecting to $sel ($device_mac)"
+# Bose SoundLink Mini II
+if [ "${sel}" = "$bo" ]; then
+    device_mac="08:DF:1F:BB:72:5B"
+    sink_name="bluez_output.08_DF_1F_BB_72_5B.1"
     sleep 0.2
-    bluetoothctl -- connect "$device_mac"
-    set_sink_and_notify_listener "$sink_name"
-    
-elif [ "${sel}" = "$sp" ]; then
+    bluetoothctl -- connect $device_mac
+    set_sink_and_notify_listener $sink_name
+fi
+
+# Between 3ANC
+if [ "${sel}" = "$bp" ]; then
+    device_mac="00:00:AB:CD:E8:01"
+    sink_name="bluez_output.00_00_AB_CD_E8_01.1"
+    sleep 0.2
+    bluetoothctl -- connect $device_mac
+    set_sink_and_notify_listener $sink_name
+fi
+
+# Bang & Olufsen
+if [ "${sel}" = "$bn" ]; then
+    device_mac="50:3E:AA:5C:83:91"
+    # Adjust the sink_name if you know the correct sink name for this device
+    sleep 0.2
+    bluetoothctl -- connect $device_mac
+    # Uncomment and set the sink name if known
+    # set_sink_and_notify_listener $sink_name
+fi
+
+# Internal
+if [ "${sel}" = "$sp" ]; then
     sink_name="alsa_output.pci-0000_68_00.6.HiFi__Speaker__sink"
-    set_sink_and_notify_listener "$sink_name"
-    
-elif [ "${sel}" = "$db" ]; then
+    set_sink_and_notify_listener $sink_name
+fi
+
+if [ "${sel}" = "$db" ]; then
     /home/ari/System/scripts/audio/bt-disconnect
-    
-elif [ "${sel}" = "$rs" ]; then
+fi
+
+if [ "${sel}" = "$rs" ]; then
     systemctl restart --user pipewire.service
 fi
+
