@@ -97,6 +97,14 @@ echo "$SELECTED_FILES" | while read -r FILE; do
     echo -e "\`\`\`\n" >> "$TEMP_FILE"
 done
 
+# Add a H4 section listing all provided files
+echo -e "#### List of files provided\n" >> "$TEMP_FILE"
+while IFS= read -r FILE; do
+    RELATIVE_PATH="${FILE#./}"
+    echo "- ${RELATIVE_PATH}" >> "$TEMP_FILE"
+done <<< "$SELECTED_FILES"
+echo >> "$TEMP_FILE"
+
 # Create a temporary prompt file
 PROMPT_FILE=$(mktemp)
 echo "" > "$PROMPT_FILE"

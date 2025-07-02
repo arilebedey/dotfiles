@@ -86,6 +86,7 @@ alias z-='z -'
 alias z.='z ..'
 alias zi='__zoxide_zi'
 alias zs="z $HOME/System"
+alias zsz="z server"
 alias zc="z $HOME/.config"
 alias z4="z $HOME/Code/42/42github"
 alias yc="yazi $HOME/Code"
@@ -181,8 +182,10 @@ alias nrs='npm run start'                      # NPM start script
 alias nrb='npm run build'                      # NPM build script
 alias nrt='npm run test'                       # NPM test script
 alias dc='docker-compose'                      # Docker compose shorthand
-alias dcup='docker-compose up -d'              # Docker compose up detached
-alias dcdn='docker-compose down'               # Docker compose down
+alias dcu='docker-compose up -d'              # Docker compose up detached
+alias dcd='docker-compose down'               # Docker compose down
+alias dcud='dc -f compose.dev.yml up -d'               # Docker compose down
+alias dcdd='dc -f compose.dev.yml down'               # Docker compose down
 
 #####################
 ### Misc Utilities ###
@@ -225,3 +228,7 @@ alias cw='watch cc -Wall -Wextra -Werror'
 #####
 alias nv='cd $HOME/.config/nvim/lua/ari'
 alias rtree='rg --files | tree --fromfile'
+
+
+# TMP #
+alias bpip='make re; rm ../../../42tests/42_pipex_tester/pipex; cp -n pipex ../../../42tests/42_pipex_tester'

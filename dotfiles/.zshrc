@@ -48,7 +48,3 @@ source $HOME/.config/keys/secrets.sh
 # Created by `pipx` on 2025-03-09 23:29:27
 export PATH="$PATH:/home/ari/.local/bin"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-alias francinette=/home/alebedev/francinette/tester.sh
-
-alias paco=/home/alebedev/francinette/tester.sh
