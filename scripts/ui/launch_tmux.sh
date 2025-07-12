@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 SESSION_NAME="home"
+# tmux="/opt/homebrew/bin/tmux"
+tmux="tmux"
 
 # Ensure Homebrew bin is in PATH (for tmux installed via brew)
 if [[ -d "/opt/homebrew/bin" ]]; then
