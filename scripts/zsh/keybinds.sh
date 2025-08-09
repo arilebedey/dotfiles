@@ -14,10 +14,6 @@ bindkey '^[[27;2;9~' autosuggest-accept
 stty intr ^P
 # stty intr '^C'
 
-# Copy whole command
-cmd_to_clip () { wl-copy -n <<< $BUFFER }
-zle -N cmd_to_clip
-bindkey '^Y' cmd_to_clip
 
 # map ctrl+c  copy_to_clipboard # in kitty.conf
 bindkey '^K' clear-screen

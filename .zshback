@@ -223,10 +223,6 @@ alias igsh='bat .gitignore'
 alias vf='vim $(fzf --multi --preview "bat --color=always {}" --preview-window=up:75%)'
 alias rf='rm $(fzf --multi --preview "bat --color=always {}" --preview-window=up:75%)'
 alias cw='watch cc -Wall -Wextra -Werror'
-alias val='valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes'
-alias norminette_solong='no libft/*.c; no *.c; no *.h'
-alias ms='./minishell'
-alias msv='valgrind --leak-check=full --show-leak-kinds=all --suppressions=valgrind.supp ./minishell'
 
 #####
 #NEW#
@@ -238,4 +234,3 @@ alias nmd='nvim /tmp/tmp.md'
 
 # TMP #
 alias bpip='make re; rm ../../../42tests/42_pipex_tester/pipex; cp -n pipex ../../../42tests/42_pipex_tester'
-

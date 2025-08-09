@@ -1,6 +1,6 @@
 ### 42 DELL COFIG
 
-font-size = 18
+font-size = 22
 window-decoration = false
 # fullscreen = true
 command = "$HOME/System/scripts/ui/launch_tmux.sh"

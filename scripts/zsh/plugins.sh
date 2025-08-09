@@ -8,7 +8,7 @@ if [ "$(whoami)" = "alebedev" ]; then
   source $HOME/.zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 else
   # Source from system location for other users
-  source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
+  # source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 fi
 # fast-syntax-highlighting
 zinit light zdharma-continuum/fast-syntax-highlighting
