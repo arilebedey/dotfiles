@@ -3,3 +3,10 @@
 /venv/
 /arch-packages/
 /dotfiles/.config/nvim/variables/
+nohup.out
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
