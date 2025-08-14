@@ -1,13 +1,14 @@
 ### M1 CONFIG
 
-font-size = 20
+font-size = 18
 window-decoration = false
 fullscreen = true
 command = "$HOME/System/scripts/ui/launch_tmux.sh"
 
 # theme = BlulocoDark
 # theme = Everblush
-theme = 3024 Night
+# theme = 3024 Night
+theme = Afterglow
 
 cursor-style-blink = false
 shell-integration-features = no-cursor

@@ -6,7 +6,8 @@ window-decoration = false
 command = "$HOME/System/scripts/ui/launch_tmux.sh"
 
 # theme = Everblush
-theme = 3024 Night
+# theme = 3024 Night
+theme = Afterglow
 
 cursor-style-blink = false
 shell-integration-features = no-cursor
