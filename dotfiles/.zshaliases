@@ -235,6 +235,12 @@ alias nv='cd $HOME/.config/nvim/lua/ari'
 alias rtree='rg --files | tree --fromfile'
 alias nmd='nvim /tmp/tmp.md'
 
+#####################
+###     MACOS     ###
+#####################
+alias gdu='gdu-go'
+
+
 
 # TMP #
 alias bpip='make re; rm ../../../42tests/42_pipex_tester/pipex; cp -n pipex ../../../42tests/42_pipex_tester'
