@@ -9,6 +9,9 @@ IGNORED_PATHS=(
     '*/node_modules/*'
     '*/.DS_Store'
     '*/__pycache__/*'
+    '*/libft/*'
+    '*/obj/*'
+    '*/.vscode/*'
 )
 
 # Build find command with ignored paths
