@@ -28,7 +28,7 @@ return {
     local full_config = {
       on_attach = my_on_attach,
       view = {
-        width = 35,
+        width = 25,
         relativenumber = true,
       },
       -- change folder arrow icons
