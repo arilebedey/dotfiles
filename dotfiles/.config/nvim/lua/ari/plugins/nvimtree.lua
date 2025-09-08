@@ -7,10 +7,10 @@ return {
 
     -- delete s key mapping
     local function my_on_attach(bufnr)
-      local api = require('nvim-tree.api')
+      local api = require("nvim-tree.api")
       api.config.mappings.default_on_attach(bufnr)
-      vim.keymap.del('n', 's', { buffer = bufnr })
-      vim.keymap.del('n', '-', { buffer = bufnr })
+      vim.keymap.del("n", "s", { buffer = bufnr })
+      vim.keymap.del("n", "-", { buffer = bufnr })
     end
 
     -- recommended settings from nvim-tree documentation
@@ -19,19 +19,44 @@ return {
 
     -- Load tree_shown preference
     local tree_state = tree_config.get_tree_state()
-
-    -- Store the actual quit_on_open setting in a global variable so we can toggle it
-    -- This avoids having to access nvim-tree internals
     vim.g.nvim_tree_quit_on_open = not tree_state
+
+    -- ✅ Detect screen width on Linux or macOS
+    local function get_screen_width()
+      if vim.fn.has("macunix") == 1 then
+        -- macOS: parse system_profiler output
+        local ok, output =
+            pcall(vim.fn.system, "system_profiler SPDisplaysDataType | grep Resolution | head -n1")
+        if ok and output and output ~= "" then
+          local w = tonumber(output:match("Resolution:%s+(%d+)%s*x%s*%d+"))
+          return w
+        end
+      else
+        -- Linux (xrandr)
+        local ok, output =
+            pcall(vim.fn.system, "xrandr | grep '*' | head -n1 | awk '{print $1}'")
+        if ok and output and output ~= "" then
+          output = vim.trim(output)
+          local w = tonumber(output:match("^(%d+)x%d+"))
+          return w
+        end
+      end
+      return nil
+    end
+
+    local screen_width = get_screen_width()
+    local width = 25
+    if screen_width and screen_width > 1440 then
+      width = 40
+    end
 
     -- Store the full configuration so we can reuse it when toggling
     local full_config = {
       on_attach = my_on_attach,
       view = {
-        width = 25,
+        width = width, -- dynamically chosen width
         relativenumber = true,
       },
-      -- change folder arrow icons
       renderer = {
         indent_markers = {
           enable = true,
@@ -39,21 +64,16 @@ return {
         icons = {
           glyphs = {
             folder = {
-              arrow_closed = "", -- arrow when folder is closed
-              arrow_open = "",   -- arrow when folder is open
+              arrow_closed = "",
+              arrow_open = "",
             },
           },
         },
       },
-      -- disable window_picker for
-      -- explorer to work well with
-      -- window splits
       actions = {
         open_file = {
-          window_picker = {
-            enable = false,
-          },
-          quit_on_open = vim.g.nvim_tree_quit_on_open, -- Use our global variable
+          window_picker = { enable = false },
+          quit_on_open = vim.g.nvim_tree_quit_on_open,
         },
         change_dir = {
           enable = true,
@@ -61,68 +81,42 @@ return {
           restrict_above_cwd = true,
         },
       },
-      filters = {
-        custom = { ".DS_Store" },
-      },
-      git = {
-        ignore = false,
-      },
+      filters = { custom = { ".DS_Store" } },
+      git = { ignore = false },
       update_focused_file = {
         enable = true,
         update_root = false,
       },
-      diagnostics = {
-        enable = true,
-      },
+      diagnostics = { enable = true },
     }
 
     nvimtree.setup(full_config)
 
     -- custom fn for opening at parent
-    local api = require('nvim-tree.api')
+    local api = require("nvim-tree.api")
     local function toggle_and_navigate_parent()
-      -- Check if tree is already open
       if vim.fn.exists("g:nvim_tree_win_id") == 1 then
-        -- Close tree if already open
         pcall(vim.cmd, "NvimTreeClose")
       end
-      -- Toggle the file explorer
-      vim.cmd('NvimTreeFindFile')
-      -- Navigate to the parent node after a short delay
+      vim.cmd("NvimTreeFindFile")
       vim.defer_fn(function()
         api.node.navigate.parent()
       end, 50)
     end
 
-    -- Toggle tree_shown state
     local function toggle_tree_state()
-      -- Toggle the state in the configuration file
       local new_state = tree_config.toggle_tree_state()
-
-      -- Update the global variable
       vim.g.nvim_tree_quit_on_open = not new_state
-
-      -- Show notification of current state
       if new_state then
         vim.notify("NvimTree: Will stay open when selecting files", vim.log.levels.INFO)
       else
         vim.notify("NvimTree: Will close when selecting files", vim.log.levels.INFO)
       end
-
-      -- We need to apply this setting immediately
-      -- Get the current NvimTree module (if loaded)
-      local ok, nvim_tree_mod = pcall(require, "nvim-tree")
-      if ok then
-        -- Close tree if it's open
+      local ok2, nvim_tree_mod = pcall(require, "nvim-tree")
+      if ok2 then
         pcall(vim.cmd, "NvimTreeClose")
-
-        -- Update our full config
         full_config.actions.open_file.quit_on_open = vim.g.nvim_tree_quit_on_open
-
-        -- Apply our new settings by recreating the setup with the full config
         nvim_tree_mod.setup(full_config)
-
-        -- No need to reopen - user can open when needed
       end
     end
 

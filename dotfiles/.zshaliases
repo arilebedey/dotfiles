@@ -18,6 +18,7 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 alias lg='lazygit'
+alias gcdiff="git-copy-latest-diff"
 
 # ***
 alias gaa='git add --all'                      # Add all files, including untracked
@@ -169,7 +170,7 @@ alias orphans="pacman -Qtdq"                   # List orphaned packages
 alias nrd='npm run dev'
 
 # React Native
-alias kan="pkill -f 'expo start' && pkill -f 'expo run:android' && pkill -f 'expo run:ios'"
+alias kan="pkill -f 'expo start' && pkill -f 'expo run:android' && pkill -f 'expo run:ios' && pkill -f 'npm exec expo start --localhost'"
 alias kio="pkill -f 'expo run:ios'"
 alias nra="npx expo run:android"
 alias nri="npx expo run:ios"

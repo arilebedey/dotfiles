@@ -20,6 +20,7 @@ vim.api.nvim_set_keymap("c", "<C-BS>", "<C-W>", { noremap = true, silent = true 
 -- FILES
 kms("n", "<leader>a", ":wq<CR>", { silent = true, desc = "Save and Close" })
 kms("n", "<leader>i", ":w<CR>", { silent = true, desc = "Save" })
+kms("n", "<leader>I", ":noautocmd w<CR>", { silent = true, desc = "Save without auto commands" })
 kms("n", "<leader>,", ":qa<CR>", { silent = true, desc = "Quit all" })
 kms("n", "<leader>u,", ":q!<CR>", { silent = true, desc = "Force quit" })
 
