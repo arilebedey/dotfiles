@@ -87,3 +87,5 @@ vim.api.nvim_set_keymap('s', '<C-l>', '<ESC>ciw', { noremap = true, silent = tru
 -- Set your username and email for 42 headers
 vim.g.user42 = "alebedev"
 vim.g.mail42 = "alebedev@student.42.fr"
+
+vim.keymap.set("i", ".3", "...")
