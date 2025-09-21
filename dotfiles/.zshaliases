@@ -65,10 +65,6 @@ alias nettop="sudo nethogs"                    # Monitor network usage by proces
 ######################
 ### Custom Scripts ###
 ######################
-alias sc='$HOME/System/scripts/images/save-clip-2-png.sh'
-alias getpa='$HOME/System/scripts/get_path.sh'
-alias ct='$HOME/System/scripts/code-context.sh'
-alias copyip='$HOME/System/scripts/copy-ip.sh'
 alias ubu="$HOME/Code/zmk-linux-build-script/urob-zmk-config/scripts/zmk_build.sh"
 
 # ***
@@ -195,15 +191,9 @@ alias dcdd='dc -f compose.dev.yml down'               # Docker compose down
 alias wi='which'
 alias td='tmux detach'
 alias C=" | wl-copy"
-# alias cs="tmux_choose_session"
 
 # ***
-alias tp='tmux new-session -s'                 # Create new tmux session
-alias ta='tmux attach -t'                      # Attach to tmux session
-alias tl='tmux list-sessions'                  # List tmux sessions
-alias tk='tmux kill-session -t'                # Kill tmux session
 alias cal='cal -3'                             # Show 3-month calendar
-alias cl='clear'                               # Clear terminal
 alias h='history'                              # Show history
 alias hg='history | grep'                      # Search command history
 alias path='echo -e ${PATH//:/\\n}'            # Print each PATH entry on new line

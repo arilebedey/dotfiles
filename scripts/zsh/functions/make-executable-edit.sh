@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 # nxf - Create or edit a file, make it executable, and open with nvim
 # Usage: nxf <filename>

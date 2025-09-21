@@ -2,9 +2,6 @@ if [ -f "$HOME/.system-envs" ]; then
   source "$HOME/.system-envs"
 fi
 
-### PATHS
-source $HOME/System/scripts/zsh/paths.sh
-
 ### 42 Configs
 source $HOME/System/scripts/zsh/42.sh
 
@@ -27,15 +24,10 @@ source $HOME/System/scripts/zsh/zshopts.sh
 # Aliases
 source $HOME/.zshaliases
 source $HOME/.keys.sh
-source $HOME/System/scripts/zsh/function_aliases.sh
-source $HOME/System/scripts/zsh/scripts.sh
 # Functions
-source $HOME/System/scripts/zsh/functions_to_order.sh
 source $HOME/System/scripts/zsh/functions.sh
 # Scripts
 source $HOME/System/scripts/zsh/fzf2nvim.sh
-source $HOME/System/scripts/zsh/tmux_choose.sh
-source $HOME/System/scripts/zsh/yazi.sh
 # Keybindings
 source $HOME/System/scripts/zsh/keybinds.sh
 
