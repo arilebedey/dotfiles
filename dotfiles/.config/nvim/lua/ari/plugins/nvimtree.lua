@@ -34,7 +34,7 @@ return {
     if dims.width > 140 then
       tree_width = math.floor(dims.width / 4)
     else
-      tree_width = math.floor(dims.width / 6)
+      tree_width = math.floor(dims.width / 5)
     end
 
     -- Dynamic setup

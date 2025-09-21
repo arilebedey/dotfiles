@@ -27,6 +27,10 @@ kms('n', '<leader>tha',
   ':lua require("ari.core.functions.theme_switcher").load_theme("material")<CR>',
   { noremap = true, silent = true, desc = "Switch to Material theme" })
 
+kms('n', '<leader>thg',
+  ':lua require("ari.core.functions.theme_switcher").load_theme("gruvdark")<CR>',
+  { noremap = true, silent = true, desc = "Switch to Gruvdark" })
+
 -- Theme utility commands
 kms('n', '<leader>tl',
   ':lua local themes = require("ari.core.functions.theme_switcher").list_themes(); print("Available themes: " .. table.concat(themes, ", "))<CR>',
