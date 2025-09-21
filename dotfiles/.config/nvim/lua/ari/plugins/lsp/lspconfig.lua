@@ -16,6 +16,13 @@ return {
     }
   },
   config = function()
+    local lsp_switcher = require("ari.core.functions.lsp_switcher")
+
+    if lsp_switcher.current_state == "off" then
+      vim.notify("LSP disabled by user setting", vim.log.levels.WARN)
+      return
+    end
+
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
 

@@ -112,3 +112,8 @@ vim.keymap.set('n', 'cL', 'v$hc', { noremap = true })
 -----------------------------------
 
 require("ari.core.theme-binds")
+
+
+vim.keymap.set("n", "<leader>ls", function()
+  require("ari.core.functions.lsp_switcher").toggle()
+end, { desc = "Toggle LSP on/off" })
