@@ -100,6 +100,35 @@ return {
       end
     end
 
+    -- Auto-open tree on startup if preference is enabled
+    if tree_state then
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function(data)
+          -- prevent opening for certain cases like git commit (.git/COMMIT_EDITMSG)
+          local ignored_ft = { "gitcommit" }
+          if vim.tbl_contains(ignored_ft, vim.bo[data.buf].filetype) then
+            return
+          end
+
+          -- check if we opened a directory
+          local file = vim.api.nvim_buf_get_name(data.buf)
+          local stat = vim.loop.fs_stat(file)
+          local api = require("nvim-tree.api")
+
+          if stat and stat.type == "directory" then
+            vim.cmd.cd(file)
+            api.tree.open()
+            -- focus back to main window (not tree)
+            vim.cmd.wincmd("p")
+          else
+            api.tree.open()
+            -- focus back to main window (not tree)
+            vim.cmd.wincmd("p")
+          end
+        end,
+      })
+    end
+
     -- Keymaps
     local keymap = vim.keymap
     keymap.set("n", "-.", "<cmd>NvimTreeOpen<CR>", { desc = "Toggle file explorer" })
