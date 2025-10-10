@@ -219,13 +219,15 @@ alias norminette_solong='no libft/*.c; no *.c; no *.h'
 alias ms='./minishell'
 alias msv='valgrind --leak-check=full --track-fds=yes --show-leak-kinds=all --suppressions=valgrind.supp ./minishell'
 alias nms='env -i ./minishell'
+alias lock='ft_lock'
+alias fl='ft_lock'
 
 #####
 #NEW#
 #####
 alias nv='cd $HOME/.config/nvim/lua/ari'
 alias rtree='rg --files | tree --fromfile'
-alias nmd='nvim /tmp/tmp.md'
+alias md='nvim /tmp/tmp.md'
 
 #####################
 ###     MACOS     ###
