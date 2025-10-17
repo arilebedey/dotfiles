@@ -221,6 +221,8 @@ alias msv='valgrind --leak-check=full --track-fds=yes --show-leak-kinds=all --su
 alias nms='env -i ./minishell'
 alias lock='ft_lock'
 alias fl='ft_lock'
+alias gm='./cub3D'
+alias gmv='valgrind --leak-check=full --show-leak-kinds=all ./cub3D'
 
 #####
 #NEW#
