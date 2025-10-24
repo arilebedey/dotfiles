@@ -4,7 +4,6 @@
 /arch-packages/
 /dotfiles/.config/nvim/variables/
 nohup.out
-/dotfiles/.config/nvim/lazy-lock.json
 
 # macOS
 .DS_Store

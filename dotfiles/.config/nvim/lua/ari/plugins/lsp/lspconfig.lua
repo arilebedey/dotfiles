@@ -131,6 +131,7 @@ return {
       },
       clangd = {
         capabilities = capabilities,
+        cmd = { "clangd", "--compile-commands-dir=." },
       },
 
       svelte = {

@@ -89,3 +89,11 @@ vim.g.user42 = "alebedev"
 vim.g.mail42 = "alebedev@student.42.fr"
 
 vim.keymap.set("i", ".3", "...")
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.md",
+  callback = function()
+    vim.wo.wrap = true
+    vim.wo.linebreak = true
+  end,
+})

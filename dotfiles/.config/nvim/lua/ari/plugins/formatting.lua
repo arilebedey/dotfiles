@@ -25,12 +25,12 @@ return {
       },
       -- Define format_on_save as a function that returns options or nil
       format_on_save = function(bufnr)
-        -- Exclude C and C++ files
+        -- Exclude C files
         local filetype = vim.bo[bufnr].filetype
         if filetype == "c" then
           return nil -- Return nil to disable formatting for this buffer
         end
-        
+
         -- For all other files, return the format options
         return {
           lsp_format = "fallback",
