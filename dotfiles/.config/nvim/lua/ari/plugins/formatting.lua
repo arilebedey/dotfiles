@@ -21,12 +21,13 @@ return {
         lua = { "stylua" },
         python = { "isort", "black" },
         go = { "gofmt", "goimports" },
+        cpp = { "clang-format" },
       },
       -- Define format_on_save as a function that returns options or nil
       format_on_save = function(bufnr)
         -- Exclude C and C++ files
         local filetype = vim.bo[bufnr].filetype
-        if filetype == "c" or filetype == "cpp" then
+        if filetype == "c" then
           return nil -- Return nil to disable formatting for this buffer
         end
         

@@ -135,7 +135,6 @@ alias sz='source $HOME/.zshrc'
 alias se="sudoedit"
 
 # ***
-alias v='vim'                                  # Quick vim access
 alias sv='sudo vim'                            # Sudo vim
 alias snv='sudo nvim'                          # Sudo neovim
 alias conf='cd $HOME/.config'                  # Quick access to config directory
@@ -223,6 +222,9 @@ alias lock='ft_lock'
 alias fl='ft_lock'
 alias gm='./cub3D'
 alias gmv='valgrind --leak-check=full --show-leak-kinds=all ./cub3D'
+alias m='make'
+alias mc='make clean'
+alias mfc='make fclean'
 
 #####
 #NEW#
