@@ -134,29 +134,6 @@ return {
         cmd = { "clangd", "--compile-commands-dir=." },
       },
 
-      svelte = {
-        capabilities = capabilities,
-        on_attach = function(client, _)
-          vim.api.nvim_create_autocmd("BufWritePost", {
-            pattern = { "*.js", "*.ts" },
-            callback = function(ctx)
-              client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-            end,
-          })
-        end,
-      },
-
-      graphql = {
-        capabilities = capabilities,
-        filetypes = {
-          "graphql",
-          "gql",
-          "svelte",
-          "typescriptreact",
-          "javascriptreact",
-        },
-      },
-
       emmet_ls = {
         capabilities = capabilities,
         filetypes = {
@@ -167,7 +144,6 @@ return {
           "sass",
           "scss",
           "less",
-          "svelte",
         },
       },
 
