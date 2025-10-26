@@ -25,7 +25,7 @@ return {
       format_on_save = function(bufnr)
         -- Exclude C files
         local filetype = vim.bo[bufnr].filetype
-        if filetype == "c" then
+        if filetype == "c" or "keymap" then
           return nil -- Return nil to disable formatting for this buffer
         end
 
