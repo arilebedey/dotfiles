@@ -97,3 +97,10 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     vim.wo.linebreak = true
   end,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.keymap",
+  callback = function()
+    vim.opt.virtualedit = "all"
+  end,
+})
