@@ -7,6 +7,7 @@ if [ "$(whoami)" = "alebedev" ]; then
   export PATH=$HOME/bin:$PATH
   xset r rate 250 80
   source /home/alebedev/System/scripts/system/launch_ft_lock.sh
+  bluetoothctl show | grep -q "Powered: no" && bluetoothctl power on
 fi
 
 # Check if running on Wayland or X11 and use appropriate clipboard tool
