@@ -8,7 +8,8 @@ command = "$HOME/System/scripts/ui/launch_tmux.sh"
 # theme = BlulocoDark
 # theme = Everblush
 # theme = 3024 Night
-theme = Afterglow
+# theme = Afterglow
+theme = 12-bit Rainbow
 
 cursor-style-blink = false
 shell-integration-features = no-cursor
