@@ -12,6 +12,13 @@ return {
       '<leader>rw',
       '<cmd>lua require("spectre").open_visual({select_word=true})<cr>',
       desc = '[R]eplace current [W]ord (Spectre)',
+      mode = 'n',
+    },
+    {
+      '<leader>rw',
+      '<esc><cmd>lua require("spectre").open_file_search()<cr>',
+      desc = '[R]eplace selected [W]ord (Spectre - current buffer)',
+      mode = 'v',
     },
     {
       '<leader>rb',
@@ -21,7 +28,7 @@ return {
   },
   config = function()
     require('spectre').setup({
-      live_update = false, -- auto execute search again when you write to any file in vim
+      live_update = false,
       replace_engine = {
         ["sed"] = {
           cmd = "sed",

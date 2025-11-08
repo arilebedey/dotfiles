@@ -23,9 +23,10 @@ return {
       },
       -- Define format_on_save as a function that returns options or nil
       format_on_save = function(bufnr)
-        -- Exclude C files
         local filetype = vim.bo[bufnr].filetype
-        if filetype == "c" or filetype == "keymap" then
+        local filename = vim.fn.expand("#" .. bufnr .. ":t")
+
+        if filetype == "c" or filename:match("%.keymap$") then
           return nil
         end
 

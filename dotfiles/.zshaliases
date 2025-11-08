@@ -237,3 +237,4 @@ alias md='nvim /tmp/tmp.md'
 ###     MACOS     ###
 #####################
 alias gdu='gdu-go'
+alias keebflash='/Users/ari/System/scripts/system/keebart_firmware_flasher.sh'
