@@ -27,16 +27,19 @@ return {
     },
   },
   config = function()
+    local sed_args
+    if vim.loop.os_uname().sysname == "Darwin" then
+      sed_args = { "-i", "", "-E" }
+    else
+      sed_args = { "-i", "-E" }
+    end
+
     require('spectre').setup({
       live_update = false,
       replace_engine = {
         ["sed"] = {
           cmd = "sed",
-          args = {
-            "-i",
-            "",
-            "-E",
-          },
+          args = sed_args,
         },
       },
     })
