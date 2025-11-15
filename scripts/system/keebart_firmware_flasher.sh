@@ -2,10 +2,11 @@
 
 set -e
 
-unzip -o "$HOME/Downloads/firmware.zip" -d "$HOME/Downloads/" >/dev/null
-
+FIRMWARE="$HOME/Downloads/firmware.zip" 
 RIGHT_UF2="$HOME/Downloads/nice_view-corne_choc_pro_right-zmk.uf2"
 LEFT_UF2="$HOME/Downloads/nice_view-corne_choc_pro_left-zmk.uf2"
+
+unzip -o "$FIRMWARE" -d "$HOME/Downloads/" >/dev/null
 
 if [ ! -f "$RIGHT_UF2" ] || [ ! -f "$LEFT_UF2" ]; then
     echo "Firmware files not found after unzip."
@@ -39,6 +40,10 @@ flash_side() {
 }
 
 flash_side "$RIGHT_UF2" "right"
+flash_side "$LEFT_UF2" "left"
+
+rm "$LEFT_UF2" "$RIGHT_UF2" "$FIRMWARE"
+
 flash_side "$LEFT_UF2" "left"
 
 echo "Done."

@@ -111,7 +111,6 @@ echo >> "$TEMP_FILE"
 # Create a temporary prompt file
 PROMPT_FILE=$(mktemp)
 echo "" > "$PROMPT_FILE"
-echo "# Enter your prompt in this file" >> "$PROMPT_FILE"
 echo "# Save and quit when done" >> "$PROMPT_FILE"
 
 # Open the prompt file in nvim
