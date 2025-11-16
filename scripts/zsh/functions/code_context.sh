@@ -114,7 +114,7 @@ echo "" > "$PROMPT_FILE"
 echo "# Save and quit when done" >> "$PROMPT_FILE"
 
 # Open the prompt file in nvim
-nvim "$PROMPT_FILE"
+nvim +startinsert "$PROMPT_FILE"
 
 # Check if the prompt file has content beyond the initial template
 PROMPT_CONTENT=$(grep -v "^# " "$PROMPT_FILE" | sed '/^$/d')

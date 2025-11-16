@@ -137,5 +137,14 @@ return {
     keymap.set("n", "<leader>.", "<cmd>NvimTreeClose<CR>", { desc = "Toggle file explorer" })
     keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
     keymap.set("n", "<leader>tz", toggle_tree_state, { desc = "Toggle NvimTree stay open behavior" })
+
+    -- Auto-close NvimTree before quitting Neovim
+    vim.api.nvim_create_autocmd("VimLeavePre", {
+      callback = function()
+        if api.tree.is_visible() then
+          api.tree.close()
+        end
+      end,
+    })
   end,
 }
