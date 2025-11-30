@@ -132,7 +132,8 @@ alias na='nvim $HOME/.zshaliases'
 alias za='nvim $HOME/.zshaliases'
 alias hy="nvim $HOME/.config/hypr/hyprland.conf"
 alias sz='source $HOME/.zshrc'
-alias se="sudoedit"
+alias se="sudo -e"
+alias sudoedit="sudo -e"
 
 # ***
 alias sv='sudo vim'                            # Sudo vim
@@ -224,6 +225,7 @@ alias gm='./cub3D'
 alias gmv='valgrind --leak-check=full --show-leak-kinds=all ./cub3D'
 alias m='make'
 alias mc='make clean'
+alias mr='make re'
 alias mfc='make fclean'
 
 #####

@@ -1,0 +1,3 @@
+# Open Folder in Finder Changelog
+
+## [Initial Version] - {PR_MERGE_DATE}

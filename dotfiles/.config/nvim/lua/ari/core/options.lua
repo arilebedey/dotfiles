@@ -98,9 +98,15 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.keymap",
-  callback = function()
-    vim.opt.virtualedit = "all"
-  end,
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+--   pattern = "*.keymap",
+--   callback = function()
+--     vim.opt.virtualedit = "all"
+--   end,
+-- })
+
+vim.filetype.add({
+  extension = {
+    tpp = "cpp",
+  },
 })

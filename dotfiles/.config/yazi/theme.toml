@@ -18,12 +18,12 @@ rules = [
     # File type indicators
     { name = "*", is = "block", fg = "#528bff" },           # Block device (brighter blue)
     { name = "*", is = "char", fg = "#98c379", bold = true }, # Character device (green)
-    { name = "*/", fg = "#56b6c2" },                        # Directory (cyan)
+    { name = "*/", fg = "#c678dd" },                        # Directory (cyan)
     { name = "*", is = "exec", fg = "#d19a66", bold = true }, # Executable (darker orange)
     { name = "*", is = "fifo", fg = "#c678dd" },            # FIFO (magenta)
     { name = "*", is = "orphan", fg = "#1e2127", bg = "#e06c75", bold = true }, # Broken symlink (red bg)
     { name = "*", is = "sock", fg = "#e06c75" },            # Socket (red)
-    { name = "*", is = "sticky", fg = "#56b6c2", bg = "#1e2127" }, # Sticky directory (cyan on darker bg)
+    { name = "*", is = "sticky", fg = "#c678dd", bg = "#1e2127" }, # Sticky directory (cyan on darker bg)
     
     # Documentation/README files
     { name = "*.txt", fg = "#abb2bf" },                     # Plain text (default fg)
