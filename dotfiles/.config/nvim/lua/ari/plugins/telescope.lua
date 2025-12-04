@@ -74,19 +74,27 @@ return {
     -- set keymaps
 
     local kms = vim.keymap.set
-    kms("n", "<leader>sp", "<cmd>Telescope find_files theme=ivy<CR>",
+
+    kms("n", "<leader>ss", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy [S]earch recent file[S]" })
+
+    kms("n", "<leader>st", "<cmd>Telescope find_files theme=ivy<CR>",
       { desc = "Fuzzy [S]earch Files in [P]roject (cwd)" })
+    kms("n", "<leader>sg", "<cmd>Telescope find_files theme=ivy<CR>",
+      { desc = "Fuzzy [S]earch Files in [P]roject (cwd)" })
+
+    kms("n", "<leader>sh", "<cmd>Telescope live_grep theme=ivy<CR>",
+      { desc = "Fuzzy [S]earch strings with [G]rep in CWD" })
+    kms("n", "<leader>sp", "<cmd>Telescope live_grep theme=ivy<CR>",
+      { desc = "Fuzzy [S]earch strings with [G]rep in CWD" })
+
     kms("n", "<leader>m", "<cmd>Telescope frecency workspace=CWD theme=ivy<CR>",
       { desc = "Fuzzy [S]earch recent file[S]sssss" })
     kms("n", "<leader>sl", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "[S]ee [L]SP Document Symbols" })
-    kms("n", "<leader>ss", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy [S]earch recent file[S]" })
-    kms("n", "<leader>sg", "<cmd>Telescope live_grep theme=ivy<CR>",
-      { desc = "Fuzzy [S]earch strings with [G]rep in CWD" })
     kms("n", "<leader>sc", "<cmd>Telescope grep_string<CR>", { desc = "Fuzzy [S]earch string under [C]ursor" })
-    -- kms("n", "<leader>fp", "<cmd>Telescope projects<CR>", { desc = "[F]uzzy find [P]rojects" })]
+
     kms("n", "<leader>sm", "<cmd>Telescope marks<CR>", { desc = "[S]earch [M]arks" })
     -- TODO
-    kms("n", "<leader>st", "<cmd>TodoTelescope<CR>", { desc = "[S]ee [T]ODO Comment List" })
+    kms("n", "<leader>sd", "<cmd>TodoTelescope<CR>", { desc = "[S]ee [T]ODO Comment List" })
     kms('n', '<leader>sb', ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>',
       { desc = "[S]earch [B]uffer" })
     kms('n', '<leader>/', ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>',

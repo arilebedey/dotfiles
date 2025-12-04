@@ -228,9 +228,9 @@ alias mc='make clean'
 alias mr='make re'
 alias mfc='make fclean'
 
-#####
-#NEW#
-#####
+#####################
+###      NEW      ###
+#####################
 alias nv='cd $HOME/.config/nvim/lua/ari'
 alias rtree='rg --files | tree --fromfile'
 alias md='nvim /tmp/tmp.md'
@@ -241,3 +241,13 @@ alias md='nvim /tmp/tmp.md'
 alias gdu='gdu-go'
 alias keebflash='/Users/ari/System/scripts/system/keebart_firmware_flasher.sh'
 alias eri='/Users/ari/System/scripts/dev/run-expo-ios.sh'
+
+#####################
+###    SCRIPTS    ###
+#####################
+alias ct='$HOME/System/scripts/zsh/functions/code_context.sh'
+alias t='$HOME/System/scripts/zsh/functions/code_context.sh'
+alias cct='$HOME/System/scripts/zsh/functions/prompt-from-files.sh'
+alias d='source $HOME/System/scripts/ui/fzf-cd.sh'
+alias ta='source $HOME/System/scripts/ui/fzf_cd_or_tmux.sh'
+

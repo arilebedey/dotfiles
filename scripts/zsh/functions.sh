@@ -11,10 +11,5 @@ source $HOME/System/scripts/zsh/functions/get_file_path.sh
 source $HOME/System/scripts/zsh/functions/copy-ip.sh
 source $HOME/System/scripts/zsh/functions/tail-valgrind.sh
 
-alias ct='$HOME/System/scripts/zsh/functions/code_context.sh'
-alias cct='$HOME/System/scripts/zsh/functions/prompt-from-files.sh'
-alias d='source $HOME/System/scripts/ui/fzf-cd.sh'
-alias ta='source $HOME/System/scripts/ui/fzf_cd_or_tmux.sh'
-
 # Stopped (in scripts/_archive/)
 # source $HOME/System/scripts/zsh/sesh-sessions.sh
