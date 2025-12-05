@@ -241,6 +241,7 @@ alias md='nvim /tmp/tmp.md'
 alias gdu='gdu-go'
 alias keebflash='/Users/ari/System/scripts/system/keebart_firmware_flasher.sh'
 alias eri='/Users/ari/System/scripts/dev/run-expo-ios.sh'
+alias rghost='osascript -e "quit app \"Ghostty\"" && open -a Ghostty'
 
 #####################
 ###    SCRIPTS    ###

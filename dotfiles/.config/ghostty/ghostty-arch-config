@@ -7,7 +7,7 @@ command = "$HOME/System/scripts/ui/launch_tmux.sh"
 
 # theme = BlulocoDark
 # theme = Everblush
-theme = 3024 Night
+theme = Zenbones Dark
 
 cursor-style-blink = false
 shell-integration-features = no-cursor

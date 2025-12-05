@@ -10,7 +10,8 @@ command = "$HOME/System/scripts/ui/launch_tmux.sh"
 # theme = 3024 Night
 # theme = Afterglow
 # theme = 12-bit Rainbow
-theme = 0x96f
+# theme = 0x96f
+theme = Tomorrow Night Burns
 
 cursor-style-blink = false
 shell-integration-features = no-cursor
