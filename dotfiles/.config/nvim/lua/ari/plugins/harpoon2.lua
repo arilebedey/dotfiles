@@ -1,6 +1,4 @@
 return {
-  -- {{{ Define the Harpoon lazy.vim specificaiton.
-
   "ThePrimeagen/harpoon",
   enabled = true,
   branch = "harpoon2",
@@ -8,9 +6,6 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
   },
-
-  -- ----------------------------------------------------------------------- }}}
-  -- {{{ Define events to load Harpoon.
 
   keys = function()
     local harpoon = require("harpoon")
@@ -54,23 +49,31 @@ return {
 
     return {
       -- Harpoon marked files 1 through 4
-      { ",n",    function() harpoon:list():select(1) end,                     desc = "Harpoon buffer 1" },
-      { ",i",    function() harpoon:list():select(2) end,                     desc = "Harpoon buffer 2" },
-      { ",w",    function() harpoon:list():select(3) end,                     desc = "Harpoon buffer 3" },
-      { ",-",    function() harpoon:list():select(4) end,                     desc = "Harpoon buffer 4" },
-      { ",a",    function() harpoon:list():select(5) end,                     desc = "Harpoon buffer 5" },
-      { ",.",    function() harpoon:list():select(6) end,                     desc = "Harpoon buffer 6" },
+      { ",n",    function() harpoon:list():select(1) end,         desc = "Harpoon buffer 1" },
+      { ",i",    function() harpoon:list():select(2) end,         desc = "Harpoon buffer 2" },
+      { ",w",    function() harpoon:list():select(3) end,         desc = "Harpoon buffer 3" },
+      { ",-",    function() harpoon:list():select(4) end,         desc = "Harpoon buffer 4" },
+      { ",a",    function() harpoon:list():select(5) end,         desc = "Harpoon buffer 5" },
+      { ",.",    function() harpoon:list():select(6) end,         desc = "Harpoon buffer 6" },
+
+      -- Harpoon marked files 1 through 4
+      { "<a-1>", function() harpoon:list():select(1) end,         desc = "Harpoon buffer 1" },
+      { "<a-2>", function() harpoon:list():select(2) end,         desc = "Harpoon buffer 2" },
+      { "<a-3>", function() harpoon:list():select(3) end,         desc = "Harpoon buffer 3" },
+      { "<a-4>", function() harpoon:list():select(4) end,         desc = "Harpoon buffer 4" },
+      { "<a-5>", function() harpoon:list():select(5) end,         desc = "Harpoon buffer 5" },
+      { "<a-6>", function() harpoon:list():select(6) end,         desc = "Harpoon buffer 6" },
 
       -- Harpoon next and previous.
-      { "<a-5>", function() harpoon:list():next() end,                        desc = "Harpoon next buffer" },
-      { "<a-6>", function() harpoon:list():prev() end,                        desc = "Harpoon prev buffer" },
+      -- { "<a-6>", function() harpoon:list():next() end,                        desc = "Harpoon next buffer" },
+      -- { "<a-5>", function() harpoon:list():prev() end,                        desc = "Harpoon prev buffer" },
 
       -- Harpoon user interface.
-      { "<a-7>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Harpoon Toggle Menu" },
-      { ",l",    function() harpoon:list():add() end,                         desc = "Harpoon add file" },
+      -- { "<a-7>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Harpoon Toggle Menu" },
+      { ",l",    function() harpoon:list():add() end,             desc = "Harpoon add file" },
 
       -- Use Telescope as Harpoon user interface.
-      { ",u",    function() toggle_telescope(harpoon:list()) end,             desc = "Open Harpoon window" },
+      { ",u",    function() toggle_telescope(harpoon:list()) end, desc = "Open Harpoon window" },
     }
   end,
 

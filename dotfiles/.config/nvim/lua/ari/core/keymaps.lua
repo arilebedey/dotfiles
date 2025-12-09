@@ -5,8 +5,8 @@ local kms = vim.keymap.set
 kms("n", "<leader>uo", ":source /home/ari/.config/nvim/init.lua<CR>", { desc = "Source config file", silent = false })
 
 -- MISC
-kms("n", "vV", "Vp")
-kms("n", "Vv", "Vp")
+kms("n", "vV", "VP")
+kms("n", "Vv", "VP")
 
 -- Insert mode mapping
 vim.api.nvim_set_keymap("i", "<C-BS>", "<C-W>", { noremap = true, silent = true })
@@ -95,8 +95,8 @@ vim.api.nvim_set_keymap('n', '<leader>nt', ':Stdheader<CR>', { noremap = true, s
 vim.api.nvim_set_keymap('n', '<leader>cp', ':%delete_<CR>"+P', { noremap = true, silent = true })
 
 -- For visual mode, directly use "+p to paste from system clipboard
-vim.api.nvim_set_keymap('v', 'p', '"+p', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', 'P', '"+P', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('v', 'p', '"+p', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('v', 'P', '"+P', { noremap = true, silent = true })
 
 
 -----------------------------------
