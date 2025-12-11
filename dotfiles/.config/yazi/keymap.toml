@@ -161,6 +161,7 @@ keymap = [
 	{ on = [ "g", "c" ],       run = "cd ~/Code",          desc = "Go to ~/Code" },
 	{ on = [ "g", "l" ],       run = "cd ~/Images/Clipboard/",          desc = "Go to ~/Images/Clipboard/" },
 	{ on = [ "g", "v" ],       run = "cd ~/Videos/",          desc = "Go to ~/Videos/" },
+	{ on = [ "g", "V" ],       run = "cd /Volumes/",          desc = "Go to ~/Volumes/" },
 	{ on = [ "g", "t" ],       run = "cd ~/System/temp",          desc = "Go to ~/System/temp" },
 
   # Temporary gotos

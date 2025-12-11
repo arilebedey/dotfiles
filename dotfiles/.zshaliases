@@ -246,9 +246,8 @@ alias rghost='osascript -e "quit app \"Ghostty\""; while pgrep -xq Ghostty; do s
 #####################
 ###    SCRIPTS    ###
 #####################
-alias ct='$HOME/System/scripts/zsh/functions/code_context.sh'
 alias t='$HOME/System/scripts/zsh/functions/code_context.sh'
-alias cct='$HOME/System/scripts/zsh/functions/prompt-from-files.sh'
+alias ct='$HOME/System/scripts/zsh/functions/prompt-from-files.sh'
 alias d='source $HOME/System/scripts/ui/fzf-cd.sh'
 alias ta='source $HOME/System/scripts/ui/fzf_cd_or_tmux.sh'
 
