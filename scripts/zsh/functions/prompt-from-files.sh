@@ -25,8 +25,8 @@ if [ -z "$FILE_PATHS" ]; then
     exit 1
 fi
 
-TEMP_FILE=$(mktemp)
-PROMPT_FILE=$(mktemp)
+TEMP_FILE=$(mktemp).prompt
+PROMPT_FILE=$(mktemp).prompt
 
 echo -e "\n# Save and exit when done." > "$PROMPT_FILE"
 

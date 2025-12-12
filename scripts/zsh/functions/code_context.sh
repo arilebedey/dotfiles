@@ -65,8 +65,8 @@ for cmd in $REQUIRED_COMMANDS; do
     fi
 done
 
-# Create a temporary file
-TEMP_FILE=$(mktemp)
+# Create a temporary file with .prompt extension
+TEMP_FILE=$(mktemp).prompt
 echo "Temporary file created at: $TEMP_FILE"
 
 # Use fzf to select files (multiple files can be selected with TAB)
@@ -108,8 +108,8 @@ while IFS= read -r FILE; do
 done <<< "$SELECTED_FILES"
 echo >> "$TEMP_FILE"
 
-# Create a temporary prompt file
-PROMPT_FILE=$(mktemp)
+# Create a temporary prompt file with .prompt extension
+PROMPT_FILE=$(mktemp).prompt
 echo "" > "$PROMPT_FILE"
 echo "# Save and quit when done" >> "$PROMPT_FILE"
 
