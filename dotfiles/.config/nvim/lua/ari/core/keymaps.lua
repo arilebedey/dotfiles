@@ -18,7 +18,7 @@ vim.api.nvim_set_keymap("v", "r", "<C-r>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("c", "<C-BS>", "<C-W>", { noremap = true, silent = true })
 
 -- FILES
-kms("n", "<leader>a", ":wq<CR>", { silent = true, desc = "Save and Close" })
+-- kms("n", "<leader>a", ":wq<CR>", { silent = true, desc = "Save and Close" })
 kms("i", ".,", "<ESC>:wq<CR>", { silent = true, desc = "Save and Close" })
 kms("n", ".,", ":wq<CR>", { silent = true, desc = "Save and Close" })
 

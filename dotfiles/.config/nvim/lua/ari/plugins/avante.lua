@@ -2,64 +2,57 @@ return {
   {
     "yetone/avante.nvim",
     opts = {
-      -- add any opts here
       provider = "openai",
-      openai = {
-        model = "gpt-4o",
+      providers = {
+        openai = {
+          model = "gpt-5",
+        },
       },
       windows = {
-        ---@type "right" | "left" | "top" | "bottom"
-        position = "right", -- the position of the sidebar
-        wrap = true,        -- similar to vim.o.wrap
+        position = "right",
+        wrap = true,
         height = 100,
         width = 40,
         input = { prefix = "➜ " },
         sidebar_header = {
-          align = "center", -- left, center, right for title
+          align = "center",
           rounded = false,
         },
       },
       mappings = {
-        ask = "<leader>ca",
-        edit = "<leader>ce",
-        refresh = "<leader>cr",
+        ask = "<leader>aa",
+        edit = "<leader>ae",
+        refresh = "<leader>ar",
         toggle = {
-          default = "<leader>cl",
-          debug = "<leader>cd",
-          hint = "<leader>ch",
+          default = "<leader>al",
+          debug = "<leader>ad",
+          hint = "<leader>ah",
         },
-
       },
       hints = {
         enabled = false,
       }
     },
-    build = "make",
     dependencies = {
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "nvim-tree/nvim-web-devicons",
       {
-        -- support for image pasting
         "HakonHarnes/img-clip.nvim",
         event = "VeryLazy",
         opts = {
-          -- recommended settings
           default = {
             embed_image_as_base64 = false,
             prompt_for_file_name = false,
             drag_and_drop = {
               insert_mode = true,
             },
-            -- required for Windows users
             use_absolute_path = true,
           },
         },
       },
       {
-        -- Make sure to set this up properly if you have lazy=true
         "MeanderingProgrammer/render-markdown.nvim",
         opts = {
           file_types = { "markdown", "Avante" },

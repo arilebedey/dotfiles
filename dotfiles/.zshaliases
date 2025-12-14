@@ -234,6 +234,7 @@ alias mfc='make fclean'
 alias nv='cd $HOME/.config/nvim/lua/ari'
 alias rtree='rg --files | tree --fromfile'
 alias md='nvim /tmp/tmp.md'
+alias tmpd='nvim ~/Downloads/temp.md'
 
 #####################
 ###     MACOS     ###

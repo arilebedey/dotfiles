@@ -4,6 +4,7 @@
 /arch-packages/
 /dotfiles/.config/nvim/variables/
 nohup.out
+scripts/zsh/secrets.sh
 
 # macOS
 .DS_Store
