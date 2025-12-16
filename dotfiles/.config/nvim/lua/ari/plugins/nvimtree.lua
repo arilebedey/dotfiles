@@ -134,8 +134,7 @@ return {
     keymap.set("n", "-.", "<cmd>NvimTreeOpen<CR>", { desc = "Toggle file explorer" })
     keymap.set("n", "-w", toggle_and_navigate_parent, { desc = "Toggle file explorer and navigate to parent" })
     keymap.set("n", "--w", "<cmd>NvimTreeFindFile<CR>", { desc = "Toggle file explorer" })
-    keymap.set("n", "<leader>.", "<cmd>NvimTreeClose<CR>", { desc = "Toggle file explorer" })
-    keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+    keymap.set("n", "<leader>.", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
     keymap.set("n", "<leader>tz", toggle_tree_state, { desc = "Toggle NvimTree stay open behavior" })
 
     -- Auto-close NvimTree before quitting Neovim

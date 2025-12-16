@@ -113,6 +113,7 @@ vim.keymap.set("n", "<leader>ls", function()
   require("ari.core.functions.lsp_switcher").toggle()
 end, { desc = "Toggle LSP on/off" })
 
+
 -----------------------------------
 -- Paste, Replace, Copy...
 -----------------------------------
@@ -121,24 +122,37 @@ kms("n", "vV", "VP")
 kms("n", "Vv", "VP")
 kms("n", "VV", "VP")
 
-
-vim.keymap.set("x", "p", '"_dP', { noremap = true, silent = true })
-
-vim.keymap.set("n", "x", '"_x')
-vim.keymap.set("v", "x", '"_x')
+vim.keymap.set("x", "p", '"adP', { noremap = true, silent = true })
+vim.keymap.set("n", "x", '"ax')
+vim.keymap.set("v", "x", '"ax')
 
 vim.keymap.set("n", "Dd", "dd")
+vim.keymap.set("n", "dD", "dd")
 vim.keymap.set("n", "DD", "dd")
-vim.keymap.set("n", "dd", '"_dd')
+vim.keymap.set("n", "dd", '"add')
 
-vim.keymap.set("x", "d", '"_d')
+vim.keymap.set("x", "d", '"ad')
 vim.keymap.set("x", "D", 'd')
+
 
 -----------------------------------
 -- Moving around window
 -----------------------------------
 
-vim.keymap.set("n", "ml", '<C-w>l')
-vim.keymap.set("n", "mh", '<C-w>h')
-vim.keymap.set("n", "ms", '<C-w>k')
-vim.keymap.set("n", "mt", '<C-w>j')
+vim.keymap.set("n", "el", '<C-w>l')
+vim.keymap.set("n", "eh", '<C-w>h')
+vim.keymap.set("n", "es", '<C-w>k')
+vim.keymap.set("n", "et", '<C-w>j')
+
+
+-----------------------------------
+-- Moving around window
+-----------------------------------
+
+vim.keymap.set('n', '<leader>nz', function()
+  -- Get content from register 'a'
+  local content = vim.fn.getreg('a')
+  -- Set the unnamed register (the "usual" buffer) to that content
+  vim.fn.setreg('"', content)
+  print("Copied register 'a' to default buffer")
+end, { desc = "Copy register a to default buffer" })

@@ -84,6 +84,11 @@ vim.opt.laststatus = 3
 -- Accept luasnip edit place
 vim.api.nvim_set_keymap('s', '<C-l>', '<ESC>ciw', { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('n', '-s', '<cmd>Neominimap ToggleFocus<cr>',
+  { noremap = true, silent = true, desc = "Switch focus on minimap" })
+vim.api.nvim_set_keymap('n', '-m', '<cmd>Neominimap Toggle<cr>',
+  { noremap = true, silent = true, desc = "Toggle global minimap" })
+
 -- Set your username and email for 42 headers
 vim.g.user42 = "alebedev"
 vim.g.mail42 = "alebedev@student.42.fr"

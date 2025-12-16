@@ -9,7 +9,7 @@ return {
     { "<leader>nbt", "<cmd>Neominimap BufToggle<cr>",   desc = "Toggle minimap for current buffer" },
 
     -- System
-    { "<leader>nc",  "<cmd>Neominimap Disable<cr>",     desc = "Disable global minimap" },
+    -- { "<leader>nc",  "<cmd>Neominimap Disable<cr>",     desc = "Disable global minimap" },
     { "<leader>nr",  "<cmd>Neominimap Refresh<cr>",     desc = "Refresh global minimap" },
     { "<leader>nbr", "<cmd>Neominimap BufRefresh<cr>",  desc = "Refresh minimap for current buffer" },
 
