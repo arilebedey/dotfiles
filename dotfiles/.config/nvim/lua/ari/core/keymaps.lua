@@ -81,7 +81,6 @@ vim.api.nvim_set_keymap('n', '<leader>w',
 
 -- 42 header
 vim.cmd('source ' .. vim.fn.stdpath('config') .. '/lua/ari/plugins/42header.vim')
-vim.api.nvim_set_keymap('n', '<leader>nt', ':Stdheader<CR>', { noremap = true, silent = true })
 
 -----------------------------------
 -- CLIBBOARD STUFF | COPYING ETC --
@@ -126,6 +125,7 @@ kms("n", "VV", "VP")
 vim.keymap.set("x", "p", '"_dP', { noremap = true, silent = true })
 
 vim.keymap.set("n", "x", '"_x')
+vim.keymap.set("v", "x", '"_x')
 
 vim.keymap.set("n", "Dd", "dd")
 vim.keymap.set("n", "DD", "dd")
@@ -133,3 +133,12 @@ vim.keymap.set("n", "dd", '"_dd')
 
 vim.keymap.set("x", "d", '"_d')
 vim.keymap.set("x", "D", 'd')
+
+-----------------------------------
+-- Moving around window
+-----------------------------------
+
+vim.keymap.set("n", "ml", '<C-w>l')
+vim.keymap.set("n", "mh", '<C-w>h')
+vim.keymap.set("n", "ms", '<C-w>k')
+vim.keymap.set("n", "mt", '<C-w>j')
