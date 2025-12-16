@@ -119,5 +119,3 @@ vim.filetype.add({
     tpp = "cpp",
   },
 })
-
-vim.keymap.set("x", "p", '"_dP', { noremap = true, silent = true })

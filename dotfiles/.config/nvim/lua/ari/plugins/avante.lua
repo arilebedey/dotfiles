@@ -2,6 +2,7 @@ return {
   {
     "yetone/avante.nvim",
     opts = {
+      mode = "legacy",
       provider = "openai",
       providers = {
         openai = {

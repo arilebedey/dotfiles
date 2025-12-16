@@ -4,10 +4,6 @@ local kms = vim.keymap.set
 
 kms("n", "<leader>uo", ":source /home/ari/.config/nvim/init.lua<CR>", { desc = "Source config file", silent = false })
 
--- MISC
-kms("n", "vV", "VP")
-kms("n", "Vv", "VP")
-
 -- Insert mode mapping
 vim.api.nvim_set_keymap("i", "<C-BS>", "<C-W>", { noremap = true, silent = true })
 -- Remap r to Ctrl-r in normal mode
@@ -117,3 +113,23 @@ require("ari.core.theme-binds")
 vim.keymap.set("n", "<leader>ls", function()
   require("ari.core.functions.lsp_switcher").toggle()
 end, { desc = "Toggle LSP on/off" })
+
+-----------------------------------
+-- Paste, Replace, Copy...
+-----------------------------------
+
+kms("n", "vV", "VP")
+kms("n", "Vv", "VP")
+kms("n", "VV", "VP")
+
+
+vim.keymap.set("x", "p", '"_dP', { noremap = true, silent = true })
+
+vim.keymap.set("n", "x", '"_x')
+
+vim.keymap.set("n", "Dd", "dd")
+vim.keymap.set("n", "DD", "dd")
+vim.keymap.set("n", "dd", '"_dd')
+
+vim.keymap.set("x", "d", '"_d')
+vim.keymap.set("x", "D", 'd')

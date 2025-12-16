@@ -23,13 +23,6 @@ return {
       [[⠠⠈⠀⠠⠀⡐⠀⠡⠈⡀⢁⠈⡀⠠⠁⠐⢀⠐⢀⠁⠂⠄⠐⠀⠄⠐⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
     }
 
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "AlphaReady",
-      callback = function()
-        vim.cmd("Telescope frecency workspace=CWD theme=ivy")
-      end,
-    })
-
     -- Set menu
     dashboard.section.buttons.val = {
       dashboard.button("s", "󰱼  > Find Frequent", "<cmd>Telescope frecency workspace=CWD theme=ivy<CR>"),
