@@ -35,12 +35,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		opts.desc = "[D]iagnostic [P]revious"
 		keymap.set("n", "<leader>dp", function()
-			vim.diagnostic.goto_prev({ float = true })
+			vim.diagnostic.jump({ count = -1, float = true })
 		end, opts)
 
 		opts.desc = "[D]iagnostic [N]ext"
 		keymap.set("n", "<leader>dn", function()
-			vim.diagnostic.goto_next({ float = true })
+			vim.diagnostic.jump({ count = 1, float = true })
 		end, opts)
 
 		opts.desc = "[Diagnostic] Show documentation (hover)"
