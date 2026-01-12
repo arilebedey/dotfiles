@@ -40,6 +40,7 @@ return {
 				"isort", -- python formatter
 				"black", -- python formatter
 				"pylint",
+				"clang-format",
 				-- "eslint_d",
 			},
 		},
