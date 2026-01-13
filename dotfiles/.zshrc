@@ -38,6 +38,7 @@ source $HOME/System/scripts/zsh/plugins-end.sh
 
 ## SECRETS
 source $HOME/.config/keys/secrets.sh
+source $HOME/System/scripts/zsh/secrets.sh
 
 # Created by `pipx` on 2025-03-09 23:29:27
 export PATH="$PATH:/home/ari/.local/bin"

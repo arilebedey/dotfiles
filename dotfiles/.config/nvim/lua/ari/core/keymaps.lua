@@ -66,41 +66,50 @@ kms("n", "<leader>tc", ":tabclose<CR>", { desc = "[T]ab [C]lose", silent = true 
 kms("n", "<leader>la", "<cmd>Lazy<CR>", { desc = "Open Lazy.nvim" })
 
 -- COPYING INFO
-vim.api.nvim_set_keymap('n', '<leader>cc',
-  [[:lua require('ari.core.functions.copy_file_path').copy_current_file_path()<CR>]],
-  { desc = "Copy Full File Path", noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>cc",
+	[[:lua require('ari.core.functions.copy_file_path').copy_current_file_path()<CR>]],
+	{ desc = "Copy Full File Path", noremap = true, silent = true }
+)
 -- Map Ctrl-A to select all text
-vim.api.nvim_set_keymap('n', 'ya', 'ggVG', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'yf', [[:lua require('ari.core.functions.copy_entire_file').copy_entire_file()<CR>]],
-  { desc = "Copy Entire File", noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "ya", "ggVG", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"yf",
+	[[:lua require('ari.core.functions.copy_entire_file').copy_entire_file()<CR>]],
+	{ desc = "Copy Entire File", noremap = true, silent = true }
+)
 
 -- Toggle Status Line
-vim.api.nvim_set_keymap('n', '<leader>w',
-  [[:lua require('ari.core.functions.toggle_statusline').toggle_statusline()<CR>]],
-  { desc = "Toggle Status Line", noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>w",
+	[[:lua require('ari.core.functions.toggle_statusline').toggle_statusline()<CR>]],
+	{ desc = "Toggle Status Line", noremap = true, silent = true }
+)
 
 -- 42 header
-vim.cmd('source ' .. vim.fn.stdpath('config') .. '/lua/ari/plugins/42header.vim')
+vim.cmd("source " .. vim.fn.stdpath("config") .. "/lua/ari/plugins/42header.vim")
 
 -----------------------------------
 -- CLIBBOARD STUFF | COPYING ETC --
 -----------------------------------
 
 -- Binding to clear file and paste clipboard content
-vim.api.nvim_set_keymap('n', '<leader>cp', ':%delete_<CR>"+P', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>cp", ':%delete_<CR>"+P', { noremap = true, silent = true })
 
 -- For visual mode, directly use "+p to paste from system clipboard
 -- vim.api.nvim_set_keymap('v', 'p', '"+p', { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('v', 'P', '"+P', { noremap = true, silent = true })
 
-
 -----------------------------------
 -- Deleting --
 -----------------------------------
 
-vim.keymap.set('n', 'dL', 'v$hd', { noremap = true })
-vim.keymap.set('n', 'yL', 'v$hy', { noremap = true })
-vim.keymap.set('n', 'cL', 'v$hc', { noremap = true })
+vim.keymap.set("n", "dL", "v$hd", { noremap = true })
+vim.keymap.set("n", "yL", "v$hy", { noremap = true })
+vim.keymap.set("n", "cL", "v$hc", { noremap = true })
 
 -----------------------------------
 -- Load theme-specific keybindings
@@ -108,11 +117,9 @@ vim.keymap.set('n', 'cL', 'v$hc', { noremap = true })
 
 require("ari.core.theme-binds")
 
-
 vim.keymap.set("n", "<leader>ls", function()
-  require("ari.core.functions.lsp_switcher").toggle()
+	require("ari.core.functions.lsp_switcher").toggle()
 end, { desc = "Toggle LSP on/off" })
-
 
 -----------------------------------
 -- Paste, Replace, Copy...
@@ -132,27 +139,33 @@ vim.keymap.set("n", "DD", "dd")
 vim.keymap.set("n", "dd", '"add')
 
 vim.keymap.set("x", "d", '"ad')
-vim.keymap.set("x", "D", 'd')
+vim.keymap.set("x", "D", "d")
 
+vim.keymap.set("x", "P", '"ap')
+vim.keymap.set("n", "P", '"ap')
 
------------------------------------
--- Moving around window
------------------------------------
-
-vim.keymap.set("n", "el", '<C-w>l')
-vim.keymap.set("n", "eh", '<C-w>h')
-vim.keymap.set("n", "es", '<C-w>k')
-vim.keymap.set("n", "et", '<C-w>j')
-
+vim.keymap.set("x", "k", "P")
+vim.keymap.set("n", "k", "P")
+vim.keymap.set("x", "K", '"aP')
+vim.keymap.set("n", "K", '"aP')
 
 -----------------------------------
 -- Moving around window
 -----------------------------------
 
-vim.keymap.set('n', '<leader>nz', function()
-  -- Get content from register 'a'
-  local content = vim.fn.getreg('a')
-  -- Set the unnamed register (the "usual" buffer) to that content
-  vim.fn.setreg('"', content)
-  print("Copied register 'a' to default buffer")
+vim.keymap.set("n", "el", "<C-w>l")
+vim.keymap.set("n", "eh", "<C-w>h")
+vim.keymap.set("n", "es", "<C-w>k")
+vim.keymap.set("n", "et", "<C-w>j")
+
+-----------------------------------
+-- Moving around window
+-----------------------------------
+
+vim.keymap.set("n", "<leader>nz", function()
+	-- Get content from register 'a'
+	local content = vim.fn.getreg("a")
+	-- Set the unnamed register (the "usual" buffer) to that content
+	vim.fn.setreg('"', content)
+	print("Copied register 'a' to default buffer")
 end, { desc = "Copy register a to default buffer" })

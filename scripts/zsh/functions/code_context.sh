@@ -12,6 +12,7 @@ IGNORED_PATHS=(
     '*/libft/*'
     '*/obj/*'
     '*/.vscode/*'
+    '*/dist/*'
 )
 
 # Build find command with ignored paths
