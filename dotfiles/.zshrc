@@ -40,6 +40,8 @@ source $HOME/System/scripts/zsh/plugins-end.sh
 source $HOME/.config/keys/secrets.sh
 source $HOME/System/scripts/zsh/secrets.sh
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Created by `pipx` on 2025-03-09 23:29:27
 export PATH="$PATH:/home/ari/.local/bin"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
