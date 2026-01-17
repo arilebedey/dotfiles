@@ -11,7 +11,10 @@ command = "$HOME/System/scripts/ui/launch_tmux.sh"
 # theme = Afterglow
 # theme = 12-bit Rainbow
 # theme = 0x96f
-theme = Tomorrow Night Burns
+
+## Theme 1 -> dark, theme 2 -> light
+# theme = Tomorrow Night Burns
+theme = Xcode WWDC
 
 cursor-style-blink = false
 shell-integration-features = no-cursor
