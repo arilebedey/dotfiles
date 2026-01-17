@@ -17,8 +17,8 @@ vim.opt.undodir = vim.fn.expand("~/.local/nvim/undodir")
 vim.opt.undofile = true
 
 -- UNDO
-vim.keymap.set('n', 'r', '<C-r>', { noremap = true })
-vim.keymap.set('n', 'R', 'r', { noremap = true })
+vim.keymap.set("n", "r", "<C-r>", { noremap = true })
+vim.keymap.set("n", "R", "r", { noremap = true })
 
 -- TABS & INDENTATION
 vim.o.tabstop = 2
@@ -29,22 +29,21 @@ opt.wrap = false
 
 -- Apply settings only for C files
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "c", -- Trigger for C files
-  callback = function()
-    -- TABS & INDENTATION
-    vim.bo.tabstop = 4        -- Number of spaces a tab character counts for
-    vim.bo.shiftwidth = 4     -- Number of spaces used for auto-indenting
-    vim.bo.softtabstop = 4    -- Number of spaces used when hitting Tab
-    vim.bo.expandtab = false  -- Use tabs, not spaces
-    vim.bo.autoindent = true  -- Enable auto-indentation
-    vim.bo.smartindent = true -- Enable smart indentation
+	pattern = "c", -- Trigger for C files
+	callback = function()
+		-- TABS & INDENTATION
+		vim.bo.tabstop = 4 -- Number of spaces a tab character counts for
+		vim.bo.shiftwidth = 4 -- Number of spaces used for auto-indenting
+		vim.bo.softtabstop = 4 -- Number of spaces used when hitting Tab
+		vim.bo.expandtab = false -- Use tabs, not spaces
+		vim.bo.autoindent = true -- Enable auto-indentation
+		vim.bo.smartindent = true -- Enable smart indentation
 
-    -- DISPLAY CHARACTERS (optional)
-    vim.wo.list = true                  -- Show whitespace characters
-    vim.wo.listchars = "tab:>-,trail:-" -- Customize how tabs/trailing spaces look
-  end,
+		-- DISPLAY CHARACTERS (optional)
+		vim.wo.list = true -- Show whitespace characters
+		vim.wo.listchars = "tab:>-,trail:-" -- Customize how tabs/trailing spaces look
+	end,
 })
-
 
 -- SEARCH
 opt.ignorecase = true
@@ -67,14 +66,13 @@ vim.o.updatetime = 300
 
 vim.o.termguicolors = true
 
-
 vim.o.mouse = "a"
-vim.opt.guicursor = { 'n:block', 'v:ver25', 'i:ver25' }
+vim.opt.guicursor = { "n:block", "v:ver25", "i:ver25" }
 
 vim.filetype.add({
-  extension = {
-    keymap = "cpp",
-  },
+	extension = {
+		keymap = "cpp",
+	},
 })
 
 -- FOR avante.nvim
@@ -82,12 +80,20 @@ vim.filetype.add({
 vim.opt.laststatus = 3
 
 -- Accept luasnip edit place
-vim.api.nvim_set_keymap('s', '<C-l>', '<ESC>ciw', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("s", "<C-l>", "<ESC>ciw", { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '-s', '<cmd>Neominimap ToggleFocus<cr>',
-  { noremap = true, silent = true, desc = "Switch focus on minimap" })
-vim.api.nvim_set_keymap('n', '-m', '<cmd>Neominimap Toggle<cr>',
-  { noremap = true, silent = true, desc = "Toggle global minimap" })
+vim.api.nvim_set_keymap(
+	"n",
+	"-s",
+	"<cmd>Neominimap ToggleFocus<cr>",
+	{ noremap = true, silent = true, desc = "Switch focus on minimap" }
+)
+vim.api.nvim_set_keymap(
+	"n",
+	"-m",
+	"<cmd>Neominimap Toggle<cr>",
+	{ noremap = true, silent = true, desc = "Toggle global minimap" }
+)
 
 -- Set your username and email for 42 headers
 vim.g.user42 = "alebedev"
@@ -96,31 +102,42 @@ vim.g.mail42 = "alebedev@student.42.fr"
 vim.keymap.set("i", ".3", "...")
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.md",
-  callback = function()
-    vim.wo.wrap = true
-    vim.wo.linebreak = true
-  end,
+	pattern = "*.md",
+	callback = function()
+		vim.wo.wrap = true
+		vim.wo.linebreak = true
+	end,
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.keymap",
-  callback = function()
-    vim.opt.virtualedit = "all"
-  end,
+	pattern = "*.keymap",
+	callback = function()
+		vim.opt.virtualedit = "all"
+	end,
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.prompt",
-  callback = function()
-    vim.wo.wrap = true
-    vim.wo.linebreak = true
-  end,
+	pattern = "*.prompt",
+	callback = function()
+		vim.wo.wrap = true
+		vim.wo.linebreak = true
+	end,
 })
-
 
 vim.filetype.add({
-  extension = {
-    tpp = "cpp",
-  },
+	extension = {
+		tpp = "cpp",
+	},
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		local ft = vim.bo[args.buf].filetype
+
+		if ft == "c" and client and client.name == "clangd" then
+			client.server_capabilities.documentFormattingProvider = false
+			client.server_capabilities.documentRangeFormattingProvider = false
+		end
+	end,
 })

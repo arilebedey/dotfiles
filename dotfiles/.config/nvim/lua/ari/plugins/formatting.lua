@@ -23,8 +23,12 @@ return {
 			},
 			-- Define format_on_save as a function that returns options or nil
 			format_on_save = function(bufnr)
-				local filetype = vim.bo[bufnr].filetype
+				local ft = vim.bo[bufnr].filetype
 				local filename = vim.fn.expand("#" .. bufnr .. ":t")
+
+				if ft == "c" then
+					return nil
+				end
 
 				if filename:match("%.keymap$") then
 					return nil

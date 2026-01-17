@@ -13,6 +13,7 @@ IGNORED_PATHS=(
     '*/obj/*'
     '*/.vscode/*'
     '*/dist/*'
+    '*/mlx_linux/*'
 )
 
 # Build find command with ignored paths

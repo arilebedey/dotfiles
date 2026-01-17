@@ -141,11 +141,8 @@ vim.keymap.set("n", "dd", '"add')
 vim.keymap.set("x", "d", '"ad')
 vim.keymap.set("x", "D", "d")
 
-vim.keymap.set("x", "P", '"ap')
-vim.keymap.set("n", "P", '"ap')
-
-vim.keymap.set("x", "k", "P")
-vim.keymap.set("n", "k", "P")
+vim.keymap.set("x", "k", '"ap')
+vim.keymap.set("n", "k", '"ap')
 vim.keymap.set("x", "K", '"aP')
 vim.keymap.set("n", "K", '"aP')
 
