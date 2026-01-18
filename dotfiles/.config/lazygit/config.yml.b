@@ -1,7 +1,8 @@
+promptToReturnFromSubprocess: false
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
 gui:
   diffAddedColor:
     - orange # Change from green to blue for added lines
