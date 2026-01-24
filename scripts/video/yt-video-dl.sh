@@ -35,14 +35,13 @@ target_dir=$(
     -type d 2>/dev/null \
   | fzf --prompt='Download to > '
 )
-fzf_status=$?
+
 set -e
 
-if [ $fzf_status -ne 0 ] || [ -z "${target_dir}" ]; then
+if [ -z "${target_dir}" ]; then
   echo "No directory selected. Aborting." >&2
   exit 1
 fi
-
 echo "Selected directory: $target_dir"
 
 # ─── Build and run yt-dlp ────────────────────────────────────────────────────

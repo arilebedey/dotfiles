@@ -224,9 +224,11 @@ alias fl='ft_lock'
 alias gm='./cub3D'
 alias gmv='valgrind --leak-check=full --show-leak-kinds=all ./cub3D'
 alias m='make'
+alias mt='make test'
 alias mc='make clean'
 alias mr='make re'
 alias mfc='make fclean'
+alias lout='gnome-session-quit --logout --no-prompt'
 
 #####################
 ###      NEW      ###

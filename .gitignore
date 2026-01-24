@@ -1,6 +1,8 @@
 /programs/
 /temp/
 /venv/
+venv/
+*_venv/
 /arch-packages/
 /dotfiles/.config/nvim/variables/
 nohup.out

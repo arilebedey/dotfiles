@@ -11,7 +11,7 @@ return {
 			{ "<tab>", mode = { "i", "s" }, false },
 			{ "<s-tab>", mode = { "i", "s" }, false },
 			{
-				"<C-n>",
+				"<C-i>",
 				function()
 					if require("luasnip").jumpable(1) then
 						require("luasnip").jump(1)
@@ -21,7 +21,7 @@ return {
 				desc = "LuaSnip Forward Jump",
 			},
 			{
-				"<C-p>",
+				"<C-a>",
 				function()
 					if require("luasnip").jumpable(-1) then
 						require("luasnip").jump(-1)

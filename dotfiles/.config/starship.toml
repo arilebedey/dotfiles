@@ -1,0 +1,7 @@
+[custom.exit_time]
+# command = "date '+%Y-%m-%d %H:%M:%S'"
+command = "date '+ %H:%M'"
+when = true
+symbol = ""
+style = "dimmed white"
+format = "[$symbol($output)]($style) "

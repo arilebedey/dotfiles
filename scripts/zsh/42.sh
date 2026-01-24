@@ -5,6 +5,7 @@ if [ "$(whoami)" = "alebedev" ]; then
   eval "$(zoxide init zsh)"
   eval "$(~/homebrew/bin/brew shellenv)"
   export PATH=$HOME/bin:$PATH
+ export PATH="$PATH:/home/alebedev/.local/bin"
   xset r rate 250 60
   source /home/alebedev/System/scripts/system/launch_ft_lock.sh
   bluetoothctl show | grep -q "Powered: no" && bluetoothctl power on
