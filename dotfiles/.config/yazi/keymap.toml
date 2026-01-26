@@ -7,14 +7,14 @@
 keymap = [
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
 	{ on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
-	{ on = "q",     run = "quit",               desc = "Quit the process" },
-	{ on = "Q",     run = "quit --no-cwd-file", desc = "Quit without outputting cwd-file" },
+	{ on = "e",     run = "quit",               desc = "Quit the process" },
+	{ on = "q",     run = "quit --no-cwd-file", desc = "Quit without outputting cwd-file" },
 	{ on = "<C-c>", run = "close",              desc = "Close the current tab, or quit if it's last" },
 	{ on = "<C-z>", run = "suspend",            desc = "Suspend the process" },
 
 	# Hopping
-	{ on = "k", run = "arrow prev", desc = "Previous file" },
-	{ on = "j", run = "arrow next", desc = "Next file" },
+	{ on = "s", run = "arrow prev", desc = "Previous file" },
+	{ on = "t", run = "arrow next", desc = "Next file" },
 
 	{ on = "<Up>",   run = "arrow prev", desc = "Previous file" },
 	{ on = "<Down>", run = "arrow next", desc = "Next file" },
@@ -124,14 +124,29 @@ keymap = [
 	{ on = [ ",", "r" ], run = "sort random --reverse=no",                       desc = "Sort randomly" },
 
 	# Goto
+	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
 	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go home" },
+
 	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go ~/.config" },
 	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go ~/Downloads" },
-	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
-	{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
+  { on = [ "g", "f" ],       run = "cd ~/System/dotfiles",     desc = "Go to the config directory" },
+  { on = [ "g", "m" ],       run = "cd /run/media",            desc = "Go to the external media" },
+  { on = [ "g", "y" ],       run = "cd ~/Images",              desc = "Go to images folder" },
+  { on = [ "g", "i" ],       run = "cd ~/Information",         desc = "Go to info folder" },
+  { on = [ "g", "s" ],       run = "cd ~/Images/Screenshots",  desc = "Go to screenshots" },
+  { on = [ "g", "S" ],       run = "cd ~/System",              desc = "Go to ~/System" },
+  { on = [ "g", "c" ],       run = "cd ~/Code",                desc = "Go to ~/Code" },
+  { on = [ "g", "l" ],       run = "cd ~/Images/Clipboard/",   desc = "Go to ~/Images/Clipboard/" },
+  { on = [ "g", "v" ],       run = "cd ~/Videos/",             desc = "Go to ~/Videos/" },
+  { on = [ "g", "V" ],       run = "cd /Volumes/",             desc = "Go to ~/Volumes/" },
+  { on = [ "g", "t" ],       run = "cd ~/System/temp",         desc = "Go to ~/System/temp" },
+
+  # Hidden file visibility
+  { on = [ "<A-.>" ], run = "hidden only", desc = "Show only hidden files" },
+  { on = [ "<C-.>" ], run = "hidden none", desc = "Show only non-hidden files" },
 
 	# Tabs
-	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
+	# { on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
 
 	{ on = "1", run = "tab_switch 0", desc = "Switch to first tab" },
 	{ on = "2", run = "tab_switch 1", desc = "Switch to second tab" },
@@ -213,8 +228,8 @@ keymap = [
 	{ on = "<C-c>",   run = "close",          desc = "Cancel pick" },
 	{ on = "<Enter>", run = "close --submit", desc = "Submit the pick" },
 
-	{ on = "k", run = "arrow prev", desc = "Previous option" },
-	{ on = "j", run = "arrow next", desc = "Next option" },
+	{ on = "s", run = "arrow prev", desc = "Previous option" },
+	{ on = "t", run = "arrow next", desc = "Next option" },
 
 	{ on = "<Up>",   run = "arrow prev", desc = "Previous option" },
 	{ on = "<Down>", run = "arrow next", desc = "Next option" },
