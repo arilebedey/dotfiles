@@ -7,6 +7,7 @@ venv/
 /dotfiles/.config/nvim/variables/
 nohup.out
 scripts/zsh/secrets.sh
+bot.session
 
 # macOS
 .DS_Store

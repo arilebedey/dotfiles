@@ -131,6 +131,7 @@ keymap = [
 	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go ~/Downloads" },
   { on = [ "g", "f" ],       run = "cd ~/System/dotfiles",     desc = "Go to the config directory" },
   { on = [ "g", "m" ],       run = "cd /run/media",            desc = "Go to the external media" },
+  { on = [ "g", "t" ],       run = "cd /media/alebedev/T9",desc = "Go to the T9 at 42" },
   { on = [ "g", "y" ],       run = "cd ~/Images",              desc = "Go to images folder" },
   { on = [ "g", "i" ],       run = "cd ~/Information",         desc = "Go to info folder" },
   { on = [ "g", "s" ],       run = "cd ~/Images/Screenshots",  desc = "Go to screenshots" },

@@ -5,10 +5,13 @@ if [ "$(whoami)" = "alebedev" ]; then
   eval "$(zoxide init zsh)"
   eval "$(~/homebrew/bin/brew shellenv)"
   export PATH=$HOME/bin:$PATH
- export PATH="$PATH:/home/alebedev/.local/bin"
+  export PATH="$PATH:/home/alebedev/.local/bin"
   xset r rate 250 60
   source /home/alebedev/System/scripts/system/launch_ft_lock.sh
   bluetoothctl show | grep -q "Powered: no" && bluetoothctl power on
+
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 fi
 
 # Check if running on Wayland or X11 and use appropriate clipboard tool
