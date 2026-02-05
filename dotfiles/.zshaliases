@@ -19,6 +19,7 @@ alias gpu='git pull'
 alias gcl='git clone'
 alias lg='lazygit'
 alias gcdiff="git-copy-latest-diff"
+alias gcfdiff="git-copy-file-diff"
 
 # ***
 alias gaa='git add --all'                      # Add all files, including untracked
@@ -229,6 +230,7 @@ alias mc='make clean'
 alias mr='make re'
 alias mfc='make fclean'
 alias lout='gnome-session-quit --logout --no-prompt'
+alias dfa='df -h | head -1 && df -h | grep aleb'
 
 #####################
 ###      NEW      ###
@@ -243,6 +245,7 @@ alias tmpd='nvim ~/Downloads/temp.md'
 #####################
 alias gdu='gdu-go'
 alias keebflash='/Users/ari/System/scripts/system/keebart_firmware_flasher.sh'
+alias keebflash42='$HOME/System/scripts/system/keebart_firmware_flasher_42.sh'
 alias eri='/Users/ari/System/scripts/dev/run-expo-ios.sh'
 alias rghost='osascript -e "quit app \"Ghostty\""; while pgrep -xq Ghostty; do sleep 0.2; done; open -a Ghostty'
 
