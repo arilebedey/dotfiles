@@ -19,6 +19,7 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				go = { "gofmt", "goimports" },
+				c = { "clang-format" },
 				cpp = { "clang-format" },
 			},
 			-- Define format_on_save as a function that returns options or nil
@@ -26,9 +27,9 @@ return {
 				local ft = vim.bo[bufnr].filetype
 				local filename = vim.fn.expand("#" .. bufnr .. ":t")
 
-				if ft == "c" then
-					return nil
-				end
+				-- if ft == "c" then
+				-- 	return nil
+				-- end
 
 				if filename:match("%.keymap$") then
 					return nil
