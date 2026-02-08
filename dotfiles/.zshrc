@@ -1,3 +1,5 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+
 if [ -f "$HOME/.system-envs" ]; then
   source "$HOME/.system-envs"
 fi
@@ -39,8 +41,6 @@ source $HOME/System/scripts/zsh/plugins-end.sh
 ## SECRETS
 source $HOME/.config/keys/secrets.sh
 source $HOME/System/scripts/zsh/secrets.sh
-
-export XDG_CONFIG_HOME="$HOME/.config"
 
 # Created by `pipx` on 2025-03-09 23:29:27
 export PATH="$PATH:/home/ari/.local/bin"

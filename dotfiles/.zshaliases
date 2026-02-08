@@ -18,8 +18,14 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 alias lg='lazygit'
+
+# Git diff to clipboard
 alias gcdiff="git-copy-latest-diff"
+alias gcld="git-copy-latest-diff"
 alias gcfdiff="git-copy-file-diff"
+alias gcfd="git-copy-file-diff"
+alias gcdfzf="git-copy-diff-fzf"
+alias gcdf="git-copy-diff-fzf"
 
 # ***
 alias gaa='git add --all'                      # Add all files, including untracked
