@@ -26,6 +26,7 @@ alias gcfdiff="git-copy-file-diff"
 alias gcfd="git-copy-file-diff"
 alias gcdfzf="git-copy-diff-fzf"
 alias gcdf="git-copy-diff-fzf"
+alias gccm="git-copy-commit-messages"
 
 # ***
 alias gaa='git add --all'                      # Add all files, including untracked

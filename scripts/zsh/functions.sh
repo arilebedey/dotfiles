@@ -6,6 +6,7 @@ source $HOME/System/scripts/zsh/functions/yazi.sh
 source $HOME/System/scripts/zsh/functions/gcdiff.sh
 source $HOME/System/scripts/zsh/functions/gcfdiff.sh
 source $HOME/System/scripts/zsh/functions/gcdfzf.sh
+source $HOME/System/scripts/zsh/functions/git-copy-commit-messages.sh
 source $HOME/System/scripts/zsh/functions/make-executable-edit.sh
 source $HOME/System/scripts/zsh/functions/shell-command-switcher.sh
 source $HOME/System/scripts/zsh/functions/edit_desktop_entry.sh
