@@ -166,3 +166,10 @@ vim.keymap.set("n", "<leader>nz", function()
 	vim.fn.setreg('"', content)
 	print("Copied register 'a' to default buffer")
 end, { desc = "Copy register a to default buffer" })
+
+-----------------------------------
+-- %s mode in visual: replace selected stuff
+-----------------------------------
+
+vim.keymap.set("v", "<leader>f", 'y:%s/<C-r>"//gc<Left><Left><Left>', { noremap = true })
+vim.keymap.set("v", "<leader>s", 'y:.,$s/<C-r>"//gc<Left><Left><Left>', { noremap = true })
