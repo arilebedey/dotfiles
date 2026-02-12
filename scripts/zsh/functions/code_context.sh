@@ -67,8 +67,8 @@ for cmd in $REQUIRED_COMMANDS; do
     fi
 done
 
-# Create a temporary file with .prompt extension
-TEMP_FILE=$(mktemp).prompt
+# Create a temporary file with .prompt.md extension
+TEMP_FILE=$(mktemp).prompt.md
 echo "Temporary file created at: $TEMP_FILE"
 
 # Use fzf to select files (multiple files can be selected with TAB)
@@ -135,6 +135,7 @@ else
 fi
 echo "Context and prompt copied to clipboard!"
 
-# Clean up temporary files
-rm "$TEMP_FILE" "$PROMPT_FILE"
-echo "Temporary files removed."
+# Clean up temporary prompt file (keep TEMP_FILE for reference)
+rm "$PROMPT_FILE"
+echo "Temporary prompt file removed."
+echo "Context file preserved at: $TEMP_FILE"
