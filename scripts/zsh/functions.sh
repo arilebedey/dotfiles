@@ -14,6 +14,3 @@ source $HOME/System/scripts/zsh/functions/get_file_path.sh
 source $HOME/System/scripts/zsh/functions/copy-ip.sh
 source $HOME/System/scripts/zsh/functions/tail-valgrind.sh
 source $HOME/System/scripts/zsh/functions/notify_cmd.sh
-
-# Stopped (in scripts/_archive/)
-# source $HOME/System/scripts/zsh/sesh-sessions.sh
