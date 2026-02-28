@@ -19,7 +19,7 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				go = { "gofmt", "goimports" },
-				c = { "clang-format" },
+				-- c = { "clang-format" },
 				cpp = { "clang-format" },
 			},
 			-- Define format_on_save as a function that returns options or nil

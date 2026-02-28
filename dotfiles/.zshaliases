@@ -264,6 +264,8 @@ alias ct='$HOME/System/scripts/zsh/functions/prompt-from-files.sh'
 alias act='/Users/ari/System/scripts/zsh/functions/append-to-ctx-file.sh'
 alias d='source $HOME/System/scripts/ui/fzf-cd.sh'
 alias ta='source $HOME/System/scripts/ui/fzf_cd_or_tmux.sh'
+alias dla='$HOME/System/scripts/audio/yt-audio-dl.sh'
+alias dlv='$HOME/System/scripts/video/yt-video-dl.sh'
 
 ###    NPM     ###
 alias ni='npm install'

@@ -69,7 +69,6 @@ done
 
 # Create a temporary file with .prompt.md extension
 TEMP_FILE=$(mktemp).prompt.md
-echo "Temporary file created at: $TEMP_FILE"
 
 # Use fzf to select files (multiple files can be selected with TAB)
 echo "Select files using fzf (TAB to select multiple, ENTER to confirm):"

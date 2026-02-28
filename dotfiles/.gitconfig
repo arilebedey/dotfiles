@@ -10,7 +10,3 @@
     minus-style = syntax "#3d3828"
     plus-emph-style = syntax "#316172"
     minus-emph-style = syntax "#725631"
-[pull]
-	ff = only
-[fetch]
-  writeHead = false

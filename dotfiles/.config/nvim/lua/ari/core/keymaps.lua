@@ -15,15 +15,15 @@ vim.api.nvim_set_keymap("c", "<C-BS>", "<C-W>", { noremap = true, silent = true 
 
 -- FILES
 -- kms("n", "<leader>a", ":wq<CR>", { silent = true, desc = "Save and Close" })
-kms("i", ".,", "<ESC>:wq<CR>", { silent = true, desc = "Save and Close" })
+-- kms("i", ".,", "<ESC>:wq<CR>", { silent = true, desc = "Save and Close" })
 kms("n", ".,", ":wq<CR>", { silent = true, desc = "Save and Close" })
 
 kms("n", "<leader>i", ":w<CR>", { silent = true, desc = "Save" })
-kms("i", "..", "<ESC>:w<CR>a", { silent = true, desc = "Save" })
+-- kms("i", "..", "<ESC>:w<CR>a", { silent = true, desc = "Save" })
 kms("n", "..", ":w<CR>", { silent = true, desc = "Save" })
 
 kms("n", "<leader>I", ":noautocmd w<CR>", { silent = true, desc = "Save without auto commands" })
-kms("i", "./", "<ESC>:noautocmd w<CR>a", { silent = true, desc = "Save without auto commands" })
+-- kms("i", "./", "<ESC>:noautocmd w<CR>a", { silent = true, desc = "Save without auto commands" })
 kms("n", "./", ":noautocmd w<CR>a", { silent = true, desc = "Save without auto commands" })
 
 kms("n", "<leader>u,", ":q!<CR>", { silent = true, desc = "Force quit" })
@@ -33,7 +33,7 @@ kms("n", ".lk", ":q!<CR>", { silent = true, desc = "Force quit" })
 kms("n", ".kl", ":q!<CR>", { silent = true, desc = "Force quit" })
 
 kms("n", "<leader>,", ":qa<CR>", { silent = true, desc = "Quit all" })
-kms("i", ".a", "<ESC>:qa<CR>", { silent = true, desc = "Quit all" })
+-- kms("i", ".a", "<ESC>:qa<CR>", { silent = true, desc = "Quit all" })
 kms("n", ".a", ":qa<CR>", { silent = true, desc = "Quit all" })
 
 -- MAP S&T TO J&K
@@ -141,10 +141,10 @@ vim.keymap.set("n", "dd", '"add')
 vim.keymap.set("x", "d", '"ad')
 vim.keymap.set("x", "D", "d")
 
-vim.keymap.set("x", "k", '"ap')
-vim.keymap.set("n", "k", '"ap')
-vim.keymap.set("x", "K", '"aP')
-vim.keymap.set("n", "K", '"aP')
+vim.keymap.set("x", "z", '"ap')
+vim.keymap.set("n", "z", '"ap')
+vim.keymap.set("x", "Z", '"aP')
+vim.keymap.set("n", "Z", '"aP')
 
 -----------------------------------
 -- Moving around window
