@@ -45,7 +45,7 @@ flash_side() {
     local label="$2"
     wait_mount "$label"
     echo "Copying $label firmware..."
-    cp -X "$file" "$KEYBOARD_MOUNT/" && sync
+    cp "$file" "$KEYBOARD_MOUNT/" && sync
     wait_eject "$label"
 }
 
