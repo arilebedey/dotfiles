@@ -53,3 +53,10 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 bindkey -e
 # Op End
 export PATH=/home/alebedev/.local/funcheck/host:$PATH
+
+export PATH="$PATH:$HOME/.local/bin"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/ari/.lmstudio/bin"
+# End of LM Studio CLI section
+

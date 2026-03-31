@@ -75,9 +75,16 @@ vim.filetype.add({
 	},
 })
 
--- FOR avante.nvim
--- views can only be fully collapsed with the global statusline
-vim.opt.laststatus = 3
+-- Keep the statusline hidden even if plugins/UI attach later.
+vim.opt.laststatus = 0
+
+vim.api.nvim_create_autocmd({ "VimEnter", "BufWinEnter" }, {
+	callback = function()
+		if vim.o.laststatus ~= 0 then
+			vim.o.laststatus = 0
+		end
+	end,
+})
 
 -- Accept luasnip edit place
 vim.api.nvim_set_keymap("s", "<C-l>", "<ESC>ciw", { noremap = true, silent = true })

@@ -18,6 +18,7 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 alias lg='lazygit'
+alias gre='git rebase'
 
 # Git diff to clipboard
 alias gcdiff="git-copy-latest-diff"
@@ -27,6 +28,7 @@ alias gcfd="git-copy-file-diff"
 alias gcdfzf="git-copy-diff-fzf"
 alias gcdf="git-copy-diff-fzf"
 alias gccm="git-copy-commit-messages"
+alias gcfn="git diff-tree --no-commit-id --name-only -r HEAD"
 
 # ***
 alias gaa='git add --all'                      # Add all files, including untracked
@@ -176,10 +178,10 @@ alias nrd='npm run dev'
 # React Native
 alias kan="pkill -f 'expo start' && pkill -f 'expo run:android' && pkill -f 'expo run:ios' && pkill -f 'npm exec expo start --localhost'"
 alias kio="pkill -f 'expo run:ios'"
-alias nra="npx expo run:android"
-alias nri="npx expo run:ios"
-alias nrad="npx expo run:android --device"
-alias es="npx expo start --localhost"
+alias nra="npm run android:localhost"
+alias nri="npm run ios:localhost"
+alias nrad="npm run android:localhost --device"
+alias es="npm run start:localhost"
 alias p9="nohup env DRI_PRIME=1 /home/ari/Android/Sdk/emulator/emulator @Pixel_9_Pro_XL -no-audio > ~/Information/system/logs/emulator.log 2>&1 &"
 alias p9l="nohup /home/ari/Android/Sdk/emulator/emulator @Pixel_9_Pro_XL -no-audio > ~/Information/system/logs/emulator.log 2>&1 &"
 
@@ -187,11 +189,12 @@ alias p9l="nohup /home/ari/Android/Sdk/emulator/emulator @Pixel_9_Pro_XL -no-aud
 alias nrs='npm run start'                      # NPM start script
 alias nrb='npm run build'                      # NPM build script
 alias nrt='npm run test'                       # NPM test script
+
+# Docker
 alias dc='docker-compose'                      # Docker compose shorthand
 alias dcu='docker-compose up -d'              # Docker compose up detached
 alias dcd='docker-compose down'               # Docker compose down
-alias dcud='dc -f compose.dev.yml up -d'               # Docker compose down
-alias dcdd='dc -f compose.dev.yml down'               # Docker compose down
+alias ld='lazydocker'
 
 #####################
 ### Misc Utilities ###
@@ -234,6 +237,7 @@ alias gmv='valgrind --leak-check=full --show-leak-kinds=all ./cub3D'
 alias m='make'
 alias mt='make test'
 alias mc='make clean'
+alias mkd='make down'
 alias mr='make re'
 alias mfc='make fclean'
 alias lout='gnome-session-quit --logout --no-prompt'
