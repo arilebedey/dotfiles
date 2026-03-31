@@ -5,15 +5,28 @@ return {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
-    -- import comment plugin safely
     local comment = require("Comment")
+    local ok, ts_context_commentstring = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
 
-    local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
+    if ok then
+      require("ts_context_commentstring").setup({
+        enable_autocmd = false,
+      })
+    end
 
-    -- enable comment
+    local pre_hook
+    if ok then
+      local hook = ts_context_commentstring.create_pre_hook()
+      pre_hook = function(ctx)
+        local hook_ok, commentstring = pcall(hook, ctx)
+        if hook_ok then
+          return commentstring
+        end
+      end
+    end
+
     comment.setup({
-      -- for commenting tsx, jsx, html files
-      pre_hook = ts_context_commentstring.create_pre_hook(),
+      pre_hook = pre_hook,
     })
   end,
 }
