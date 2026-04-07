@@ -109,7 +109,7 @@ vim.g.mail42 = "alebedev@student.42.fr"
 vim.keymap.set("i", ".3", "...")
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = "*.md",
+	pattern = { "*.md", "*.txt" },
 	callback = function()
 		vim.wo.wrap = true
 		vim.wo.linebreak = true
