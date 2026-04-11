@@ -44,6 +44,8 @@ kms("v", "t", "j")
 
 -- SEARCH
 kms("n", "<ENTER>", ":nohl<CR>", { silent = true })
+kms({ "n", "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+kms({ "n", "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Previous search result" })
 
 -- WINDOWS
 -- kms("n", "<leader>wl", "<C-w>v", { desc = "[W]indow [L]eft" })

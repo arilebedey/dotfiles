@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-url=${1:?Give a YouTube/YouTube Music/youtu.be URL}
+use_current_dir=false
 
-# Extract ID (channel, playlist, or video) from various URL forms
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -c|--current-dir) use_current_dir=true; shift ;;
+    *) url="$1"; shift ;;
+  esac
+done
+
+: "${url:?Give a YouTube/YouTube Music/youtu.be URL}"
+
 extract_id() {
   local input="$1"
   if [[ "$input" =~ channel/([A-Za-z0-9_-]+) ]]; then
@@ -28,21 +36,24 @@ id=$(extract_id "$url")
 echo "Extracted ID: $id"
 
 # ─── Select target directory ────────────────────────────────────────────────
-set +e
+if $use_current_dir; then
+  target_dir="$PWD"
+  echo "Using current directory: $target_dir"
+else
+  set +e
+  target_dir=$(
+    find "$HOME/Downloads" "$HOME/Videos" "$HOME/Movies" "$HOME/data" /Volumes \
+      -type d 2>/dev/null \
+    | fzf --prompt='Download to > '
+  )
+  set -e
 
-target_dir=$(
-  find "$HOME/Downloads" "$HOME/Videos" "$HOME/Movies" "$HOME/data" /Volumes \
-    -type d 2>/dev/null \
-  | fzf --prompt='Download to > '
-)
-
-set -e
-
-if [ -z "${target_dir}" ]; then
-  echo "No directory selected. Aborting." >&2
-  exit 1
+  if [ -z "${target_dir}" ]; then
+    echo "No directory selected. Aborting." >&2
+    exit 1
+  fi
+  echo "Selected directory: $target_dir"
 fi
-echo "Selected directory: $target_dir"
 
 # ─── Build and run yt-dlp ────────────────────────────────────────────────────
 ytcmd=(
