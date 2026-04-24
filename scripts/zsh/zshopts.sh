@@ -18,6 +18,8 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH="$PATH:/home/ari/Android/Sdk/emulator"
 # NestJS
 export PATH=$PATH:$(npm config get prefix)/bin
+# sbin
+export PATH="/opt/homebrew/sbin:$PATH"
 # Theme
 export GTK_THEME='Adwaita-dark'
 # Disable bracketed paste

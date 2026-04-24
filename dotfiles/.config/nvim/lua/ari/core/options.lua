@@ -69,6 +69,11 @@ vim.o.termguicolors = true
 vim.o.mouse = "a"
 vim.opt.guicursor = { "n:block", "v:ver25", "i:ver25" }
 
+-- Defense in depth: ignore per-file modelines from untrusted files.
+vim.o.modeline = false
+vim.o.modelines = 0
+vim.o.modelineexpr = false
+
 vim.filetype.add({
 	extension = {
 		keymap = "cpp",
