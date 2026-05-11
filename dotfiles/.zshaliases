@@ -246,14 +246,6 @@ alias lout='gnome-session-quit --logout --no-prompt'
 alias dfa='df -h | head -1 && df -h | grep aleb'
 
 #####################
-###      NEW      ###
-#####################
-alias nv='cd $HOME/.config/nvim/lua/ari'
-alias rtree='rg --files | tree --fromfile'
-alias md='nvim /tmp/tmp.md'
-alias tmpd='nvim ~/Downloads/temp.md'
-
-#####################
 ###     MACOS     ###
 #####################
 alias gdu='gdu-go'
@@ -272,7 +264,15 @@ alias d='source $HOME/System/scripts/ui/fzf-cd.sh'
 alias ta='source $HOME/System/scripts/ui/fzf_cd_or_tmux.sh'
 alias dla='$HOME/System/scripts/audio/yt-audio-dl.sh'
 alias dlv='$HOME/System/scripts/video/yt-video-dl.sh'
+alias ydl='$HOME/System/scripts/video/yt-full-dl.sh'
 alias dlvc='$HOME/System/scripts/video/yt-video-dl.sh --current-dir'
 
-###    NPM     ###
+#####################
+###      NEW      ###
+#####################
+alias nv='cd $HOME/.config/nvim/lua/ari'
+alias rtree='rg --files | tree --fromfile'
+alias md='nvim /tmp/tmp.md'
+alias tmpd='nvim ~/Downloads/temp.md'
+alias cx="chmod +x"
 alias ni='npm install'
