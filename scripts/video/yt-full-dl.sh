@@ -9,26 +9,46 @@ export LANG="${LANG:-en_US.UTF-8}"
 
 use_current_dir=false
 dry_run=false
+audio_only=false
 url=""
 target_dir=""
+
+# ─── URL Normalization ───────────────────────────────────────────────────────
+normalize_url() {
+  local input_url="$1"
+  local playlist_id=""
+
+  if [[ "$input_url" == *"youtube.com/watch"* && "$input_url" == *"list="* ]]; then
+    playlist_id="$(printf '%s\n' "$input_url" | sed -nE 's/.*[?&]list=([^&]+).*/\1/p')"
+  elif [[ "$input_url" == *"youtube.com/playlist"* && "$input_url" == *"list="* ]]; then
+    playlist_id="$(printf '%s\n' "$input_url" | sed -nE 's/.*[?&]list=([^&]+).*/\1/p')"
+  fi
+
+  if [[ -n "${playlist_id:-}" ]]; then
+    printf 'https://www.youtube.com/playlist?list=%s\n' "$playlist_id"
+  else
+    printf '%s\n' "$input_url"
+  fi
+}
 
 # ─── Resume Logic ────────────────────────────────────────────────────────────
 if [[ $# -eq 0 && -s "$HISTORY_FILE" ]]; then
   if gum confirm "Resume a previous download?"; then
+    set +e
     selected="$(
       tac "$HISTORY_FILE" |
         fzf --prompt="Select previous task > " --height=15 --reverse --border
     )"
+    resume_pick_status=$?
+    set -e
 
-    if [[ -n "${selected:-}" ]]; then
+    if [[ "$resume_pick_status" -eq 0 && -n "${selected:-}" ]]; then
       target_dir="$(printf '%s\n' "$selected" | sed -E 's/^Target: (.*) \| URL: .* \| Date: .*$/\1/')"
       url="$(printf '%s\n' "$selected" | sed -E 's/^Target: .* \| URL: (.*) \| Date: .*$/\1/')"
 
       url="$(printf '%s' "$url" | tr -d '\r\n')"
       target_dir="$(printf '%s' "$target_dir" | tr -d '\r\n')"
-
-      echo "Resuming URL: $url"
-      echo "Target Directory: $target_dir"
+      url="$(normalize_url "$url")"
     fi
   fi
 fi
@@ -41,6 +61,9 @@ while [[ $# -gt 0 ]]; do
       ;;
     -d|--dry-run)
       dry_run=true
+      ;;
+    -a|--audio)
+      audio_only=true
       ;;
     http*)
       url="$1"
@@ -55,6 +78,16 @@ if [[ -z "$url" ]]; then
 fi
 
 : "${url:?URL is required.}"
+
+url="$(printf '%s' "$url" | tr -d '\r\n')"
+normalized_url="$(normalize_url "$url")"
+
+if [[ "$normalized_url" != "$url" ]]; then
+  echo "Normalized URL:"
+  echo "$normalized_url"
+fi
+
+url="$normalized_url"
 
 if [[ -z "$target_dir" ]]; then
   if "$use_current_dir"; then
@@ -93,29 +126,44 @@ touch "$archive_file"
 # ─── Build yt-dlp Command ────────────────────────────────────────────────────
 ytcmd=(
   yt-dlp
-  -f "bestvideo[height<=1080]+bestaudio/best"
-  --embed-thumbnail
   --windows-filenames
-  --embed-metadata
   --yes-playlist
   --lazy-playlist
   --continue
   --ignore-errors
   --download-archive "$archive_file"
   -P "$target_dir"
-  -o "%(uploader)s - %(upload_date)s - %(title)s.%(ext)s"
   "${COOKIE_FLAG[@]}"
-  --limit-rate 1M
+  --limit-rate 2M
   --min-sleep-interval 10
-  --max-sleep-interval 50
+  --max-sleep-interval 30
   --sleep-requests 2
   --retries 5
   --retry-sleep exp=5:60
   --fragment-retries 5
 )
 
+if "$audio_only"; then
+  ytcmd+=(
+    -f "ba/bestaudio"
+    -x
+    --audio-format m4a
+    --embed-thumbnail
+    --add-metadata
+    -o "%(uploader)s - %(upload_date)s - %(title)s.%(ext)s"
+  )
+else
+  ytcmd+=(
+    -f "bestvideo[height<=1080]+bestaudio/best"
+    --embed-thumbnail
+    --embed-metadata
+    -o "%(uploader)s - %(upload_date)s - %(title)s.%(ext)s"
+  )
+fi
+
 # ─── History Logging ─────────────────────────────────────────────────────────
 history_line="Target: $target_dir | URL: $url | Date: $(date '+%Y-%m-%d %H:%M')"
+history_key="Target: $target_dir | URL: $url |"
 
 if "$dry_run"; then
   echo "--- DRY RUN MODE ---"
@@ -123,22 +171,42 @@ if "$dry_run"; then
 else
   echo "--- LIVE DOWNLOAD MODE ---"
 
-  if ! grep -Fq "Target: $target_dir | URL: $url |" "$HISTORY_FILE"; then
+  if ! grep -Fq "$history_key" "$HISTORY_FILE"; then
     printf '%s\n' "$history_line" >> "$HISTORY_FILE"
   fi
 fi
 
 # ─── Playlist Length Detection ───────────────────────────────────────────────
 get_total_items() {
-  yt-dlp \
-    --flat-playlist \
-    --lazy-playlist \
-    --print "%(id)s" \
-    "${COOKIE_FLAG[@]}" \
-    "$url" 2>/dev/null |
-    awk 'NF' |
-    wc -l |
-    tr -d ' '
+  local probe_log=""
+  local probe_output=""
+  local probe_status=0
+
+  probe_log="$(mktemp "${TMPDIR:-/tmp}/yt-full-dl-probe.XXXXXX")"
+
+  set +e
+  probe_output="$(
+    yt-dlp \
+      --flat-playlist \
+      --lazy-playlist \
+      --print "%(id)s" \
+      "${COOKIE_FLAG[@]}" \
+      "$url" 2>"$probe_log" |
+      awk 'NF' |
+      wc -l |
+      tr -d ' '
+  )"
+  probe_status=$?
+  set -e
+
+  rm -f "$probe_log"
+
+  if [[ "$probe_status" -ne 0 ]]; then
+    printf '0\n'
+    return 0
+  fi
+
+  printf '%s\n' "${probe_output:-0}"
 }
 
 archive_count() {
@@ -170,6 +238,13 @@ download_random_ranges() {
   fi
 
   echo "Detected $total_items playlist/channel items."
+
+  if "$audio_only"; then
+    echo "Mode: audio-only m4a with embedded thumbnail."
+  else
+    echo "Mode: video up to 1080p with embedded thumbnail and metadata."
+  fi
+
   echo "Downloading random sequential ranges."
   echo "Range starts are random playlist positions."
   echo "Range length is random from 1-8 videos."
@@ -238,6 +313,7 @@ download_random_ranges() {
 
 # ─── Run ─────────────────────────────────────────────────────────────────────
 echo "Target: $target_dir"
+echo "URL: $url"
 echo "────────────────────────────────────────────────────────────────────────────"
 
 if "$dry_run"; then
