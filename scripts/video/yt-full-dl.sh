@@ -123,6 +123,9 @@ COOKIE_FLAG=(--cookies-from-browser chrome)
 archive_file="$target_dir/archive.txt"
 touch "$archive_file"
 
+failed_file="$target_dir/failed.txt"
+touch "$failed_file"
+
 # ─── Build yt-dlp Command ────────────────────────────────────────────────────
 ytcmd=(
   yt-dlp
@@ -134,7 +137,7 @@ ytcmd=(
   --download-archive "$archive_file"
   -P "$target_dir"
   "${COOKIE_FLAG[@]}"
-  --limit-rate 2M
+  --limit-rate 1M
   --min-sleep-interval 10
   --max-sleep-interval 30
   --sleep-requests 2
@@ -218,6 +221,54 @@ archive_count() {
   wc -l < "$archive_file" | tr -d ' '
 }
 
+failed_count() {
+  [[ -s "$failed_file" ]] || {
+    echo 0
+    return
+  }
+
+  sort -u "$failed_file" | wc -l | tr -d ' '
+}
+
+resolved_count() {
+  cat "$archive_file" "$failed_file" 2>/dev/null |
+    awk 'NF' |
+    sort -u |
+    wc -l |
+    tr -d ' '
+}
+
+mark_failed_ids_from_log() {
+  local log_file="$1"
+
+  [[ -f "$log_file" ]] || return
+
+  awk '
+    /^ERROR: \[youtube\] [A-Za-z0-9_-]+:/ {
+      id = $3
+      sub(/:$/, "", id)
+      line = tolower($0)
+
+      if (
+        line ~ /video unavailable/ ||
+        line ~ /private video/ ||
+        line ~ /removed by the uploader/ ||
+        line ~ /sign in to confirm your age/ ||
+        line ~ /age-restricted/ ||
+        line ~ /members-only/ ||
+        line ~ /not available in your country/ ||
+        line ~ /blocked in your country/
+      ) {
+        print id
+      }
+    }
+  ' "$log_file" >> "$failed_file"
+
+  if [[ -s "$failed_file" ]]; then
+    sort -u -o "$failed_file" "$failed_file"
+  fi
+}
+
 random_between() {
   local min="$1"
   local max="$2"
@@ -248,19 +299,23 @@ download_random_ranges() {
   echo "Downloading random sequential ranges."
   echo "Range starts are random playlist positions."
   echo "Range length is random from 1-8 videos."
-  echo "Already-downloaded items are skipped by:"
+  echo "Resolved items are tracked across:"
   echo "$archive_file"
+  echo "$failed_file"
   echo "────────────────────────────────────────────────────────────────────────────"
 
   no_progress_rounds=0
   max_no_progress_rounds=$(( total_items * 3 ))
 
   while true; do
-    before_count="$(archive_count)"
+    before_resolved="$(resolved_count)"
+    before_archive="$(archive_count)"
+    before_failed="$(failed_count)"
 
-    if [[ "$before_count" -ge "$total_items" ]]; then
+    if [[ "$before_resolved" -ge "$total_items" ]]; then
       echo
-      echo "Archive count reached detected playlist size: $before_count/$total_items"
+      echo "Resolved count reached detected playlist size: $before_resolved/$total_items"
+      echo "Downloaded: $before_archive | Unavailable/blocked: $before_failed"
       echo "Done."
       break
     fi
@@ -277,24 +332,32 @@ download_random_ranges() {
     echo "Random range: $start-$end"
     echo "Range length requested: $range_size"
     echo "Actual range length: $(( end - start + 1 ))"
-    echo "Archive progress: $before_count/$total_items"
+    echo "Resolved progress: $before_resolved/$total_items"
+    echo "Downloaded: $before_archive | Unavailable/blocked: $before_failed"
     echo "────────────────────────────────────────────────────────────────────────────"
+
+    range_log="$(mktemp "${TMPDIR:-/tmp}/yt-full-dl-range.XXXXXX")"
 
     set +e
     "${ytcmd[@]}" \
       --playlist-start "$start" \
       --playlist-end "$end" \
-      "$url"
-    yt_status=$?
+      "$url" 2>&1 | tee "$range_log"
+    yt_status=${PIPESTATUS[0]}
     set -e
 
-    after_count="$(archive_count)"
+    mark_failed_ids_from_log "$range_log"
+    rm -f "$range_log"
 
-    if [[ "$after_count" -gt "$before_count" ]]; then
+    after_resolved="$(resolved_count)"
+    after_archive="$(archive_count)"
+    after_failed="$(failed_count)"
+
+    if [[ "$after_resolved" -gt "$before_resolved" ]]; then
       no_progress_rounds=0
     else
       no_progress_rounds=$(( no_progress_rounds + 1 ))
-      echo "No new archive progress this round. Streak: $no_progress_rounds/$max_no_progress_rounds"
+      echo "No new resolved progress this round. Streak: $no_progress_rounds/$max_no_progress_rounds"
     fi
 
     if [[ "$yt_status" -ne 0 ]]; then
@@ -303,9 +366,10 @@ download_random_ranges() {
 
     if [[ "$no_progress_rounds" -ge "$max_no_progress_rounds" ]]; then
       echo
-      echo "Stopped after $no_progress_rounds random ranges with no archive progress."
+      echo "Stopped after $no_progress_rounds random ranges with no resolved progress."
       echo "Some remaining items may be unavailable, private, region-locked, age-gated, or already failed."
-      echo "Current archive count: $(archive_count)/$total_items"
+      echo "Resolved: $after_resolved/$total_items"
+      echo "Downloaded: $after_archive | Unavailable/blocked: $after_failed"
       break
     fi
   done
