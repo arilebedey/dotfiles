@@ -10,6 +10,7 @@ export LANG="${LANG:-en_US.UTF-8}"
 use_current_dir=false
 dry_run=false
 audio_only=false
+sequential_mode=false
 url=""
 target_dir=""
 
@@ -64,6 +65,9 @@ while [[ $# -gt 0 ]]; do
       ;;
     -a|--audio)
       audio_only=true
+      ;;
+    -s|--sequential)
+      sequential_mode=true
       ;;
     http*)
       url="$1"
@@ -375,6 +379,89 @@ download_random_ranges() {
   done
 }
 
+download_sequential_ranges() {
+  total_items="$(get_total_items)"
+  batch_size=8
+
+  if [[ -z "$total_items" || "$total_items" -lt 1 ]]; then
+    echo "Could not determine playlist/channel size."
+    echo "Falling back to normal yt-dlp run."
+    echo "────────────────────────────────────────────────────────────────────────────"
+
+    "${ytcmd[@]}" "$url"
+    return
+  fi
+
+  echo "Detected $total_items playlist/channel items."
+
+  if "$audio_only"; then
+    echo "Mode: audio-only m4a with embedded thumbnail."
+  else
+    echo "Mode: video up to 1080p with embedded thumbnail and metadata."
+  fi
+
+  echo "Downloading sequential ranges from first item to last."
+  echo "Batch size: $batch_size videos."
+  echo "Resolved items are tracked across:"
+  echo "$archive_file"
+  echo "$failed_file"
+  echo "────────────────────────────────────────────────────────────────────────────"
+
+  start=1
+
+  while [[ "$start" -le "$total_items" ]]; do
+    before_resolved="$(resolved_count)"
+    before_archive="$(archive_count)"
+    before_failed="$(failed_count)"
+
+    if [[ "$before_resolved" -ge "$total_items" ]]; then
+      echo
+      echo "Resolved count reached detected playlist size: $before_resolved/$total_items"
+      echo "Downloaded: $before_archive | Unavailable/blocked: $before_failed"
+      echo "Done."
+      break
+    fi
+
+    end=$(( start + batch_size - 1 ))
+    if [[ "$end" -gt "$total_items" ]]; then
+      end="$total_items"
+    fi
+
+    echo
+    echo "Sequential range: $start-$end"
+    echo "Actual range length: $(( end - start + 1 ))"
+    echo "Resolved progress: $before_resolved/$total_items"
+    echo "Downloaded: $before_archive | Unavailable/blocked: $before_failed"
+    echo "────────────────────────────────────────────────────────────────────────────"
+
+    range_log="$(mktemp "${TMPDIR:-/tmp}/yt-full-dl-range.XXXXXX")"
+
+    set +e
+    "${ytcmd[@]}" \
+      --playlist-start "$start" \
+      --playlist-end "$end" \
+      "$url" 2>&1 | tee "$range_log"
+    yt_status=${PIPESTATUS[0]}
+    set -e
+
+    mark_failed_ids_from_log "$range_log"
+    rm -f "$range_log"
+
+    after_resolved="$(resolved_count)"
+    after_archive="$(archive_count)"
+    after_failed="$(failed_count)"
+
+    if [[ "$yt_status" -ne 0 ]]; then
+      echo "yt-dlp exited with status $yt_status for this range; continuing because --ignore-errors is enabled."
+    fi
+
+    echo "Resolved now: $after_resolved/$total_items"
+    echo "Downloaded: $after_archive | Unavailable/blocked: $after_failed"
+
+    start=$(( end + 1 ))
+  done
+}
+
 # ─── Run ─────────────────────────────────────────────────────────────────────
 echo "Target: $target_dir"
 echo "URL: $url"
@@ -383,5 +470,9 @@ echo "────────────────────────�
 if "$dry_run"; then
   "${ytcmd[@]}" "$url"
 else
-  download_random_ranges
+  if "$sequential_mode"; then
+    download_sequential_ranges
+  else
+    download_random_ranges
+  fi
 fi
