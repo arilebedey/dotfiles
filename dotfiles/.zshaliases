@@ -180,9 +180,10 @@ alias kan="pkill -f 'expo start' && pkill -f 'expo run:android' && pkill -f 'exp
 alias kio="pkill -f 'expo run:ios'"
 alias nra="npm run android:localhost"
 alias nri="npx expo run:ios"
+alias npc="npx expo prebuild --clean"
 alias nrid="npx expo run:ios --device"
 alias nrad="npx expo run:android --device"
-alias es="npx expo start"
+alias es="npx expo start --clear"
 alias p9="nohup env DRI_PRIME=1 /home/ari/Android/Sdk/emulator/emulator @Pixel_9_Pro_XL -no-audio > ~/Information/system/logs/emulator.log 2>&1 &"
 alias p9l="nohup /home/ari/Android/Sdk/emulator/emulator @Pixel_9_Pro_XL -no-audio > ~/Information/system/logs/emulator.log 2>&1 &"
 

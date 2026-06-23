@@ -16,6 +16,20 @@ source $HOME/System/scripts/zsh/zinit.sh
 ## NVM
 source $HOME/System/scripts/zsh/nvm.sh
 
+autoload -U add-zsh-hook
+
+load-nvmrc() {
+  local nvmrc_path
+  nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    nvm use --silent
+  fi
+}
+
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
 ## PLUGINS
 source $HOME/System/scripts/zsh/plugins.sh
 
@@ -59,4 +73,3 @@ export PATH="$PATH:$HOME/.local/bin"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/ari/.lmstudio/bin"
 # End of LM Studio CLI section
-

@@ -2,7 +2,6 @@
 set -euo pipefail
 
 HISTORY_FILE="$HOME/.ydl_history"
-touch "$HISTORY_FILE"
 
 export LC_ALL="${LC_ALL:-en_US.UTF-8}"
 export LANG="${LANG:-en_US.UTF-8}"
@@ -13,6 +12,16 @@ audio_only=false
 sequential_mode=false
 url=""
 target_dir=""
+
+usage() {
+  echo "Usage: ydl [-c|--current-dir] [-d|--dry-run] [-a|--audio] [-s|--sequential] [URL]" >&2
+}
+
+invalid_args() {
+  echo "Invalid option." >&2
+  usage
+  exit 2
+}
 
 # ─── URL Normalization ───────────────────────────────────────────────────────
 normalize_url() {
@@ -71,6 +80,12 @@ while [[ $# -gt 0 ]]; do
       ;;
     http*)
       url="$1"
+      ;;
+    -*)
+      invalid_args
+      ;;
+    *)
+      invalid_args
       ;;
   esac
   shift
@@ -157,14 +172,14 @@ if "$audio_only"; then
     --audio-format m4a
     --embed-thumbnail
     --add-metadata
-    -o "%(uploader)s - %(upload_date)s - %(title)s.%(ext)s"
+    -o "%(upload_date)s - %(uploader)s - %(title)s.%(ext)s"
   )
 else
   ytcmd+=(
     -f "bestvideo[height<=1080]+bestaudio/best"
     --embed-thumbnail
     --embed-metadata
-    -o "%(uploader)s - %(upload_date)s - %(title)s.%(ext)s"
+    -o "%(upload_date)s - %(uploader)s - %(title)s.%(ext)s"
   )
 fi
 
@@ -177,6 +192,8 @@ if "$dry_run"; then
   ytcmd+=(--simulate --print "%(playlist_index)s | %(title)s: %(filesize_approx,filesize!s)s")
 else
   echo "--- LIVE DOWNLOAD MODE ---"
+
+  touch "$HISTORY_FILE"
 
   if ! grep -Fq "$history_key" "$HISTORY_FILE"; then
     printf '%s\n' "$history_line" >> "$HISTORY_FILE"
@@ -253,16 +270,14 @@ mark_failed_ids_from_log() {
       sub(/:$/, "", id)
       line = tolower($0)
 
-      if (
-        line ~ /video unavailable/ ||
-        line ~ /private video/ ||
-        line ~ /removed by the uploader/ ||
-        line ~ /sign in to confirm your age/ ||
-        line ~ /age-restricted/ ||
-        line ~ /members-only/ ||
-        line ~ /not available in your country/ ||
-        line ~ /blocked in your country/
-      ) {
+      if (line ~ /video unavailable/ ||
+          line ~ /private video/ ||
+          line ~ /removed by the uploader/ ||
+          line ~ /sign in to confirm your age/ ||
+          line ~ /age-restricted/ ||
+          line ~ /members-only/ ||
+          line ~ /not available in your country/ ||
+          line ~ /blocked in your country/) {
         print id
       }
     }
