@@ -47,6 +47,7 @@ source $HOME/System/scripts/zsh/scripts.sh
 # Scripts
 source $HOME/System/scripts/zsh/fzf2nvim.sh
 # Keybindings
+bindkey -e
 source $HOME/System/scripts/zsh/keybinds.sh
 
 ## PLUGIN (keep at the end!)
@@ -64,7 +65,6 @@ export PATH="$HOME/System/macos/exec:$PATH"
 
 # Macos GNU Stow Op
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-bindkey -e
 # Op End
 export PATH=/home/alebedev/.local/funcheck/host:$PATH
 

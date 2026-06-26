@@ -22,3 +22,4 @@ cursor-style = bar
 confirm-close-surface = false
 
 keybind = super+a=text:\x01
+keybind = shift+enter=text:\x1b[13;2u

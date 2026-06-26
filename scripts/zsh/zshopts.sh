@@ -22,8 +22,9 @@ export PATH=$PATH:$(npm config get prefix)/bin
 export PATH="/opt/homebrew/sbin:$PATH"
 # Theme
 export GTK_THEME='Adwaita-dark'
-# Disable bracketed paste
-# unset zle_bracketed_paste
+# Bracketed paste handling
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
 unsetopt BEEP
 # Disable flow control (Ctrl+S, Ctrl+Q)
 stty -ixon
