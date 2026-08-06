@@ -2,79 +2,79 @@
 set -euo pipefail
 
 use_current_dir=false
+url=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    -c|--current-dir) use_current_dir=true; shift ;;
-    *) url="$1"; shift ;;
+    -c|--current-dir)
+      use_current_dir=true
+      shift
+      ;;
+    -h|--help)
+      echo "Usage: $(basename "$0") [-c|--current-dir] URL"
+      exit 0
+      ;;
+    -*)
+      echo "Unknown option: $1" >&2
+      exit 2
+      ;;
+    *)
+      if [[ -n "$url" ]]; then
+        echo "Give exactly one URL." >&2
+        exit 2
+      fi
+      url="$1"
+      shift
+      ;;
   esac
 done
 
-: "${url:?Give a YouTube/YouTube Music/youtu.be URL}"
+: "${url:?Give a video URL}"
 
-extract_id() {
-  local input="$1"
-  if [[ "$input" =~ channel/([A-Za-z0-9_-]+) ]]; then
-    echo "${BASH_REMATCH[1]}" && return
+for command_name in yt-dlp; do
+  if ! command -v "$command_name" >/dev/null 2>&1; then
+    echo "Missing required command: $command_name" >&2
+    exit 1
   fi
-  if [[ "$input" =~ /@([A-Za-z0-9_-]+) ]]; then
-    echo "${BASH_REMATCH[1]}" && return
-  fi
-  if [[ "$input" =~ list=([A-Za-z0-9_-]+) ]]; then
-    echo "${BASH_REMATCH[1]}" && return
-  fi
-  if [[ "$input" =~ v=([A-Za-z0-9_-]{11}) ]]; then
-    echo "${BASH_REMATCH[1]}" && return
-  fi
-  if [[ "$input" =~ youtu\.be/([A-Za-z0-9_-]{11}) ]]; then
-    echo "${BASH_REMATCH[1]}" && return
-  fi
-  echo "$input"
-}
+done
 
-id=$(extract_id "$url")
-echo "Extracted ID: $id"
-
-# ─── Select target directory ────────────────────────────────────────────────
 if $use_current_dir; then
   target_dir="$PWD"
   echo "Using current directory: $target_dir"
 else
+  if ! command -v fzf >/dev/null 2>&1; then
+    echo "fzf is required unless --current-dir is used." >&2
+    exit 1
+  fi
+
   set +e
   target_dir=$(
     find "$HOME/Downloads" "$HOME/Videos" "$HOME/Movies" "$HOME/data" /Volumes \
-      -type d 2>/dev/null \
-    | fzf --prompt='Download to > '
+      -type d 2>/dev/null |
+      fzf --prompt='Download to > '
   )
   set -e
 
-  if [ -z "${target_dir}" ]; then
+  if [[ -z "$target_dir" ]]; then
     echo "No directory selected. Aborting." >&2
     exit 1
   fi
   echo "Selected directory: $target_dir"
 fi
 
-# ─── Build and run yt-dlp ────────────────────────────────────────────────────
 ytcmd=(
   yt-dlp
-  -f "bestvideo[height=1080]+bestaudio/best"
-  --embed-thumbnail --embed-metadata
+  --no-playlist
+  -f "bestvideo[height<=1080]+bestaudio/best[height<=1080]"
+  --merge-output-format mp4
+  --remux-video mp4
+  --embed-thumbnail
+  --embed-metadata
   --download-archive "$target_dir/.yt-dlp-archive.txt"
   -P "$target_dir"
-  -o "%(uploader)s - %(upload_date)s - %(title)s.%(ext)s"
+  -o "%(uploader_id,uploader|video)s-%(title).80B.%(ext)s"
   "$url"
 )
 
-echo "Running command:"
-printf '  %q\n' "${ytcmd[@]}"
-echo "────────────────────────────────────────────────────────────────────────────"
-
+echo "Downloading with yt-dlp..."
 "${ytcmd[@]}"
-status=$?
-
-if [ $status -eq 0 ]; then
-  echo "yt-dlp finished successfully."
-else
-  echo "yt-dlp exited with error code $status."
-fi

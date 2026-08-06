@@ -204,6 +204,7 @@ alias ld='lazydocker'
 alias wi='which'
 alias td='tmux detach'
 alias C=" | wl-copy"
+alias cpwd='pwd | pbcopy'
 
 # ***
 alias cal='cal -3'                             # Show 3-month calendar
@@ -237,8 +238,6 @@ alias lock='ft_lock'
 alias fl='ft_lock'
 alias gm='./cub3D'
 alias gmv='valgrind --leak-check=full --show-leak-kinds=all ./cub3D'
-alias mak='\make'
-alias make='make -f Makefile.dev'
 alias m='make'
 alias mt='make test'
 alias mc='make clean'
@@ -279,3 +278,24 @@ alias md='nvim /tmp/tmp.md'
 alias tmpd='nvim ~/Downloads/temp.md'
 alias cx="chmod +x"
 alias ni='npm install'
+alias sf='ssh fvps'
+alias mae='\make'
+alias ma='\make'
+alias mak='\make'
+alias make='make -f Makefile.dev'
+alias untar='tar -xzvf' 
+
+#####################
+###     EXPO      ###
+#####################
+alias p10p='emulator -avd Pixel_10_Pro_XL >/dev/null 2>&1 &!' 
+alias aab0='PREBUILD=0 \make build-aab'
+alias aab1='PREBUILD=1 \make build-aab'
+alias and0='PREBUILD=0 \make and'
+alias and1='PREBUILD=1 \make and'
+alias apk0='PREBUILD=0 \make build'
+alias apk1='PREBUILD=1 \make build'
+alias ios0='PREBUILD=0 \make ios'
+alias ios1='PREBUILD=1 \make ios'
+alias ipa0='PREBUILD=0 \make build-ipa'
+alias ipa1='PREBUILD=1 \make build-ipa'
