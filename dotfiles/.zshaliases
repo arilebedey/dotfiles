@@ -284,6 +284,7 @@ alias ma='\make'
 alias mak='\make'
 alias make='make -f Makefile.dev'
 alias untar='tar -xzvf' 
+alias mb='ma build-info'
 
 #####################
 ###     EXPO      ###

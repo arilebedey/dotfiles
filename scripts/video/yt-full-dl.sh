@@ -10,11 +10,13 @@ use_current_dir=false
 dry_run=false
 audio_only=false
 sequential_mode=false
+use_chrome_cookies=false
+download_limit=0
 url=""
 target_dir=""
 
 usage() {
-  echo "Usage: ydl [-c|--current-dir] [-d|--dry-run] [-a|--audio] [-s|--sequential] [URL]" >&2
+  echo "Usage: ydl [-c|--current-dir] [-d|--dry-run] [-a|--audio] [-s|--sequential] [-n|--number COUNT] [--chrome-cookies] [URL]" >&2
 }
 
 invalid_args() {
@@ -42,7 +44,28 @@ normalize_url() {
 }
 
 # ─── Resume Logic ────────────────────────────────────────────────────────────
-if [[ $# -eq 0 && -s "$HISTORY_FILE" ]]; then
+# A count-only invocation such as `ydl -n 25` should still be able to resume a
+# saved task. An explicitly supplied URL always takes precedence and skips the
+# resume prompt.
+offer_resume=false
+explicit_url=false
+
+if [[ $# -eq 0 ]]; then
+  offer_resume=true
+else
+  for arg in "$@"; do
+    case "$arg" in
+      -n|--number|--number=*)
+        offer_resume=true
+        ;;
+      http*)
+        explicit_url=true
+        ;;
+    esac
+  done
+fi
+
+if "$offer_resume" && ! "$explicit_url" && [[ -s "$HISTORY_FILE" ]]; then
   if gum confirm "Resume a previous download?"; then
     set +e
     selected="$(
@@ -77,6 +100,31 @@ while [[ $# -gt 0 ]]; do
       ;;
     -s|--sequential)
       sequential_mode=true
+      ;;
+    -n|--number)
+      if [[ $# -lt 2 ]]; then
+        echo "--number requires a positive integer." >&2
+        usage
+        exit 2
+      fi
+      if [[ ! "$2" =~ ^[1-9][0-9]*$ ]]; then
+        echo "--number requires a positive integer." >&2
+        usage
+        exit 2
+      fi
+      download_limit="$2"
+      shift
+      ;;
+    --number=*)
+      download_limit="${1#*=}"
+      if [[ ! "$download_limit" =~ ^[1-9][0-9]*$ ]]; then
+        echo "--number requires a positive integer." >&2
+        usage
+        exit 2
+      fi
+      ;;
+    --chrome-cookies)
+      use_chrome_cookies=true
       ;;
     http*)
       url="$1"
@@ -137,8 +185,6 @@ fi
 mkdir -p "$target_dir"
 
 # ─── Browser Cookies ─────────────────────────────────────────────────────────
-COOKIE_FLAG=(--cookies-from-browser chrome)
-
 archive_file="$target_dir/archive.txt"
 touch "$archive_file"
 
@@ -155,15 +201,22 @@ ytcmd=(
   --ignore-errors
   --download-archive "$archive_file"
   -P "$target_dir"
-  "${COOKIE_FLAG[@]}"
-  --limit-rate 1M
-  --min-sleep-interval 10
-  --max-sleep-interval 30
-  --sleep-requests 2
+  --limit-rate 5M
+  --concurrent-fragments 4
+  --min-sleep-interval 4
+  --max-sleep-interval 12
+  --sleep-requests 1
   --retries 5
   --retry-sleep exp=5:60
   --fragment-retries 5
 )
+
+# Public YouTube pages are more reliable without browser cookies. Stale Chrome
+# session cookies can make YouTube return "The page needs to be reloaded."
+# Keep authenticated downloads available as an explicit opt-in.
+if "$use_chrome_cookies"; then
+  ytcmd+=(--cookies-from-browser chrome)
+fi
 
 if "$audio_only"; then
   ytcmd+=(
@@ -205,17 +258,24 @@ get_total_items() {
   local probe_log=""
   local probe_output=""
   local probe_status=0
+  local probe_cmd=()
 
   probe_log="$(mktemp "${TMPDIR:-/tmp}/yt-full-dl-probe.XXXXXX")"
 
+  probe_cmd=(
+    yt-dlp
+    --flat-playlist
+    --lazy-playlist
+    --print "%(id)s"
+  )
+
+  if "$use_chrome_cookies"; then
+    probe_cmd+=(--cookies-from-browser chrome)
+  fi
+
   set +e
   probe_output="$(
-    yt-dlp \
-      --flat-playlist \
-      --lazy-playlist \
-      --print "%(id)s" \
-      "${COOKIE_FLAG[@]}" \
-      "$url" 2>"$probe_log" |
+    "${probe_cmd[@]}" "$url" 2>"$probe_log" |
       awk 'NF' |
       wc -l |
       tr -d ' '
@@ -297,13 +357,18 @@ random_between() {
 # ─── Random Range Download Logic ─────────────────────────────────────────────
 download_random_ranges() {
   total_items="$(get_total_items)"
+  session_start_archive="$(archive_count)"
 
   if [[ -z "$total_items" || "$total_items" -lt 1 ]]; then
     echo "Could not determine playlist/channel size."
     echo "Falling back to normal yt-dlp run."
     echo "────────────────────────────────────────────────────────────────────────────"
 
-    "${ytcmd[@]}" "$url"
+    if [[ "$download_limit" -gt 0 ]]; then
+      "${ytcmd[@]}" --playlist-end "$download_limit" "$url"
+    else
+      "${ytcmd[@]}" "$url"
+    fi
     return
   fi
 
@@ -318,6 +383,9 @@ download_random_ranges() {
   echo "Downloading random sequential ranges."
   echo "Range starts are random playlist positions."
   echo "Range length is random from 1-8 videos."
+  if [[ "$download_limit" -gt 0 ]]; then
+    echo "This run will stop after $download_limit new downloads."
+  fi
   echo "Resolved items are tracked across:"
   echo "$archive_file"
   echo "$failed_file"
@@ -330,6 +398,14 @@ download_random_ranges() {
     before_resolved="$(resolved_count)"
     before_archive="$(archive_count)"
     before_failed="$(failed_count)"
+    downloaded_this_run=$(( before_archive - session_start_archive ))
+
+    if [[ "$download_limit" -gt 0 && "$downloaded_this_run" -ge "$download_limit" ]]; then
+      echo
+      echo "Download limit reached: $downloaded_this_run/$download_limit new videos."
+      echo "Done."
+      break
+    fi
 
     if [[ "$before_resolved" -ge "$total_items" ]]; then
       echo
@@ -340,6 +416,12 @@ download_random_ranges() {
     fi
 
     range_size="$(random_between 1 8)"
+    if [[ "$download_limit" -gt 0 ]]; then
+      remaining_downloads=$(( download_limit - downloaded_this_run ))
+      if [[ "$range_size" -gt "$remaining_downloads" ]]; then
+        range_size="$remaining_downloads"
+      fi
+    fi
     start="$(random_between 1 "$total_items")"
     end=$(( start + range_size - 1 ))
 
@@ -397,13 +479,18 @@ download_random_ranges() {
 download_sequential_ranges() {
   total_items="$(get_total_items)"
   batch_size=8
+  session_start_archive="$(archive_count)"
 
   if [[ -z "$total_items" || "$total_items" -lt 1 ]]; then
     echo "Could not determine playlist/channel size."
     echo "Falling back to normal yt-dlp run."
     echo "────────────────────────────────────────────────────────────────────────────"
 
-    "${ytcmd[@]}" "$url"
+    if [[ "$download_limit" -gt 0 ]]; then
+      "${ytcmd[@]}" --playlist-end "$download_limit" "$url"
+    else
+      "${ytcmd[@]}" "$url"
+    fi
     return
   fi
 
@@ -417,6 +504,9 @@ download_sequential_ranges() {
 
   echo "Downloading sequential ranges from first item to last."
   echo "Batch size: $batch_size videos."
+  if [[ "$download_limit" -gt 0 ]]; then
+    echo "This run will stop after $download_limit new downloads."
+  fi
   echo "Resolved items are tracked across:"
   echo "$archive_file"
   echo "$failed_file"
@@ -428,6 +518,14 @@ download_sequential_ranges() {
     before_resolved="$(resolved_count)"
     before_archive="$(archive_count)"
     before_failed="$(failed_count)"
+    downloaded_this_run=$(( before_archive - session_start_archive ))
+
+    if [[ "$download_limit" -gt 0 && "$downloaded_this_run" -ge "$download_limit" ]]; then
+      echo
+      echo "Download limit reached: $downloaded_this_run/$download_limit new videos."
+      echo "Done."
+      break
+    fi
 
     if [[ "$before_resolved" -ge "$total_items" ]]; then
       echo
@@ -437,7 +535,15 @@ download_sequential_ranges() {
       break
     fi
 
-    end=$(( start + batch_size - 1 ))
+    current_batch_size="$batch_size"
+    if [[ "$download_limit" -gt 0 ]]; then
+      remaining_downloads=$(( download_limit - downloaded_this_run ))
+      if [[ "$current_batch_size" -gt "$remaining_downloads" ]]; then
+        current_batch_size="$remaining_downloads"
+      fi
+    fi
+
+    end=$(( start + current_batch_size - 1 ))
     if [[ "$end" -gt "$total_items" ]]; then
       end="$total_items"
     fi
@@ -483,7 +589,11 @@ echo "URL: $url"
 echo "────────────────────────────────────────────────────────────────────────────"
 
 if "$dry_run"; then
-  "${ytcmd[@]}" "$url"
+  if [[ "$download_limit" -gt 0 ]]; then
+    "${ytcmd[@]}" --playlist-end "$download_limit" "$url"
+  else
+    "${ytcmd[@]}" "$url"
+  fi
 else
   if "$sequential_mode"; then
     download_sequential_ranges

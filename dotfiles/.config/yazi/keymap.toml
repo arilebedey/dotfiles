@@ -122,6 +122,7 @@ keymap = [
 
 	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go ~/.config" },
 	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go ~/Downloads" },
+	{ on = [ "g", "e" ],       run = "cd ~/Editing",     desc = "Go to ~/Editing" },
   { on = [ "g", "f" ],       run = "cd ~/System/dotfiles",     desc = "Go to the config directory" },
   { on = [ "g", "t" ],       run = "cd /media/alebedev/T9",desc = "Go to the T9 at 42" },
   { on = [ "g", "n" ],       run = "cd ~/Information",         desc = "Go to info folder" },
